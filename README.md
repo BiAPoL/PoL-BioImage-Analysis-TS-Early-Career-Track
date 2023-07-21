@@ -1,4 +1,6 @@
-# Image data science with Python and Napari @EPFL
+# Physics of Life Bio-Image Analysis Training School - Early Career Track
+
+# :construction::construction::construction: REPOSITORY UNDER CONSTRUCTION :construction::construction::construction:
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
