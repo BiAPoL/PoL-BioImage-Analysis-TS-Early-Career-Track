@@ -1,6 +1,6 @@
 # In _config.yml
-title: Image data science with Python and Napari @EPFL
-author: Marcelo Zoccoler, Johannes Müller, Till Korten, Robert Haase, DFG Cluster of Excellence "Physics of Life", TU Dresden
+title: PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis
+author: Robert Haase, Marcelo Zoccoler, Johannes Müller, Till Korten, Alysson Ryan, Jan Brocher, Martin Schatz
 logo: biapol_logo.png
 execute:
   execute_notebooks: off
@@ -11,7 +11,7 @@ bibtex_bibfiles:
 
   # Information about where the book exists on the web
 repository:
-  url: https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022 # Online location of your book
+  url: https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track # Online location of your book
   branch: main # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
