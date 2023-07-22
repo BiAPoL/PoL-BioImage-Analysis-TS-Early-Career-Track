@@ -11,7 +11,7 @@ This work is licensed by Alysson Ryan, Marcelo Leomil Zoccoler, Johannes Richard
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
-This repository hosts notebooks, information and data for the "Physics of Life Bio-Image Analysis Training School - Early Career Track" course @PoL 2023.
+This repository hosts notebooks, information and data for the "Physics of Life Bio-Image Analysis Training School - Early Career Track" as part of the [PoL Bio-Image Analysis Symposium](https://biopol-training.eventmember.de/) @PoL 2023.
 
 https://biapol.github.io/PoL-BioImage-Analysis-TS-Early-Career-Track/
 
