@@ -1,6 +1,6 @@
 # In _config.yml
 title: PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis
-author: Robert Haase, Marcelo Zoccoler, Johannes Müller, Till Korten, Alysson Ryan, Jan Brocher, Martin Schatz
+author: Allysson Ryan, Jan Brocher, Johannes Soltwedel, Marcelo Zoccoler, Marco Musy, Martin Schatz, Till Korten, Robert Haase 
 logo: biapol_logo.png
 execute:
   execute_notebooks: off
