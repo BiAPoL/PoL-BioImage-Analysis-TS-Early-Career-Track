@@ -1,4 +1,6 @@
-# Image data science with Python and Napari @EPFL
+# Physics of Life Bio-Image Analysis Training School - Early Career Track
+
+:construction: :construction: :construction:
 
 This [Jupyter book](https://jupyterbook.org/) contains training resources for scientists who want to dive into image processing with Python. 
 It specifically aims for students and scientists working with microscopy images in the life sciences.

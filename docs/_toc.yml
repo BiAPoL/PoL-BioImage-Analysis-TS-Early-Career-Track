@@ -49,6 +49,7 @@ chapters:
           - file: day2a_image_segmentation/16_open_close_labels
           - file: day2a_image_segmentation/19_the_segmentation_game.md
           - file: day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation
+
       - file: day2b_machine_learning_apoc/intro
         sections:
           - file: day2b_machine_learning_apoc/01_supervised_machine_learning
@@ -64,6 +65,7 @@ chapters:
           - file: day2c_feature_extraction/03_statistics_with_pyclesperanto
           - file: day2c_feature_extraction/04_EXERCISE_parametric_images_in_napari
           - file: day2c_feature_extraction/05_quantitative_neighbor_maps
+
       - file: day2d_pandas_statistics/intro
         sections:
           - file: day2d_pandas_statistics/Pandas_Intro
@@ -71,8 +73,12 @@ chapters:
           - file: day2d_pandas_statistics/Statistics
           - file: day2d_pandas_statistics/Statistics_b
           - file: day2d_pandas_statistics/Statistics_exercise_solution
+
   - file: day3/intro
     sections:
       - file: day3a_plotting/intro
-      - file: day3a_plotting/Plotting
-      - file: day3a_plotting/Intro_to_Seaborn
+        sections:
+        - file: day3a_plotting/Plotting
+        - file: day3a_plotting/Intro_to_Seaborn
+
+      - file: day3b_workflow/workflow
