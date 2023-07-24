@@ -1,1 +1,1 @@
-# Day 1: Image Processing
+# Image Processing

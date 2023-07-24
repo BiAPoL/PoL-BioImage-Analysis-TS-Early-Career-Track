@@ -1,1 +1,1 @@
-# Day 1: Image Analysis Basics + Filtering
+# Image Analysis Basics + Filtering
