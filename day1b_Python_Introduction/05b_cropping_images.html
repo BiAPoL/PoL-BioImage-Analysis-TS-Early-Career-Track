@@ -458,7 +458,9 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-sampling-images">Sub-sampling images</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flipping-images">Flipping images</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-operations">Numpy operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
 </ul>
             </nav>
         </div>
@@ -472,22 +474,29 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cropping-images">
 <h1>Cropping images<a class="headerlink" href="#cropping-images" title="Permalink to this heading">#</a></h1>
-<p>When working with microscopy images, it often makes limited sense to process the whole image. We typically crop out interesting regions and process them in detail.</p>
+<p>When working with microscopy images, it often makes limited sense to process the whole image. We typically crop out interesting regions and process them in detail. In this context, it is important to understand that often times, images in Python are actually simply numpy arrays - which means we can use the same indexing and slicing operations as we have seen for lists and tuples.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../data/blobs.tif&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s2">&quot;../../data/blobs.tif&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Before we can crop an image, we may want to know its precise shape (dimensions):</p>
+<p>Numpy arrays - and thus, images loaded as numpy arrays - have some <em>attributes</em> assigned to them. For instance, ay numpy array has the following attributes we can inspect:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">array.shape</span></code>: the shape of the array, i.e. the number of elements in each dimension</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array.size</span></code>: the total number of elements in the array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array.dtype</span></code>: the data type of the array ( like <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>, etc.)</p></li>
+</ul>
+<p>For images, before we can crop an image, we may want to know its precise shape (dimensions):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="o">.</span><span class="n">shape</span>
@@ -500,7 +509,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Recap: Visualization using <code class="docutils literal notranslate"><span class="pre">imshow</span></code>:</p>
+<p>You can visualize images in Jupyter notebooks using the <a class="reference external" href="https://scikit-image.org/docs/stable/api/skimage.io.html#skimage.io.imshow"><code class="docutils literal notranslate"><span class="pre">imshow</span></code> function from scikit-image</a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
@@ -508,10 +517,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2990e248520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb7748adf0&gt;
 </pre></div>
 </div>
-<img alt="../_images/05dbb9e7395c2944b360ead71bdaae0c366bad17ce7958c6cbb8002d921ca585.png" src="../_images/05dbb9e7395c2944b360ead71bdaae0c366bad17ce7958c6cbb8002d921ca585.png" />
+<img alt="../_images/eb756dc9532e8cdefa98ec3218709d0b49891bc9b5e8c7da3549af18dfb22404.png" src="../_images/eb756dc9532e8cdefa98ec3218709d0b49891bc9b5e8c7da3549af18dfb22404.png" />
 </div>
 </div>
 <p>Cropping images works exactly like cropping lists and tuples:</p>
@@ -524,10 +533,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2990e347190&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb7750b4c0&gt;
 </pre></div>
 </div>
-<img alt="../_images/5dfc2c1240c1d2b4180e7155b965ada6385ecafa9382997ec6fef78de15f82ec.png" src="../_images/5dfc2c1240c1d2b4180e7155b965ada6385ecafa9382997ec6fef78de15f82ec.png" />
+<img alt="../_images/ce0dff9ee844800bd0188606792377cc4030341e4168bc94d68c9d597f439aba.png" src="../_images/ce0dff9ee844800bd0188606792377cc4030341e4168bc94d68c9d597f439aba.png" />
 </div>
 </div>
 <p>To crop the image in the second dimension as well, we add a <code class="docutils literal notranslate"><span class="pre">,</span></code> in the square brackets:</p>
@@ -540,10 +549,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2990e3b6280&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb7757eee0&gt;
 </pre></div>
 </div>
-<img alt="../_images/e21d1253e4b584aa9b11613ce78a528925e2b0c5022c75826e9249c3249ce2bc.png" src="../_images/e21d1253e4b584aa9b11613ce78a528925e2b0c5022c75826e9249c3249ce2bc.png" />
+<img alt="../_images/d0e11768ff91d541605dce1a43d9d59a719d93482a1c1a5af07094e005dd7e5c.png" src="../_images/d0e11768ff91d541605dce1a43d9d59a719d93482a1c1a5af07094e005dd7e5c.png" />
 </div>
 </div>
 <section id="sub-sampling-images">
@@ -558,10 +567,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2990e416f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb77604520&gt;
 </pre></div>
 </div>
-<img alt="../_images/1ae61e2bfef8e2b99fc383556b4cd0f9ad4953f6614d9a0c77896c274931b845.png" src="../_images/1ae61e2bfef8e2b99fc383556b4cd0f9ad4953f6614d9a0c77896c274931b845.png" />
+<img alt="../_images/63a58a1a7f2aab99dc3ef5b0860fc4bd8379dd5552c22ac975a8aa17305a0106.png" src="../_images/63a58a1a7f2aab99dc3ef5b0860fc4bd8379dd5552c22ac975a8aa17305a0106.png" />
 </div>
 </div>
 </section>
@@ -577,16 +586,52 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x2990f453160&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb777fa370&gt;
 </pre></div>
 </div>
-<img alt="../_images/3d09e26b4ded01ff350fc2ca306ad330ff9a17ab90c0ad2f94a462e82839fa8c.png" src="../_images/3d09e26b4ded01ff350fc2ca306ad330ff9a17ab90c0ad2f94a462e82839fa8c.png" />
+<img alt="../_images/d168fabd7e6606fed46bef27a67618fc9b86216976ccae68466baf18afa22173.png" src="../_images/d168fabd7e6606fed46bef27a67618fc9b86216976ccae68466baf18afa22173.png" />
 </div>
 </div>
 </section>
-<section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<section id="numpy-operations">
+<h2>Numpy operations<a class="headerlink" href="#numpy-operations" title="Permalink to this heading">#</a></h2>
+<p>You can apply element-wise mathematical operations in images:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiplied_image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">multiplied_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb776e4670&gt;
+</pre></div>
+</div>
+<img alt="../_images/2b43d5ded81ad38e16cb1f84477e701df2046f82fb43b9613e47b012de12289b.png" src="../_images/2b43d5ded81ad38e16cb1f84477e701df2046f82fb43b9613e47b012de12289b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">thresholded_image</span> <span class="o">=</span> <span class="n">image</span> <span class="o">&gt;</span> <span class="mi">128</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">thresholded_image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1fb7775ab20&gt;
+</pre></div>
+</div>
+<img alt="../_images/cec2bc96979b0a45a934ded6f82fec17f5024df16983149b30bdc6e63777b6b8.png" src="../_images/cec2bc96979b0a45a934ded6f82fec17f5024df16983149b30bdc6e63777b6b8.png" />
+</div>
+</div>
+</section>
+<section id="exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this heading">#</a></h2>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">banana020.tif</span></code> data set and crop out the region where the banana slice is located.</p>
+</section>
+<section id="exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this heading">#</a></h2>
+<p>Look at the <code class="docutils literal notranslate"><span class="pre">multiplied_image</span></code> from above. Why does the image look this way? <em>Hint</em>: Have a look at <code class="docutils literal notranslate"><span class="pre">image.max()</span></code> (the maximum intensity in the array), <code class="docutils literal notranslate"><span class="pre">multiplied_image.max()</span></code> as well as <code class="docutils literal notranslate"><span class="pre">image.dtype</span></code> (the data type of the array).</p>
 </section>
 </section>
 
@@ -659,7 +704,9 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-sampling-images">Sub-sampling images</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flipping-images">Flipping images</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-operations">Numpy operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
 </ul>
   </nav></div>
 
