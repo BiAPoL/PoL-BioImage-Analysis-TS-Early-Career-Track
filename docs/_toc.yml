@@ -26,8 +26,8 @@ chapters:
       - file: day1c_Python_loops_conditions_functions/intro
         sections:
           - file: day1c_Python_loops_conditions_functions/07_Conditions
-          - file: day1c_Python_loops_conditions_functions/08_loops
-          - file: day1c_Python_loops_conditions_functions/09_custom_functions
+          - file: day1c_Python_loops_conditions_functions/08_custom_functions
+          - file: day1c_Python_loops_conditions_functions/09_loops
       - file: day1d_image_analysis_basics_filtering/intro
       - file: day1e_image_processing/intro
 
