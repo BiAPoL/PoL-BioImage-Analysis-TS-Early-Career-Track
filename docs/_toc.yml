@@ -68,17 +68,21 @@ chapters:
 
       - file: day2d_pandas_statistics/intro
         sections:
-          - file: day2d_pandas_statistics/Pandas_Intro
-          - file: day2d_pandas_statistics/Tabular_Data
-          - file: day2d_pandas_statistics/Statistics
-          - file: day2d_pandas_statistics/Statistics_b
-          - file: day2d_pandas_statistics/Statistics_exercise_solution
+          - file: day2d_pandas_statistics/00_Pandas
+          - file: day2d_pandas_statistics/01_Pandas_Intro
+          - file: day2d_pandas_statistics/02_Pandas_operations
+          - file: day2d_pandas_statistics/03_Pandas_EDA
+          - file: day2d_pandas_statistics/04_Pandas_Bonus
 
   - file: day3/intro
     sections:
       - file: day3a_plotting/intro
         sections:
-        - file: day3a_plotting/Plotting
-        - file: day3a_plotting/Intro_to_Seaborn
+        - file: day3a_plotting/00_Intro_matplotlib
+        - file: day3a_plotting/01_Introduction_to_Seaborn
+        - file: day3a_plotting/02_Using_Seaborn
+        - file: day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus
 
-      - file: day3b_workflow/workflow
+      - file: day3b_workflow/intro
+        sections:
+        - file: day3b_workflow/workflow
