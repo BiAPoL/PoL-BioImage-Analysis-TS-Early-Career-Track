@@ -16,7 +16,7 @@ Last but not least we will learn about good scientific practice in the programmi
 
 ## Timetable
 
-![img.png](timetable.png)
+![img.png](early_career_timetable.png)
 
 ## How to use this material
 
