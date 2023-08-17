@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Working with tabular data &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+    <title>Working with tabular data and Statistics &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
   
   
   
@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day2d_pandas_statistics/intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Plying with Pandas" href="Pandas_Intro.html" />
+    <link rel="next" title="Essentials for Exploring and Visualizing Data with Pandas" href="00_Pandas.html" />
     <link rel="prev" title="Quantiative neighborhood measurements" href="../day2c_feature_extraction/05_quantitative_neighbor_maps.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -244,23 +244,36 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Working with tabular data</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Working with tabular data and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_Pandas_Intro.html">Introduction to Pandas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="02_Pandas_operations.html">Basic Operations</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
 
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/intro.html">Day 3: Plotting and Workflow</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/Plotting.html">Plotting Data with Matplotlib</a></li>
-
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/Intro_to_Seaborn.html">Intro to Seaborn</a></li>
-
-
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -433,9 +446,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -446,21 +457,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Working with tabular data</h1>
+    <h1>Working with tabular data and Statistics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Working with tabular data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -470,16 +471,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="working-with-tabular-data">
-<h1>Working with tabular data<a class="headerlink" href="#working-with-tabular-data" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="working-with-tabular-data-and-statistics">
+<h1>Working with tabular data and Statistics<a class="headerlink" href="#working-with-tabular-data-and-statistics" title="Permalink to this heading">#</a></h1>
 <p>In this chapter we will explore working with tabular data using the <a class="reference external" href="https://pandas.pydata.org/">pandas library</a>. We will explore tabular datasets, extract rows and columns from tables, eliminate NaNs and do basic descriptive statistics on measurements. We will also combine tables and manipulate them to make them easy to be grouped and have functions applied.</p>
-<p>Some notebooks here are inspired from <a class="reference external" href="https://justinbois.github.io/dd-pol/2022/index.html">material from Justin Bois</a>.</p>
-<p>The slides for this section can be found <a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day4a_Tabular_Data/Tabular_Data.pdf">here</a>.</p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="statistics">
-<h1>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading">#</a></h1>
-<p>This part will teach you how to apply statistical methods to your data. We will start with simple descriptive statistics, establish how to calculate confidence intervals by bootstrapping and finish with an overview of statistical methods for hypothesis testing.</p>
-<p>The slides for this section can be found <a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day4c_Statistics/Statistics.pdf">here</a>.</p>
+<p>Following tables, we will teach you how to apply statistical methods for hypothesis testing to your data, like normality tests, t-tests, analysis of variance, etc.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -525,11 +520,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="Pandas_Intro.html"
+       href="00_Pandas.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Plying with Pandas</p>
+        <p class="prev-next-title">Essentials for Exploring and Visualizing Data with Pandas</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -542,22 +537,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Working with tabular data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -1,0 +1,3346 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Basic Plots, Groupping and Multi-Level Tables &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day2d_pandas_statistics/04_Pandas_Bonus';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Day 3: Plotting and Workflow Exercise" href="../day3/intro.html" />
+    <link rel="prev" title="Exploratory Data Analysis" href="03_Pandas_EDA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/biapol_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/biapol_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Physics of Life Bio-Image Analysis Training School - Early Career Track
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day1/intro.html">Day 1: Introduction to Python and Bio-image Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day1a_setup_conda/intro.html">Course preparation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day1b_Python_Introduction/intro.html">Introduction to Python part I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/02_Math_in_python.html">Basic math in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/03_Dont_try_this_at_home.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/04_Basic_types.html">Basic types in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/05_lists_tuples.html">Lists and tuples</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/05a_cropping_lists.html">Cropping lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/05b_cropping_images.html">Cropping images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/05c_sorting_lists.html">Sorting lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/05d_masking.html">Masking numpy arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1b_Python_Introduction/06_Dictionaries_and_tables.html">Dictionaries</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day1c_Python_loops_conditions_functions/intro.html">Introduction to Python part II</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day1c_Python_loops_conditions_functions/07_Conditions.html">Conditions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day1c_Python_loops_conditions_functions/08_custom_functions.html">Functions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day1c_Python_loops_conditions_functions/09_loops.html">Loops</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../day1d_image_analysis_basics_filtering/intro.html">Image Analysis Basics + Filtering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day1e_image_processing/intro.html">Image Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/03_Morphological_operations.html">Morphological Image Processing</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/04_Otsu_threshold.html">Otsu’s threshold method (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/09_connected_component_labeling.html">Label images</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/10_touching_objects_labeling.html">Touching objects labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/11_voronoi_tesselation.html">Voronoi tesselation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/11_voronoi_otsu_labeling.html">Voronoi-Otsu-labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/12_Segmentation_3D.html">3D Image Segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/14_segmentation_2d_membranes.html">Seeded watershed for membrane-based cell segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/15_EXERCISE_Seeded_watershed.html">Exercise: Seeded watershed in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/15_remove_labels_on_image_edges.html">Remove labels on image edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/16_open_close_labels.html">Label image refinement</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/19_the_segmentation_game.html">The Segmentation Game</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/01_supervised_machine_learning.html">Supervised machine learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.html">Exercise: Interactive pixel and object classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/04_EXERCISE_demo_object_segmenter.html">Object segmentation on OpenCL-compatible GPUs</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/05_train_on_folders.html">Training classifiers from folders of images</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/01_EXERCISE_quantiative_measurements.html">Quantitative image analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/02_statistics_with_simpleitk.html">Statistics using SimpleITK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/03_statistics_with_pyclesperanto.html">Basic statistics with pyclesperanto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/04_EXERCISE_parametric_images_in_napari.html">Parametric map images in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/05_quantitative_neighbor_maps.html">Quantiative neighborhood measurements</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Working with tabular data and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01_Pandas_Intro.html">Introduction to Pandas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="02_Pandas_operations.html">Basic Operations</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
+
+
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Basic Plots, Groupping and Multi-Level Tables</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday2d_pandas_statistics/04_Pandas_Bonus.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/day2d_pandas_statistics/04_Pandas_Bonus.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Plots, Groupping and Multi-Level Tables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Plots, Groupping and Multi-Level Tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-pandas">Intro to pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-plotting">Simple Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables">Pivot Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-syntax">Pivot Table Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-widgets">Pivot Table Widgets</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-plots-groupping-and-multi-level-tables">
+<h1>Basic Plots, Groupping and Multi-Level Tables<a class="headerlink" href="#basic-plots-groupping-and-multi-level-tables" title="Permalink to this heading">#</a></h1>
+<p>Inspiration and some of the parts came from: Python Data Science <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/tree/master">GitHub repository</a>, <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/LICENSE-CODE">MIT License</a> and <a class="reference external" href="https://colab.research.google.com/notebooks/mlcc/intro_to_pandas.ipynb">Introduction to Pandas</a> by Google, <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a></p>
+<p>needed packages:</p>
+<ul class="simple">
+<li><p>pandas</p></li>
+<li><p>numpy</p></li>
+</ul>
+<p>support package</p>
+<ul class="simple">
+<li><p>seaborn (load dataset titanic from seaborn package)</p></li>
+<li><p>pivottablejs (for more easy pivot tables and fast simple visualization)</p></li>
+<li><p>watermark (documenting version of packages)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pandas</span>
+<span class="c1">#!pip install numpy</span>
+<span class="c1">#!pip install seaborn</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>watermark
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pivottablejs
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: watermark in /usr/local/lib/python3.10/dist-packages (2.4.3)
+Requirement already satisfied: ipython&gt;=6.0 in /usr/local/lib/python3.10/dist-packages (from watermark) (7.34.0)
+Requirement already satisfied: importlib-metadata&gt;=1.4 in /usr/local/lib/python3.10/dist-packages (from watermark) (6.8.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (from watermark) (67.7.2)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from importlib-metadata&gt;=1.4-&gt;watermark) (3.16.2)
+Requirement already satisfied: jedi&gt;=0.16 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.19.0)
+Requirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.4.2)
+Requirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.7.5)
+Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (5.7.1)
+Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (3.0.39)
+Requirement already satisfied: pygments in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (2.16.1)
+Requirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.2.0)
+Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.1.6)
+Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.8.0)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /usr/local/lib/python3.10/dist-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.0-&gt;watermark) (0.8.3)
+Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.0-&gt;watermark) (0.7.0)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.10/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython&gt;=6.0-&gt;watermark) (0.2.6)
+Collecting pivottablejs
+  Downloading pivottablejs-0.9.0-py2.py3-none-any.whl (4.7 kB)
+Installing collected packages: pivottablejs
+Successfully installed pivottablejs-0.9.0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="intro-to-pandas">
+<h2>Intro to pandas<a class="headerlink" href="#intro-to-pandas" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="http://pandas.pydata.org/"><em>pandas</em></a> is a column-oriented data analysis API. It’s a great tool for handling and analyzing input data, and many ML frameworks support <em>pandas</em> data structures as inputs.
+Although a comprehensive introduction to the <em>pandas</em> API would span many pages, the core concepts are fairly straightforward, and we’ll present them below. For a more complete reference, the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/index.html"><em>pandas</em> docs site</a> contains extensive documentation and many tutorials.</p>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Gain an introduction to the <em>DataFrame</em> and <em>Series</em> data structures of the pandas library</p></li>
+<li><p>Import CSV data into a pandas <em>DataFrame</em></p></li>
+<li><p>Access and manipulate data within a <em>DataFrame</em> and <em>Series</em></p></li>
+<li><p>Export <em>DataFrame</em> to CSV</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>operations</p></li>
+<li><p>selection</p></li>
+<li><p>filtering</p></li>
+<li><p>concat</p></li>
+<li><p>NaNs</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>descriptive statistics/EDA</p></li>
+<li><p>corr matrix</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Simple plotting from <em>DataFrame</em></p></li>
+<li><p>Pivot tables</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="basic-concepts">
+<h1>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h1>
+<p>The following line imports the <em>pandas</em> API and prints the API version:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.5.3&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>But most of the time, you load an entire file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. The following example loads a file with California housing data. Run the following cell to load the data and create feature definitions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://download.mlcc.google.com/mledu-datasets/california_housing_train.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1">#california_housing_dataframe.tail()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-148277cb-9a10-4b76-b2e4-da53d603f38f">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-114.31</td>
+      <td>34.19</td>
+      <td>15.0</td>
+      <td>5612.0</td>
+      <td>1283.0</td>
+      <td>1015.0</td>
+      <td>472.0</td>
+      <td>1.4936</td>
+      <td>66900.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-114.47</td>
+      <td>34.40</td>
+      <td>19.0</td>
+      <td>7650.0</td>
+      <td>1901.0</td>
+      <td>1129.0</td>
+      <td>463.0</td>
+      <td>1.8200</td>
+      <td>80100.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-114.56</td>
+      <td>33.69</td>
+      <td>17.0</td>
+      <td>720.0</td>
+      <td>174.0</td>
+      <td>333.0</td>
+      <td>117.0</td>
+      <td>1.6509</td>
+      <td>85700.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-114.57</td>
+      <td>33.64</td>
+      <td>14.0</td>
+      <td>1501.0</td>
+      <td>337.0</td>
+      <td>515.0</td>
+      <td>226.0</td>
+      <td>3.1917</td>
+      <td>73400.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-114.57</td>
+      <td>33.57</td>
+      <td>20.0</td>
+      <td>1454.0</td>
+      <td>326.0</td>
+      <td>624.0</td>
+      <td>262.0</td>
+      <td>1.9250</td>
+      <td>65500.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-148277cb-9a10-4b76-b2e4-da53d603f38f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-07fda4d7-e898-4568-bc65-d91a43ce6f51">
+      <button class="colab-df-quickchart" onclick="quickchart('df-07fda4d7-e898-4568-bc65-d91a43ce6f51')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-07fda4d7-e898-4568-bc65-d91a43ce6f51 button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-148277cb-9a10-4b76-b2e4-da53d603f38f button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-148277cb-9a10-4b76-b2e4-da53d603f38f');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<section id="simple-plotting">
+<h2>Simple Plotting<a class="headerlink" href="#simple-plotting" title="Permalink to this heading">#</a></h2>
+<p>The example below is using <code class="docutils literal notranslate"><span class="pre">DataFrame.describe</span></code> to show interesting statistics about a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-ab258488-8b44-4706-9c45-976439788082">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>longitude</th>
+      <th>latitude</th>
+      <th>housing_median_age</th>
+      <th>total_rooms</th>
+      <th>total_bedrooms</th>
+      <th>population</th>
+      <th>households</th>
+      <th>median_income</th>
+      <th>median_house_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+      <td>17000.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-119.562108</td>
+      <td>35.625225</td>
+      <td>28.589353</td>
+      <td>2643.664412</td>
+      <td>539.410824</td>
+      <td>1429.573941</td>
+      <td>501.221941</td>
+      <td>3.883578</td>
+      <td>207300.912353</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>2.005166</td>
+      <td>2.137340</td>
+      <td>12.586937</td>
+      <td>2179.947071</td>
+      <td>421.499452</td>
+      <td>1147.852959</td>
+      <td>384.520841</td>
+      <td>1.908157</td>
+      <td>115983.764387</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-124.350000</td>
+      <td>32.540000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>0.499900</td>
+      <td>14999.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-121.790000</td>
+      <td>33.930000</td>
+      <td>18.000000</td>
+      <td>1462.000000</td>
+      <td>297.000000</td>
+      <td>790.000000</td>
+      <td>282.000000</td>
+      <td>2.566375</td>
+      <td>119400.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-118.490000</td>
+      <td>34.250000</td>
+      <td>29.000000</td>
+      <td>2127.000000</td>
+      <td>434.000000</td>
+      <td>1167.000000</td>
+      <td>409.000000</td>
+      <td>3.544600</td>
+      <td>180400.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>-118.000000</td>
+      <td>37.720000</td>
+      <td>37.000000</td>
+      <td>3151.250000</td>
+      <td>648.250000</td>
+      <td>1721.000000</td>
+      <td>605.250000</td>
+      <td>4.767000</td>
+      <td>265000.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>-114.310000</td>
+      <td>41.950000</td>
+      <td>52.000000</td>
+      <td>37937.000000</td>
+      <td>6445.000000</td>
+      <td>35682.000000</td>
+      <td>6082.000000</td>
+      <td>15.000100</td>
+      <td>500001.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ab258488-8b44-4706-9c45-976439788082')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-5b7c1158-108e-4c68-a50f-4a09b7268417">
+      <button class="colab-df-quickchart" onclick="quickchart('df-5b7c1158-108e-4c68-a50f-4a09b7268417')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-5b7c1158-108e-4c68-a50f-4a09b7268417 button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-ab258488-8b44-4706-9c45-976439788082 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-ab258488-8b44-4706-9c45-976439788082');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>Another powerful feature of <em>pandas</em> is graphing. For example, <code class="docutils literal notranslate"><span class="pre">DataFrame.hist</span></code> lets you quickly study the distribution of values in a column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="s1">&#39;housing_median_age&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;Axes: title={&#39;center&#39;: &#39;housing_median_age&#39;}&gt;]], dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/25753cb318244a996cd996df6593b4c3bb1c67ec3010e8b5f2376e7725547e3a.png" src="../_images/25753cb318244a996cd996df6593b4c3bb1c67ec3010e8b5f2376e7725547e3a.png" />
+</div>
+</div>
+<p>Another example, <code class="docutils literal notranslate"><span class="pre">DataFrame.plot.scatter</span></code> lets you quickly study the possition of houses:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
+                      <span class="n">y</span><span class="o">=</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
+                      <span class="n">c</span><span class="o">=</span><span class="s1">&#39;DarkBlue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;longitude&#39;, ylabel=&#39;latitude&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/1d79a71f4c192bcb494f75ad92312f45e3fb8dafb05a5e2db4df2dcb61244b47.png" src="../_images/1d79a71f4c192bcb494f75ad92312f45e3fb8dafb05a5e2db4df2dcb61244b47.png" />
+</div>
+</div>
+<p>You can learn more in Documentation: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.scatter.html">https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.scatter.html</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;median_income&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../_images/75609dd322782b6d52d90ab6198cee9bc4804eb09ecfa0ed69ad2b88e0a667ba.png" src="../_images/75609dd322782b6d52d90ab6198cee9bc4804eb09ecfa0ed69ad2b88e0a667ba.png" />
+</div>
+</div>
+</section>
+<section id="pivot-tables">
+<h2>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># load dataset titanic from seaborn package</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+<span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-ff25a77c-4bfa-4817-8c59-b989bd6a5f52">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ff25a77c-4bfa-4817-8c59-b989bd6a5f52')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-0400d4c8-f346-476b-876e-8c57b64778ad">
+      <button class="colab-df-quickchart" onclick="quickchart('df-0400d4c8-f346-476b-876e-8c57b64778ad')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-0400d4c8-f346-476b-876e-8c57b64778ad button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-ff25a77c-4bfa-4817-8c59-b989bd6a5f52 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-ff25a77c-4bfa-4817-8c59-b989bd6a5f52');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<section id="pivot-tables-by-hand">
+<h3>Pivot Tables by Hand<a class="headerlink" href="#pivot-tables-by-hand" title="Permalink to this heading">#</a></h3>
+<p>To start learning more about this data, we might begin by grouping according to sex, survival status, or some combination thereof.
+If you read the previous chapter, you might be tempted to apply a <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation—for example, let’s look at survival rate by sex:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)[[</span><span class="s1">&#39;survived&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-51d89ab0-353f-4238-9d7b-41b8fc6c6034">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.742038</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.188908</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-51d89ab0-353f-4238-9d7b-41b8fc6c6034')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-02864346-8d77-4d58-9efa-d184d30a2ad7">
+      <button class="colab-df-quickchart" onclick="quickchart('df-02864346-8d77-4d58-9efa-d184d30a2ad7')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-02864346-8d77-4d58-9efa-d184d30a2ad7 button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-51d89ab0-353f-4238-9d7b-41b8fc6c6034 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-51d89ab0-353f-4238-9d7b-41b8fc6c6034');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>This gives us some initial insight: overall, three of every four females on board survived, while only one in five males survived!</p>
+<p>This is useful, but we might like to go one step deeper and look at survival rates by both sex and, say, class.
+Using the vocabulary of <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, we might proceed using a process like this:
+we first <em>group by</em> class and sex, then <em>select</em> survival, <em>apply</em> a mean aggregate, <em>combine</em> the resulting groups, and finally <em>unstack</em> the hierarchical index to reveal the hidden multidimensionality. In code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">])[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-86258098-db18-4d53-b03f-bdb78b31a19c">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.968085</td>
+      <td>0.921053</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.368852</td>
+      <td>0.157407</td>
+      <td>0.135447</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-86258098-db18-4d53-b03f-bdb78b31a19c')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-fcc1f342-c4b7-45d8-8873-14e74783ea98">
+      <button class="colab-df-quickchart" onclick="quickchart('df-fcc1f342-c4b7-45d8-8873-14e74783ea98')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-fcc1f342-c4b7-45d8-8873-14e74783ea98 button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-86258098-db18-4d53-b03f-bdb78b31a19c button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-86258098-db18-4d53-b03f-bdb78b31a19c');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>This gives us a better idea of how both sex and class affected survival, but the code is starting to look a bit garbled.
+While each step of this pipeline makes sense in light of the tools we’ve previously discussed, the long string of code is not particularly easy to read or use.
+This two-dimensional <code class="docutils literal notranslate"><span class="pre">groupby</span></code> is common enough that Pandas includes a convenience routine, <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code>, which succinctly handles this type of multidimensional aggregation.</p>
+</section>
+<section id="pivot-table-syntax">
+<h3>Pivot Table Syntax<a class="headerlink" href="#pivot-table-syntax" title="Permalink to this heading">#</a></h3>
+<p>Here is the equivalent to the preceding operation using the <code class="docutils literal notranslate"><span class="pre">DataFrame.pivot_table</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+
+  <div id="df-5d86b906-f11d-4890-8c6a-e291910caaff">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.968085</td>
+      <td>0.921053</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.368852</td>
+      <td>0.157407</td>
+      <td>0.135447</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-5d86b906-f11d-4890-8c6a-e291910caaff')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+
+
+    <div id="df-2556b129-b272-454a-8b17-cac46548569f">
+      <button class="colab-df-quickchart" onclick="quickchart('df-2556b129-b272-454a-8b17-cac46548569f')"
+              title="Suggest charts."
+              style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-2556b129-b272-454a-8b17-cac46548569f button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-5d86b906-f11d-4890-8c6a-e291910caaff button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-5d86b906-f11d-4890-8c6a-e291910caaff');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>This is eminently more readable than the manual <code class="docutils literal notranslate"><span class="pre">groupby</span></code> approach, and produces the same result.
+As you might expect of an early 20th-century transatlantic cruise, the survival gradient favors both higher classes and people recorded as females in the
+data. First-class females survived with near certainty (hi, Rose!), while only one in eight or so third-class males survived (sorry, Jack!).</p>
+</section>
+</section>
+<section id="pivot-table-widgets">
+<h2>Pivot Table Widgets<a class="headerlink" href="#pivot-table-widgets" title="Permalink to this heading">#</a></h2>
+<p>Some of the widgets needs to be specificaly tweaked for Google Colab or Jupyter Notebooks</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pivottablejs</span> <span class="kn">import</span> <span class="n">pivot_ui</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+<span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">io</span>
+
+<span class="c1"># Google colab alternative template</span>
+
+<span class="n">TEMPLATE</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;!DOCTYPE html&gt;</span>
+<span class="s2">&lt;html&gt;</span>
+<span class="s2">    &lt;head&gt;</span>
+<span class="s2">        &lt;meta charset=&quot;UTF-8&quot;&gt;</span>
+<span class="s2">        &lt;title&gt;PivotTable.js&lt;/title&gt;</span>
+
+<span class="s2">        &lt;!-- external libs from cdnjs --&gt;</span>
+<span class="s2">        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css&quot;&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js&quot;&gt;&lt;/script&gt;</span>
+
+
+<span class="s2">        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css&quot;&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js&quot;&gt;&lt;/script&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js&quot;&gt;&lt;/script&gt;</span>
+
+<span class="s2">        &lt;style&gt;</span>
+<span class="s2">            body {font-family: Verdana;}</span>
+<span class="s2">            .node {</span>
+<span class="s2">              border: solid 1px white;</span>
+<span class="s2">              font: 10px sans-serif;</span>
+<span class="s2">              line-height: 12px;</span>
+<span class="s2">              overflow: hidden;</span>
+<span class="s2">              position: absolute;</span>
+<span class="s2">              text-indent: 2px;</span>
+<span class="s2">            }</span>
+<span class="s2">            .c3-line, .c3-focused {stroke-width: 3px !important;}</span>
+<span class="s2">            .c3-bar {stroke: white !important; stroke-width: 1;}</span>
+<span class="s2">            .c3 text { font-size: 12px; color: grey;}</span>
+<span class="s2">            .tick line {stroke: white;}</span>
+<span class="s2">            .c3-axis path {stroke: grey;}</span>
+<span class="s2">            .c3-circle { opacity: 1 !important; }</span>
+<span class="s2">            .c3-xgrid-focus {visibility: hidden !important;}</span>
+<span class="s2">        &lt;/style&gt;</span>
+<span class="s2">    &lt;/head&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">        &lt;script type=&quot;text/javascript&quot;&gt;</span>
+<span class="s2">            $(function(){</span>
+
+<span class="s2">                $(&quot;#output&quot;).pivotUI(</span>
+<span class="s2">                    $.csv.toArrays($(&quot;#output&quot;).text())</span>
+<span class="s2">                    , $.extend({</span>
+<span class="s2">                        renderers: $.extend(</span>
+<span class="s2">                            $.pivotUtilities.renderers,</span>
+<span class="s2">                            $.pivotUtilities.c3_renderers,</span>
+<span class="s2">                            $.pivotUtilities.d3_renderers,</span>
+<span class="s2">                            $.pivotUtilities.export_renderers</span>
+<span class="s2">                            ),</span>
+<span class="s2">                        hiddenAttributes: [&quot;&quot;]</span>
+<span class="s2">                    }</span>
+<span class="s2">                    , {</span>
+<span class="s2">                        onRefresh: function(config) {</span>
+<span class="s2">                            var config_copy = JSON.parse(JSON.stringify(config));</span>
+<span class="s2">                            //delete some values which are functions</span>
+<span class="s2">                            delete config_copy[&quot;aggregators&quot;];</span>
+<span class="s2">                            delete config_copy[&quot;renderers&quot;];</span>
+<span class="s2">                            //delete some bulky default values</span>
+<span class="s2">                            delete config_copy[&quot;rendererOptions&quot;];</span>
+<span class="s2">                            delete config_copy[&quot;localeStrings&quot;];</span>
+<span class="s2">                            $(&quot;#output2&quot;).text(JSON.stringify(config_copy, undefined, 2));</span>
+<span class="s2">                        }</span>
+<span class="s2">                    }</span>
+<span class="s2">                    , </span><span class="si">%(kwargs)s</span>
+<span class="s2">                    , </span><span class="si">%(json_kwargs)s</span><span class="s2">)</span>
+<span class="s2">                ).show();</span>
+<span class="s2">             });</span>
+<span class="s2">        &lt;/script&gt;</span>
+<span class="s2">        &lt;div id=&quot;output&quot; style=&quot;display: none;&quot;&gt;</span><span class="si">%(csv)s</span><span class="s2">&lt;/div&gt;</span>
+
+<span class="s2">        &lt;textarea id=&quot;output2&quot;</span>
+<span class="s2">        style=&quot;float: left; width: 0px; height: 0px; margin: 0px; opacity:0;&quot; readonly&gt;</span>
+<span class="s2">        &lt;/textarea&gt;</span>
+
+<span class="s2">        &lt;button onclick=&quot;copyTextFunction()&quot;&gt;Copy settings&lt;/button&gt;</span>
+<span class="s2">        &lt;script&gt;</span>
+<span class="s2">        function copyTextFunction() {</span>
+<span class="s2">                    var copyText = document.getElementById(&quot;output2&quot;);</span>
+<span class="s2">                    copyText.select();</span>
+<span class="s2">                    document.execCommand(&quot;copy&quot;);</span>
+<span class="s2">                    }</span>
+<span class="s2">        &lt;/script&gt;</span>
+
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">&lt;/html&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="k">def</span> <span class="nf">pivot_cht_html</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">outfile_path</span> <span class="o">=</span> <span class="s2">&quot;pivottablejs.html&quot;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s2">&quot;500&quot;</span><span class="p">,</span><span class="n">json_kwargs</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">outfile_path</span><span class="p">,</span> <span class="s1">&#39;wt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+      <span class="n">csv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">csv</span><span class="p">,</span> <span class="s1">&#39;decode&#39;</span><span class="p">):</span>
+          <span class="n">csv</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+      <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">TEMPLATE</span> <span class="o">%</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">csv</span><span class="o">=</span><span class="n">csv</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">kwargs</span><span class="p">),</span><span class="n">json_kwargs</span><span class="o">=</span><span class="n">json_kwargs</span><span class="p">))</span>
+
+  <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">url</span> <span class="ow">or</span> <span class="n">outfile_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span><span class="n">outfile_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling the function ‘pivot_ui’ with Pandas DataFrame as input will allow you interactively explore and plot its values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pivot_ui</span><span class="p">(</span><span class="n">titanic</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;pivottablejs.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>PivotTable.js</title>
+
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.19.0/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+            .c3-xgrid-focus {visibility: hidden !important;}
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }, {})
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,survived,pclass,sex,age,sibsp,parch,fare,embarked,class,who,adult_male,deck,embark_town,alive,alone
+0,0,3,male,22.0,1,0,7.25,S,Third,man,True,,Southampton,no,False
+1,1,1,female,38.0,1,0,71.2833,C,First,woman,False,C,Cherbourg,yes,False
+2,1,3,female,26.0,0,0,7.925,S,Third,woman,False,,Southampton,yes,True
+3,1,1,female,35.0,1,0,53.1,S,First,woman,False,C,Southampton,yes,False
+4,0,3,male,35.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+5,0,3,male,,0,0,8.4583,Q,Third,man,True,,Queenstown,no,True
+6,0,1,male,54.0,0,0,51.8625,S,First,man,True,E,Southampton,no,True
+7,0,3,male,2.0,3,1,21.075,S,Third,child,False,,Southampton,no,False
+8,1,3,female,27.0,0,2,11.1333,S,Third,woman,False,,Southampton,yes,False
+9,1,2,female,14.0,1,0,30.0708,C,Second,child,False,,Cherbourg,yes,False
+10,1,3,female,4.0,1,1,16.7,S,Third,child,False,G,Southampton,yes,False
+11,1,1,female,58.0,0,0,26.55,S,First,woman,False,C,Southampton,yes,True
+12,0,3,male,20.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+13,0,3,male,39.0,1,5,31.275,S,Third,man,True,,Southampton,no,False
+14,0,3,female,14.0,0,0,7.8542,S,Third,child,False,,Southampton,no,True
+15,1,2,female,55.0,0,0,16.0,S,Second,woman,False,,Southampton,yes,True
+16,0,3,male,2.0,4,1,29.125,Q,Third,child,False,,Queenstown,no,False
+17,1,2,male,,0,0,13.0,S,Second,man,True,,Southampton,yes,True
+18,0,3,female,31.0,1,0,18.0,S,Third,woman,False,,Southampton,no,False
+19,1,3,female,,0,0,7.225,C,Third,woman,False,,Cherbourg,yes,True
+20,0,2,male,35.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+21,1,2,male,34.0,0,0,13.0,S,Second,man,True,D,Southampton,yes,True
+22,1,3,female,15.0,0,0,8.0292,Q,Third,child,False,,Queenstown,yes,True
+23,1,1,male,28.0,0,0,35.5,S,First,man,True,A,Southampton,yes,True
+24,0,3,female,8.0,3,1,21.075,S,Third,child,False,,Southampton,no,False
+25,1,3,female,38.0,1,5,31.3875,S,Third,woman,False,,Southampton,yes,False
+26,0,3,male,,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+27,0,1,male,19.0,3,2,263.0,S,First,man,True,C,Southampton,no,False
+28,1,3,female,,0,0,7.8792,Q,Third,woman,False,,Queenstown,yes,True
+29,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+30,0,1,male,40.0,0,0,27.7208,C,First,man,True,,Cherbourg,no,True
+31,1,1,female,,1,0,146.5208,C,First,woman,False,B,Cherbourg,yes,False
+32,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+33,0,2,male,66.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+34,0,1,male,28.0,1,0,82.1708,C,First,man,True,,Cherbourg,no,False
+35,0,1,male,42.0,1,0,52.0,S,First,man,True,,Southampton,no,False
+36,1,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,yes,True
+37,0,3,male,21.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+38,0,3,female,18.0,2,0,18.0,S,Third,woman,False,,Southampton,no,False
+39,1,3,female,14.0,1,0,11.2417,C,Third,child,False,,Cherbourg,yes,False
+40,0,3,female,40.0,1,0,9.475,S,Third,woman,False,,Southampton,no,False
+41,0,2,female,27.0,1,0,21.0,S,Second,woman,False,,Southampton,no,False
+42,0,3,male,,0,0,7.8958,C,Third,man,True,,Cherbourg,no,True
+43,1,2,female,3.0,1,2,41.5792,C,Second,child,False,,Cherbourg,yes,False
+44,1,3,female,19.0,0,0,7.8792,Q,Third,woman,False,,Queenstown,yes,True
+45,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+46,0,3,male,,1,0,15.5,Q,Third,man,True,,Queenstown,no,False
+47,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+48,0,3,male,,2,0,21.6792,C,Third,man,True,,Cherbourg,no,False
+49,0,3,female,18.0,1,0,17.8,S,Third,woman,False,,Southampton,no,False
+50,0,3,male,7.0,4,1,39.6875,S,Third,child,False,,Southampton,no,False
+51,0,3,male,21.0,0,0,7.8,S,Third,man,True,,Southampton,no,True
+52,1,1,female,49.0,1,0,76.7292,C,First,woman,False,D,Cherbourg,yes,False
+53,1,2,female,29.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+54,0,1,male,65.0,0,1,61.9792,C,First,man,True,B,Cherbourg,no,False
+55,1,1,male,,0,0,35.5,S,First,man,True,C,Southampton,yes,True
+56,1,2,female,21.0,0,0,10.5,S,Second,woman,False,,Southampton,yes,True
+57,0,3,male,28.5,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+58,1,2,female,5.0,1,2,27.75,S,Second,child,False,,Southampton,yes,False
+59,0,3,male,11.0,5,2,46.9,S,Third,child,False,,Southampton,no,False
+60,0,3,male,22.0,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+61,1,1,female,38.0,0,0,80.0,,First,woman,False,B,,yes,True
+62,0,1,male,45.0,1,0,83.475,S,First,man,True,C,Southampton,no,False
+63,0,3,male,4.0,3,2,27.9,S,Third,child,False,,Southampton,no,False
+64,0,1,male,,0,0,27.7208,C,First,man,True,,Cherbourg,no,True
+65,1,3,male,,1,1,15.2458,C,Third,man,True,,Cherbourg,yes,False
+66,1,2,female,29.0,0,0,10.5,S,Second,woman,False,F,Southampton,yes,True
+67,0,3,male,19.0,0,0,8.1583,S,Third,man,True,,Southampton,no,True
+68,1,3,female,17.0,4,2,7.925,S,Third,woman,False,,Southampton,yes,False
+69,0,3,male,26.0,2,0,8.6625,S,Third,man,True,,Southampton,no,False
+70,0,2,male,32.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+71,0,3,female,16.0,5,2,46.9,S,Third,woman,False,,Southampton,no,False
+72,0,2,male,21.0,0,0,73.5,S,Second,man,True,,Southampton,no,True
+73,0,3,male,26.0,1,0,14.4542,C,Third,man,True,,Cherbourg,no,False
+74,1,3,male,32.0,0,0,56.4958,S,Third,man,True,,Southampton,yes,True
+75,0,3,male,25.0,0,0,7.65,S,Third,man,True,F,Southampton,no,True
+76,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+77,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+78,1,2,male,0.83,0,2,29.0,S,Second,child,False,,Southampton,yes,False
+79,1,3,female,30.0,0,0,12.475,S,Third,woman,False,,Southampton,yes,True
+80,0,3,male,22.0,0,0,9.0,S,Third,man,True,,Southampton,no,True
+81,1,3,male,29.0,0,0,9.5,S,Third,man,True,,Southampton,yes,True
+82,1,3,female,,0,0,7.7875,Q,Third,woman,False,,Queenstown,yes,True
+83,0,1,male,28.0,0,0,47.1,S,First,man,True,,Southampton,no,True
+84,1,2,female,17.0,0,0,10.5,S,Second,woman,False,,Southampton,yes,True
+85,1,3,female,33.0,3,0,15.85,S,Third,woman,False,,Southampton,yes,False
+86,0,3,male,16.0,1,3,34.375,S,Third,man,True,,Southampton,no,False
+87,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+88,1,1,female,23.0,3,2,263.0,S,First,woman,False,C,Southampton,yes,False
+89,0,3,male,24.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+90,0,3,male,29.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+91,0,3,male,20.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+92,0,1,male,46.0,1,0,61.175,S,First,man,True,E,Southampton,no,False
+93,0,3,male,26.0,1,2,20.575,S,Third,man,True,,Southampton,no,False
+94,0,3,male,59.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+95,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+96,0,1,male,71.0,0,0,34.6542,C,First,man,True,A,Cherbourg,no,True
+97,1,1,male,23.0,0,1,63.3583,C,First,man,True,D,Cherbourg,yes,False
+98,1,2,female,34.0,0,1,23.0,S,Second,woman,False,,Southampton,yes,False
+99,0,2,male,34.0,1,0,26.0,S,Second,man,True,,Southampton,no,False
+100,0,3,female,28.0,0,0,7.8958,S,Third,woman,False,,Southampton,no,True
+101,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+102,0,1,male,21.0,0,1,77.2875,S,First,man,True,D,Southampton,no,False
+103,0,3,male,33.0,0,0,8.6542,S,Third,man,True,,Southampton,no,True
+104,0,3,male,37.0,2,0,7.925,S,Third,man,True,,Southampton,no,False
+105,0,3,male,28.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+106,1,3,female,21.0,0,0,7.65,S,Third,woman,False,,Southampton,yes,True
+107,1,3,male,,0,0,7.775,S,Third,man,True,,Southampton,yes,True
+108,0,3,male,38.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+109,1,3,female,,1,0,24.15,Q,Third,woman,False,,Queenstown,yes,False
+110,0,1,male,47.0,0,0,52.0,S,First,man,True,C,Southampton,no,True
+111,0,3,female,14.5,1,0,14.4542,C,Third,child,False,,Cherbourg,no,False
+112,0,3,male,22.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+113,0,3,female,20.0,1,0,9.825,S,Third,woman,False,,Southampton,no,False
+114,0,3,female,17.0,0,0,14.4583,C,Third,woman,False,,Cherbourg,no,True
+115,0,3,male,21.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+116,0,3,male,70.5,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+117,0,2,male,29.0,1,0,21.0,S,Second,man,True,,Southampton,no,False
+118,0,1,male,24.0,0,1,247.5208,C,First,man,True,B,Cherbourg,no,False
+119,0,3,female,2.0,4,2,31.275,S,Third,child,False,,Southampton,no,False
+120,0,2,male,21.0,2,0,73.5,S,Second,man,True,,Southampton,no,False
+121,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+122,0,2,male,32.5,1,0,30.0708,C,Second,man,True,,Cherbourg,no,False
+123,1,2,female,32.5,0,0,13.0,S,Second,woman,False,E,Southampton,yes,True
+124,0,1,male,54.0,0,1,77.2875,S,First,man,True,D,Southampton,no,False
+125,1,3,male,12.0,1,0,11.2417,C,Third,child,False,,Cherbourg,yes,False
+126,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+127,1,3,male,24.0,0,0,7.1417,S,Third,man,True,,Southampton,yes,True
+128,1,3,female,,1,1,22.3583,C,Third,woman,False,F,Cherbourg,yes,False
+129,0,3,male,45.0,0,0,6.975,S,Third,man,True,,Southampton,no,True
+130,0,3,male,33.0,0,0,7.8958,C,Third,man,True,,Cherbourg,no,True
+131,0,3,male,20.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+132,0,3,female,47.0,1,0,14.5,S,Third,woman,False,,Southampton,no,False
+133,1,2,female,29.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+134,0,2,male,25.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+135,0,2,male,23.0,0,0,15.0458,C,Second,man,True,,Cherbourg,no,True
+136,1,1,female,19.0,0,2,26.2833,S,First,woman,False,D,Southampton,yes,False
+137,0,1,male,37.0,1,0,53.1,S,First,man,True,C,Southampton,no,False
+138,0,3,male,16.0,0,0,9.2167,S,Third,man,True,,Southampton,no,True
+139,0,1,male,24.0,0,0,79.2,C,First,man,True,B,Cherbourg,no,True
+140,0,3,female,,0,2,15.2458,C,Third,woman,False,,Cherbourg,no,False
+141,1,3,female,22.0,0,0,7.75,S,Third,woman,False,,Southampton,yes,True
+142,1,3,female,24.0,1,0,15.85,S,Third,woman,False,,Southampton,yes,False
+143,0,3,male,19.0,0,0,6.75,Q,Third,man,True,,Queenstown,no,True
+144,0,2,male,18.0,0,0,11.5,S,Second,man,True,,Southampton,no,True
+145,0,2,male,19.0,1,1,36.75,S,Second,man,True,,Southampton,no,False
+146,1,3,male,27.0,0,0,7.7958,S,Third,man,True,,Southampton,yes,True
+147,0,3,female,9.0,2,2,34.375,S,Third,child,False,,Southampton,no,False
+148,0,2,male,36.5,0,2,26.0,S,Second,man,True,F,Southampton,no,False
+149,0,2,male,42.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+150,0,2,male,51.0,0,0,12.525,S,Second,man,True,,Southampton,no,True
+151,1,1,female,22.0,1,0,66.6,S,First,woman,False,C,Southampton,yes,False
+152,0,3,male,55.5,0,0,8.05,S,Third,man,True,,Southampton,no,True
+153,0,3,male,40.5,0,2,14.5,S,Third,man,True,,Southampton,no,False
+154,0,3,male,,0,0,7.3125,S,Third,man,True,,Southampton,no,True
+155,0,1,male,51.0,0,1,61.3792,C,First,man,True,,Cherbourg,no,False
+156,1,3,female,16.0,0,0,7.7333,Q,Third,woman,False,,Queenstown,yes,True
+157,0,3,male,30.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+158,0,3,male,,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+159,0,3,male,,8,2,69.55,S,Third,man,True,,Southampton,no,False
+160,0,3,male,44.0,0,1,16.1,S,Third,man,True,,Southampton,no,False
+161,1,2,female,40.0,0,0,15.75,S,Second,woman,False,,Southampton,yes,True
+162,0,3,male,26.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+163,0,3,male,17.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+164,0,3,male,1.0,4,1,39.6875,S,Third,child,False,,Southampton,no,False
+165,1,3,male,9.0,0,2,20.525,S,Third,child,False,,Southampton,yes,False
+166,1,1,female,,0,1,55.0,S,First,woman,False,E,Southampton,yes,False
+167,0,3,female,45.0,1,4,27.9,S,Third,woman,False,,Southampton,no,False
+168,0,1,male,,0,0,25.925,S,First,man,True,,Southampton,no,True
+169,0,3,male,28.0,0,0,56.4958,S,Third,man,True,,Southampton,no,True
+170,0,1,male,61.0,0,0,33.5,S,First,man,True,B,Southampton,no,True
+171,0,3,male,4.0,4,1,29.125,Q,Third,child,False,,Queenstown,no,False
+172,1,3,female,1.0,1,1,11.1333,S,Third,child,False,,Southampton,yes,False
+173,0,3,male,21.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+174,0,1,male,56.0,0,0,30.6958,C,First,man,True,A,Cherbourg,no,True
+175,0,3,male,18.0,1,1,7.8542,S,Third,man,True,,Southampton,no,False
+176,0,3,male,,3,1,25.4667,S,Third,man,True,,Southampton,no,False
+177,0,1,female,50.0,0,0,28.7125,C,First,woman,False,C,Cherbourg,no,True
+178,0,2,male,30.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+179,0,3,male,36.0,0,0,0.0,S,Third,man,True,,Southampton,no,True
+180,0,3,female,,8,2,69.55,S,Third,woman,False,,Southampton,no,False
+181,0,2,male,,0,0,15.05,C,Second,man,True,,Cherbourg,no,True
+182,0,3,male,9.0,4,2,31.3875,S,Third,child,False,,Southampton,no,False
+183,1,2,male,1.0,2,1,39.0,S,Second,child,False,F,Southampton,yes,False
+184,1,3,female,4.0,0,2,22.025,S,Third,child,False,,Southampton,yes,False
+185,0,1,male,,0,0,50.0,S,First,man,True,A,Southampton,no,True
+186,1,3,female,,1,0,15.5,Q,Third,woman,False,,Queenstown,yes,False
+187,1,1,male,45.0,0,0,26.55,S,First,man,True,,Southampton,yes,True
+188,0,3,male,40.0,1,1,15.5,Q,Third,man,True,,Queenstown,no,False
+189,0,3,male,36.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+190,1,2,female,32.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+191,0,2,male,19.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+192,1,3,female,19.0,1,0,7.8542,S,Third,woman,False,,Southampton,yes,False
+193,1,2,male,3.0,1,1,26.0,S,Second,child,False,F,Southampton,yes,False
+194,1,1,female,44.0,0,0,27.7208,C,First,woman,False,B,Cherbourg,yes,True
+195,1,1,female,58.0,0,0,146.5208,C,First,woman,False,B,Cherbourg,yes,True
+196,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+197,0,3,male,42.0,0,1,8.4042,S,Third,man,True,,Southampton,no,False
+198,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+199,0,2,female,24.0,0,0,13.0,S,Second,woman,False,,Southampton,no,True
+200,0,3,male,28.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+201,0,3,male,,8,2,69.55,S,Third,man,True,,Southampton,no,False
+202,0,3,male,34.0,0,0,6.4958,S,Third,man,True,,Southampton,no,True
+203,0,3,male,45.5,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+204,1,3,male,18.0,0,0,8.05,S,Third,man,True,,Southampton,yes,True
+205,0,3,female,2.0,0,1,10.4625,S,Third,child,False,G,Southampton,no,False
+206,0,3,male,32.0,1,0,15.85,S,Third,man,True,,Southampton,no,False
+207,1,3,male,26.0,0,0,18.7875,C,Third,man,True,,Cherbourg,yes,True
+208,1,3,female,16.0,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+209,1,1,male,40.0,0,0,31.0,C,First,man,True,A,Cherbourg,yes,True
+210,0,3,male,24.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+211,1,2,female,35.0,0,0,21.0,S,Second,woman,False,,Southampton,yes,True
+212,0,3,male,22.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+213,0,2,male,30.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+214,0,3,male,,1,0,7.75,Q,Third,man,True,,Queenstown,no,False
+215,1,1,female,31.0,1,0,113.275,C,First,woman,False,D,Cherbourg,yes,False
+216,1,3,female,27.0,0,0,7.925,S,Third,woman,False,,Southampton,yes,True
+217,0,2,male,42.0,1,0,27.0,S,Second,man,True,,Southampton,no,False
+218,1,1,female,32.0,0,0,76.2917,C,First,woman,False,D,Cherbourg,yes,True
+219,0,2,male,30.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+220,1,3,male,16.0,0,0,8.05,S,Third,man,True,,Southampton,yes,True
+221,0,2,male,27.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+222,0,3,male,51.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+223,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+224,1,1,male,38.0,1,0,90.0,S,First,man,True,C,Southampton,yes,False
+225,0,3,male,22.0,0,0,9.35,S,Third,man,True,,Southampton,no,True
+226,1,2,male,19.0,0,0,10.5,S,Second,man,True,,Southampton,yes,True
+227,0,3,male,20.5,0,0,7.25,S,Third,man,True,,Southampton,no,True
+228,0,2,male,18.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+229,0,3,female,,3,1,25.4667,S,Third,woman,False,,Southampton,no,False
+230,1,1,female,35.0,1,0,83.475,S,First,woman,False,C,Southampton,yes,False
+231,0,3,male,29.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+232,0,2,male,59.0,0,0,13.5,S,Second,man,True,,Southampton,no,True
+233,1,3,female,5.0,4,2,31.3875,S,Third,child,False,,Southampton,yes,False
+234,0,2,male,24.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+235,0,3,female,,0,0,7.55,S,Third,woman,False,,Southampton,no,True
+236,0,2,male,44.0,1,0,26.0,S,Second,man,True,,Southampton,no,False
+237,1,2,female,8.0,0,2,26.25,S,Second,child,False,,Southampton,yes,False
+238,0,2,male,19.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+239,0,2,male,33.0,0,0,12.275,S,Second,man,True,,Southampton,no,True
+240,0,3,female,,1,0,14.4542,C,Third,woman,False,,Cherbourg,no,False
+241,1,3,female,,1,0,15.5,Q,Third,woman,False,,Queenstown,yes,False
+242,0,2,male,29.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+243,0,3,male,22.0,0,0,7.125,S,Third,man,True,,Southampton,no,True
+244,0,3,male,30.0,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+245,0,1,male,44.0,2,0,90.0,Q,First,man,True,C,Queenstown,no,False
+246,0,3,female,25.0,0,0,7.775,S,Third,woman,False,,Southampton,no,True
+247,1,2,female,24.0,0,2,14.5,S,Second,woman,False,,Southampton,yes,False
+248,1,1,male,37.0,1,1,52.5542,S,First,man,True,D,Southampton,yes,False
+249,0,2,male,54.0,1,0,26.0,S,Second,man,True,,Southampton,no,False
+250,0,3,male,,0,0,7.25,S,Third,man,True,,Southampton,no,True
+251,0,3,female,29.0,1,1,10.4625,S,Third,woman,False,G,Southampton,no,False
+252,0,1,male,62.0,0,0,26.55,S,First,man,True,C,Southampton,no,True
+253,0,3,male,30.0,1,0,16.1,S,Third,man,True,,Southampton,no,False
+254,0,3,female,41.0,0,2,20.2125,S,Third,woman,False,,Southampton,no,False
+255,1,3,female,29.0,0,2,15.2458,C,Third,woman,False,,Cherbourg,yes,False
+256,1,1,female,,0,0,79.2,C,First,woman,False,,Cherbourg,yes,True
+257,1,1,female,30.0,0,0,86.5,S,First,woman,False,B,Southampton,yes,True
+258,1,1,female,35.0,0,0,512.3292,C,First,woman,False,,Cherbourg,yes,True
+259,1,2,female,50.0,0,1,26.0,S,Second,woman,False,,Southampton,yes,False
+260,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+261,1,3,male,3.0,4,2,31.3875,S,Third,child,False,,Southampton,yes,False
+262,0,1,male,52.0,1,1,79.65,S,First,man,True,E,Southampton,no,False
+263,0,1,male,40.0,0,0,0.0,S,First,man,True,B,Southampton,no,True
+264,0,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,no,True
+265,0,2,male,36.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+266,0,3,male,16.0,4,1,39.6875,S,Third,man,True,,Southampton,no,False
+267,1,3,male,25.0,1,0,7.775,S,Third,man,True,,Southampton,yes,False
+268,1,1,female,58.0,0,1,153.4625,S,First,woman,False,C,Southampton,yes,False
+269,1,1,female,35.0,0,0,135.6333,S,First,woman,False,C,Southampton,yes,True
+270,0,1,male,,0,0,31.0,S,First,man,True,,Southampton,no,True
+271,1,3,male,25.0,0,0,0.0,S,Third,man,True,,Southampton,yes,True
+272,1,2,female,41.0,0,1,19.5,S,Second,woman,False,,Southampton,yes,False
+273,0,1,male,37.0,0,1,29.7,C,First,man,True,C,Cherbourg,no,False
+274,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+275,1,1,female,63.0,1,0,77.9583,S,First,woman,False,D,Southampton,yes,False
+276,0,3,female,45.0,0,0,7.75,S,Third,woman,False,,Southampton,no,True
+277,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+278,0,3,male,7.0,4,1,29.125,Q,Third,child,False,,Queenstown,no,False
+279,1,3,female,35.0,1,1,20.25,S,Third,woman,False,,Southampton,yes,False
+280,0,3,male,65.0,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+281,0,3,male,28.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+282,0,3,male,16.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+283,1,3,male,19.0,0,0,8.05,S,Third,man,True,,Southampton,yes,True
+284,0,1,male,,0,0,26.0,S,First,man,True,A,Southampton,no,True
+285,0,3,male,33.0,0,0,8.6625,C,Third,man,True,,Cherbourg,no,True
+286,1,3,male,30.0,0,0,9.5,S,Third,man,True,,Southampton,yes,True
+287,0,3,male,22.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+288,1,2,male,42.0,0,0,13.0,S,Second,man,True,,Southampton,yes,True
+289,1,3,female,22.0,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+290,1,1,female,26.0,0,0,78.85,S,First,woman,False,,Southampton,yes,True
+291,1,1,female,19.0,1,0,91.0792,C,First,woman,False,B,Cherbourg,yes,False
+292,0,2,male,36.0,0,0,12.875,C,Second,man,True,D,Cherbourg,no,True
+293,0,3,female,24.0,0,0,8.85,S,Third,woman,False,,Southampton,no,True
+294,0,3,male,24.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+295,0,1,male,,0,0,27.7208,C,First,man,True,,Cherbourg,no,True
+296,0,3,male,23.5,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+297,0,1,female,2.0,1,2,151.55,S,First,child,False,C,Southampton,no,False
+298,1,1,male,,0,0,30.5,S,First,man,True,C,Southampton,yes,True
+299,1,1,female,50.0,0,1,247.5208,C,First,woman,False,B,Cherbourg,yes,False
+300,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+301,1,3,male,,2,0,23.25,Q,Third,man,True,,Queenstown,yes,False
+302,0,3,male,19.0,0,0,0.0,S,Third,man,True,,Southampton,no,True
+303,1,2,female,,0,0,12.35,Q,Second,woman,False,E,Queenstown,yes,True
+304,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+305,1,1,male,0.92,1,2,151.55,S,First,child,False,C,Southampton,yes,False
+306,1,1,female,,0,0,110.8833,C,First,woman,False,,Cherbourg,yes,True
+307,1,1,female,17.0,1,0,108.9,C,First,woman,False,C,Cherbourg,yes,False
+308,0,2,male,30.0,1,0,24.0,C,Second,man,True,,Cherbourg,no,False
+309,1,1,female,30.0,0,0,56.9292,C,First,woman,False,E,Cherbourg,yes,True
+310,1,1,female,24.0,0,0,83.1583,C,First,woman,False,C,Cherbourg,yes,True
+311,1,1,female,18.0,2,2,262.375,C,First,woman,False,B,Cherbourg,yes,False
+312,0,2,female,26.0,1,1,26.0,S,Second,woman,False,,Southampton,no,False
+313,0,3,male,28.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+314,0,2,male,43.0,1,1,26.25,S,Second,man,True,,Southampton,no,False
+315,1,3,female,26.0,0,0,7.8542,S,Third,woman,False,,Southampton,yes,True
+316,1,2,female,24.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+317,0,2,male,54.0,0,0,14.0,S,Second,man,True,,Southampton,no,True
+318,1,1,female,31.0,0,2,164.8667,S,First,woman,False,C,Southampton,yes,False
+319,1,1,female,40.0,1,1,134.5,C,First,woman,False,E,Cherbourg,yes,False
+320,0,3,male,22.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+321,0,3,male,27.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+322,1,2,female,30.0,0,0,12.35,Q,Second,woman,False,,Queenstown,yes,True
+323,1,2,female,22.0,1,1,29.0,S,Second,woman,False,,Southampton,yes,False
+324,0,3,male,,8,2,69.55,S,Third,man,True,,Southampton,no,False
+325,1,1,female,36.0,0,0,135.6333,C,First,woman,False,C,Cherbourg,yes,True
+326,0,3,male,61.0,0,0,6.2375,S,Third,man,True,,Southampton,no,True
+327,1,2,female,36.0,0,0,13.0,S,Second,woman,False,D,Southampton,yes,True
+328,1,3,female,31.0,1,1,20.525,S,Third,woman,False,,Southampton,yes,False
+329,1,1,female,16.0,0,1,57.9792,C,First,woman,False,B,Cherbourg,yes,False
+330,1,3,female,,2,0,23.25,Q,Third,woman,False,,Queenstown,yes,False
+331,0,1,male,45.5,0,0,28.5,S,First,man,True,C,Southampton,no,True
+332,0,1,male,38.0,0,1,153.4625,S,First,man,True,C,Southampton,no,False
+333,0,3,male,16.0,2,0,18.0,S,Third,man,True,,Southampton,no,False
+334,1,1,female,,1,0,133.65,S,First,woman,False,,Southampton,yes,False
+335,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+336,0,1,male,29.0,1,0,66.6,S,First,man,True,C,Southampton,no,False
+337,1,1,female,41.0,0,0,134.5,C,First,woman,False,E,Cherbourg,yes,True
+338,1,3,male,45.0,0,0,8.05,S,Third,man,True,,Southampton,yes,True
+339,0,1,male,45.0,0,0,35.5,S,First,man,True,,Southampton,no,True
+340,1,2,male,2.0,1,1,26.0,S,Second,child,False,F,Southampton,yes,False
+341,1,1,female,24.0,3,2,263.0,S,First,woman,False,C,Southampton,yes,False
+342,0,2,male,28.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+343,0,2,male,25.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+344,0,2,male,36.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+345,1,2,female,24.0,0,0,13.0,S,Second,woman,False,F,Southampton,yes,True
+346,1,2,female,40.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+347,1,3,female,,1,0,16.1,S,Third,woman,False,,Southampton,yes,False
+348,1,3,male,3.0,1,1,15.9,S,Third,child,False,,Southampton,yes,False
+349,0,3,male,42.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+350,0,3,male,23.0,0,0,9.225,S,Third,man,True,,Southampton,no,True
+351,0,1,male,,0,0,35.0,S,First,man,True,C,Southampton,no,True
+352,0,3,male,15.0,1,1,7.2292,C,Third,child,False,,Cherbourg,no,False
+353,0,3,male,25.0,1,0,17.8,S,Third,man,True,,Southampton,no,False
+354,0,3,male,,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+355,0,3,male,28.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+356,1,1,female,22.0,0,1,55.0,S,First,woman,False,E,Southampton,yes,False
+357,0,2,female,38.0,0,0,13.0,S,Second,woman,False,,Southampton,no,True
+358,1,3,female,,0,0,7.8792,Q,Third,woman,False,,Queenstown,yes,True
+359,1,3,female,,0,0,7.8792,Q,Third,woman,False,,Queenstown,yes,True
+360,0,3,male,40.0,1,4,27.9,S,Third,man,True,,Southampton,no,False
+361,0,2,male,29.0,1,0,27.7208,C,Second,man,True,,Cherbourg,no,False
+362,0,3,female,45.0,0,1,14.4542,C,Third,woman,False,,Cherbourg,no,False
+363,0,3,male,35.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+364,0,3,male,,1,0,15.5,Q,Third,man,True,,Queenstown,no,False
+365,0,3,male,30.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+366,1,1,female,60.0,1,0,75.25,C,First,woman,False,D,Cherbourg,yes,False
+367,1,3,female,,0,0,7.2292,C,Third,woman,False,,Cherbourg,yes,True
+368,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+369,1,1,female,24.0,0,0,69.3,C,First,woman,False,B,Cherbourg,yes,True
+370,1,1,male,25.0,1,0,55.4417,C,First,man,True,E,Cherbourg,yes,False
+371,0,3,male,18.0,1,0,6.4958,S,Third,man,True,,Southampton,no,False
+372,0,3,male,19.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+373,0,1,male,22.0,0,0,135.6333,C,First,man,True,,Cherbourg,no,True
+374,0,3,female,3.0,3,1,21.075,S,Third,child,False,,Southampton,no,False
+375,1,1,female,,1,0,82.1708,C,First,woman,False,,Cherbourg,yes,False
+376,1,3,female,22.0,0,0,7.25,S,Third,woman,False,,Southampton,yes,True
+377,0,1,male,27.0,0,2,211.5,C,First,man,True,C,Cherbourg,no,False
+378,0,3,male,20.0,0,0,4.0125,C,Third,man,True,,Cherbourg,no,True
+379,0,3,male,19.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+380,1,1,female,42.0,0,0,227.525,C,First,woman,False,,Cherbourg,yes,True
+381,1,3,female,1.0,0,2,15.7417,C,Third,child,False,,Cherbourg,yes,False
+382,0,3,male,32.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+383,1,1,female,35.0,1,0,52.0,S,First,woman,False,,Southampton,yes,False
+384,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+385,0,2,male,18.0,0,0,73.5,S,Second,man,True,,Southampton,no,True
+386,0,3,male,1.0,5,2,46.9,S,Third,child,False,,Southampton,no,False
+387,1,2,female,36.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+388,0,3,male,,0,0,7.7292,Q,Third,man,True,,Queenstown,no,True
+389,1,2,female,17.0,0,0,12.0,C,Second,woman,False,,Cherbourg,yes,True
+390,1,1,male,36.0,1,2,120.0,S,First,man,True,B,Southampton,yes,False
+391,1,3,male,21.0,0,0,7.7958,S,Third,man,True,,Southampton,yes,True
+392,0,3,male,28.0,2,0,7.925,S,Third,man,True,,Southampton,no,False
+393,1,1,female,23.0,1,0,113.275,C,First,woman,False,D,Cherbourg,yes,False
+394,1,3,female,24.0,0,2,16.7,S,Third,woman,False,G,Southampton,yes,False
+395,0,3,male,22.0,0,0,7.7958,S,Third,man,True,,Southampton,no,True
+396,0,3,female,31.0,0,0,7.8542,S,Third,woman,False,,Southampton,no,True
+397,0,2,male,46.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+398,0,2,male,23.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+399,1,2,female,28.0,0,0,12.65,S,Second,woman,False,,Southampton,yes,True
+400,1,3,male,39.0,0,0,7.925,S,Third,man,True,,Southampton,yes,True
+401,0,3,male,26.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+402,0,3,female,21.0,1,0,9.825,S,Third,woman,False,,Southampton,no,False
+403,0,3,male,28.0,1,0,15.85,S,Third,man,True,,Southampton,no,False
+404,0,3,female,20.0,0,0,8.6625,S,Third,woman,False,,Southampton,no,True
+405,0,2,male,34.0,1,0,21.0,S,Second,man,True,,Southampton,no,False
+406,0,3,male,51.0,0,0,7.75,S,Third,man,True,,Southampton,no,True
+407,1,2,male,3.0,1,1,18.75,S,Second,child,False,,Southampton,yes,False
+408,0,3,male,21.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+409,0,3,female,,3,1,25.4667,S,Third,woman,False,,Southampton,no,False
+410,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+411,0,3,male,,0,0,6.8583,Q,Third,man,True,,Queenstown,no,True
+412,1,1,female,33.0,1,0,90.0,Q,First,woman,False,C,Queenstown,yes,False
+413,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+414,1,3,male,44.0,0,0,7.925,S,Third,man,True,,Southampton,yes,True
+415,0,3,female,,0,0,8.05,S,Third,woman,False,,Southampton,no,True
+416,1,2,female,34.0,1,1,32.5,S,Second,woman,False,,Southampton,yes,False
+417,1,2,female,18.0,0,2,13.0,S,Second,woman,False,,Southampton,yes,False
+418,0,2,male,30.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+419,0,3,female,10.0,0,2,24.15,S,Third,child,False,,Southampton,no,False
+420,0,3,male,,0,0,7.8958,C,Third,man,True,,Cherbourg,no,True
+421,0,3,male,21.0,0,0,7.7333,Q,Third,man,True,,Queenstown,no,True
+422,0,3,male,29.0,0,0,7.875,S,Third,man,True,,Southampton,no,True
+423,0,3,female,28.0,1,1,14.4,S,Third,woman,False,,Southampton,no,False
+424,0,3,male,18.0,1,1,20.2125,S,Third,man,True,,Southampton,no,False
+425,0,3,male,,0,0,7.25,S,Third,man,True,,Southampton,no,True
+426,1,2,female,28.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+427,1,2,female,19.0,0,0,26.0,S,Second,woman,False,,Southampton,yes,True
+428,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+429,1,3,male,32.0,0,0,8.05,S,Third,man,True,E,Southampton,yes,True
+430,1,1,male,28.0,0,0,26.55,S,First,man,True,C,Southampton,yes,True
+431,1,3,female,,1,0,16.1,S,Third,woman,False,,Southampton,yes,False
+432,1,2,female,42.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+433,0,3,male,17.0,0,0,7.125,S,Third,man,True,,Southampton,no,True
+434,0,1,male,50.0,1,0,55.9,S,First,man,True,E,Southampton,no,False
+435,1,1,female,14.0,1,2,120.0,S,First,child,False,B,Southampton,yes,False
+436,0,3,female,21.0,2,2,34.375,S,Third,woman,False,,Southampton,no,False
+437,1,2,female,24.0,2,3,18.75,S,Second,woman,False,,Southampton,yes,False
+438,0,1,male,64.0,1,4,263.0,S,First,man,True,C,Southampton,no,False
+439,0,2,male,31.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+440,1,2,female,45.0,1,1,26.25,S,Second,woman,False,,Southampton,yes,False
+441,0,3,male,20.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+442,0,3,male,25.0,1,0,7.775,S,Third,man,True,,Southampton,no,False
+443,1,2,female,28.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+444,1,3,male,,0,0,8.1125,S,Third,man,True,,Southampton,yes,True
+445,1,1,male,4.0,0,2,81.8583,S,First,child,False,A,Southampton,yes,False
+446,1,2,female,13.0,0,1,19.5,S,Second,child,False,,Southampton,yes,False
+447,1,1,male,34.0,0,0,26.55,S,First,man,True,,Southampton,yes,True
+448,1,3,female,5.0,2,1,19.2583,C,Third,child,False,,Cherbourg,yes,False
+449,1,1,male,52.0,0,0,30.5,S,First,man,True,C,Southampton,yes,True
+450,0,2,male,36.0,1,2,27.75,S,Second,man,True,,Southampton,no,False
+451,0,3,male,,1,0,19.9667,S,Third,man,True,,Southampton,no,False
+452,0,1,male,30.0,0,0,27.75,C,First,man,True,C,Cherbourg,no,True
+453,1,1,male,49.0,1,0,89.1042,C,First,man,True,C,Cherbourg,yes,False
+454,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+455,1,3,male,29.0,0,0,7.8958,C,Third,man,True,,Cherbourg,yes,True
+456,0,1,male,65.0,0,0,26.55,S,First,man,True,E,Southampton,no,True
+457,1,1,female,,1,0,51.8625,S,First,woman,False,D,Southampton,yes,False
+458,1,2,female,50.0,0,0,10.5,S,Second,woman,False,,Southampton,yes,True
+459,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+460,1,1,male,48.0,0,0,26.55,S,First,man,True,E,Southampton,yes,True
+461,0,3,male,34.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+462,0,1,male,47.0,0,0,38.5,S,First,man,True,E,Southampton,no,True
+463,0,2,male,48.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+464,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+465,0,3,male,38.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+466,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+467,0,1,male,56.0,0,0,26.55,S,First,man,True,,Southampton,no,True
+468,0,3,male,,0,0,7.725,Q,Third,man,True,,Queenstown,no,True
+469,1,3,female,0.75,2,1,19.2583,C,Third,child,False,,Cherbourg,yes,False
+470,0,3,male,,0,0,7.25,S,Third,man,True,,Southampton,no,True
+471,0,3,male,38.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+472,1,2,female,33.0,1,2,27.75,S,Second,woman,False,,Southampton,yes,False
+473,1,2,female,23.0,0,0,13.7917,C,Second,woman,False,D,Cherbourg,yes,True
+474,0,3,female,22.0,0,0,9.8375,S,Third,woman,False,,Southampton,no,True
+475,0,1,male,,0,0,52.0,S,First,man,True,A,Southampton,no,True
+476,0,2,male,34.0,1,0,21.0,S,Second,man,True,,Southampton,no,False
+477,0,3,male,29.0,1,0,7.0458,S,Third,man,True,,Southampton,no,False
+478,0,3,male,22.0,0,0,7.5208,S,Third,man,True,,Southampton,no,True
+479,1,3,female,2.0,0,1,12.2875,S,Third,child,False,,Southampton,yes,False
+480,0,3,male,9.0,5,2,46.9,S,Third,child,False,,Southampton,no,False
+481,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+482,0,3,male,50.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+483,1,3,female,63.0,0,0,9.5875,S,Third,woman,False,,Southampton,yes,True
+484,1,1,male,25.0,1,0,91.0792,C,First,man,True,B,Cherbourg,yes,False
+485,0,3,female,,3,1,25.4667,S,Third,woman,False,,Southampton,no,False
+486,1,1,female,35.0,1,0,90.0,S,First,woman,False,C,Southampton,yes,False
+487,0,1,male,58.0,0,0,29.7,C,First,man,True,B,Cherbourg,no,True
+488,0,3,male,30.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+489,1,3,male,9.0,1,1,15.9,S,Third,child,False,,Southampton,yes,False
+490,0,3,male,,1,0,19.9667,S,Third,man,True,,Southampton,no,False
+491,0,3,male,21.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+492,0,1,male,55.0,0,0,30.5,S,First,man,True,C,Southampton,no,True
+493,0,1,male,71.0,0,0,49.5042,C,First,man,True,,Cherbourg,no,True
+494,0,3,male,21.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+495,0,3,male,,0,0,14.4583,C,Third,man,True,,Cherbourg,no,True
+496,1,1,female,54.0,1,0,78.2667,C,First,woman,False,D,Cherbourg,yes,False
+497,0,3,male,,0,0,15.1,S,Third,man,True,,Southampton,no,True
+498,0,1,female,25.0,1,2,151.55,S,First,woman,False,C,Southampton,no,False
+499,0,3,male,24.0,0,0,7.7958,S,Third,man,True,,Southampton,no,True
+500,0,3,male,17.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+501,0,3,female,21.0,0,0,7.75,Q,Third,woman,False,,Queenstown,no,True
+502,0,3,female,,0,0,7.6292,Q,Third,woman,False,,Queenstown,no,True
+503,0,3,female,37.0,0,0,9.5875,S,Third,woman,False,,Southampton,no,True
+504,1,1,female,16.0,0,0,86.5,S,First,woman,False,B,Southampton,yes,True
+505,0,1,male,18.0,1,0,108.9,C,First,man,True,C,Cherbourg,no,False
+506,1,2,female,33.0,0,2,26.0,S,Second,woman,False,,Southampton,yes,False
+507,1,1,male,,0,0,26.55,S,First,man,True,,Southampton,yes,True
+508,0,3,male,28.0,0,0,22.525,S,Third,man,True,,Southampton,no,True
+509,1,3,male,26.0,0,0,56.4958,S,Third,man,True,,Southampton,yes,True
+510,1,3,male,29.0,0,0,7.75,Q,Third,man,True,,Queenstown,yes,True
+511,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+512,1,1,male,36.0,0,0,26.2875,S,First,man,True,E,Southampton,yes,True
+513,1,1,female,54.0,1,0,59.4,C,First,woman,False,,Cherbourg,yes,False
+514,0,3,male,24.0,0,0,7.4958,S,Third,man,True,,Southampton,no,True
+515,0,1,male,47.0,0,0,34.0208,S,First,man,True,D,Southampton,no,True
+516,1,2,female,34.0,0,0,10.5,S,Second,woman,False,F,Southampton,yes,True
+517,0,3,male,,0,0,24.15,Q,Third,man,True,,Queenstown,no,True
+518,1,2,female,36.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+519,0,3,male,32.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+520,1,1,female,30.0,0,0,93.5,S,First,woman,False,B,Southampton,yes,True
+521,0,3,male,22.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+522,0,3,male,,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+523,1,1,female,44.0,0,1,57.9792,C,First,woman,False,B,Cherbourg,yes,False
+524,0,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+525,0,3,male,40.5,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+526,1,2,female,50.0,0,0,10.5,S,Second,woman,False,,Southampton,yes,True
+527,0,1,male,,0,0,221.7792,S,First,man,True,C,Southampton,no,True
+528,0,3,male,39.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+529,0,2,male,23.0,2,1,11.5,S,Second,man,True,,Southampton,no,False
+530,1,2,female,2.0,1,1,26.0,S,Second,child,False,,Southampton,yes,False
+531,0,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+532,0,3,male,17.0,1,1,7.2292,C,Third,man,True,,Cherbourg,no,False
+533,1,3,female,,0,2,22.3583,C,Third,woman,False,,Cherbourg,yes,False
+534,0,3,female,30.0,0,0,8.6625,S,Third,woman,False,,Southampton,no,True
+535,1,2,female,7.0,0,2,26.25,S,Second,child,False,,Southampton,yes,False
+536,0,1,male,45.0,0,0,26.55,S,First,man,True,B,Southampton,no,True
+537,1,1,female,30.0,0,0,106.425,C,First,woman,False,,Cherbourg,yes,True
+538,0,3,male,,0,0,14.5,S,Third,man,True,,Southampton,no,True
+539,1,1,female,22.0,0,2,49.5,C,First,woman,False,B,Cherbourg,yes,False
+540,1,1,female,36.0,0,2,71.0,S,First,woman,False,B,Southampton,yes,False
+541,0,3,female,9.0,4,2,31.275,S,Third,child,False,,Southampton,no,False
+542,0,3,female,11.0,4,2,31.275,S,Third,child,False,,Southampton,no,False
+543,1,2,male,32.0,1,0,26.0,S,Second,man,True,,Southampton,yes,False
+544,0,1,male,50.0,1,0,106.425,C,First,man,True,C,Cherbourg,no,False
+545,0,1,male,64.0,0,0,26.0,S,First,man,True,,Southampton,no,True
+546,1,2,female,19.0,1,0,26.0,S,Second,woman,False,,Southampton,yes,False
+547,1,2,male,,0,0,13.8625,C,Second,man,True,,Cherbourg,yes,True
+548,0,3,male,33.0,1,1,20.525,S,Third,man,True,,Southampton,no,False
+549,1,2,male,8.0,1,1,36.75,S,Second,child,False,,Southampton,yes,False
+550,1,1,male,17.0,0,2,110.8833,C,First,man,True,C,Cherbourg,yes,False
+551,0,2,male,27.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+552,0,3,male,,0,0,7.8292,Q,Third,man,True,,Queenstown,no,True
+553,1,3,male,22.0,0,0,7.225,C,Third,man,True,,Cherbourg,yes,True
+554,1,3,female,22.0,0,0,7.775,S,Third,woman,False,,Southampton,yes,True
+555,0,1,male,62.0,0,0,26.55,S,First,man,True,,Southampton,no,True
+556,1,1,female,48.0,1,0,39.6,C,First,woman,False,A,Cherbourg,yes,False
+557,0,1,male,,0,0,227.525,C,First,man,True,,Cherbourg,no,True
+558,1,1,female,39.0,1,1,79.65,S,First,woman,False,E,Southampton,yes,False
+559,1,3,female,36.0,1,0,17.4,S,Third,woman,False,,Southampton,yes,False
+560,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+561,0,3,male,40.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+562,0,2,male,28.0,0,0,13.5,S,Second,man,True,,Southampton,no,True
+563,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+564,0,3,female,,0,0,8.05,S,Third,woman,False,,Southampton,no,True
+565,0,3,male,24.0,2,0,24.15,S,Third,man,True,,Southampton,no,False
+566,0,3,male,19.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+567,0,3,female,29.0,0,4,21.075,S,Third,woman,False,,Southampton,no,False
+568,0,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+569,1,3,male,32.0,0,0,7.8542,S,Third,man,True,,Southampton,yes,True
+570,1,2,male,62.0,0,0,10.5,S,Second,man,True,,Southampton,yes,True
+571,1,1,female,53.0,2,0,51.4792,S,First,woman,False,C,Southampton,yes,False
+572,1,1,male,36.0,0,0,26.3875,S,First,man,True,E,Southampton,yes,True
+573,1,3,female,,0,0,7.75,Q,Third,woman,False,,Queenstown,yes,True
+574,0,3,male,16.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+575,0,3,male,19.0,0,0,14.5,S,Third,man,True,,Southampton,no,True
+576,1,2,female,34.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+577,1,1,female,39.0,1,0,55.9,S,First,woman,False,E,Southampton,yes,False
+578,0,3,female,,1,0,14.4583,C,Third,woman,False,,Cherbourg,no,False
+579,1,3,male,32.0,0,0,7.925,S,Third,man,True,,Southampton,yes,True
+580,1,2,female,25.0,1,1,30.0,S,Second,woman,False,,Southampton,yes,False
+581,1,1,female,39.0,1,1,110.8833,C,First,woman,False,C,Cherbourg,yes,False
+582,0,2,male,54.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+583,0,1,male,36.0,0,0,40.125,C,First,man,True,A,Cherbourg,no,True
+584,0,3,male,,0,0,8.7125,C,Third,man,True,,Cherbourg,no,True
+585,1,1,female,18.0,0,2,79.65,S,First,woman,False,E,Southampton,yes,False
+586,0,2,male,47.0,0,0,15.0,S,Second,man,True,,Southampton,no,True
+587,1,1,male,60.0,1,1,79.2,C,First,man,True,B,Cherbourg,yes,False
+588,0,3,male,22.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+589,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+590,0,3,male,35.0,0,0,7.125,S,Third,man,True,,Southampton,no,True
+591,1,1,female,52.0,1,0,78.2667,C,First,woman,False,D,Cherbourg,yes,False
+592,0,3,male,47.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+593,0,3,female,,0,2,7.75,Q,Third,woman,False,,Queenstown,no,False
+594,0,2,male,37.0,1,0,26.0,S,Second,man,True,,Southampton,no,False
+595,0,3,male,36.0,1,1,24.15,S,Third,man,True,,Southampton,no,False
+596,1,2,female,,0,0,33.0,S,Second,woman,False,,Southampton,yes,True
+597,0,3,male,49.0,0,0,0.0,S,Third,man,True,,Southampton,no,True
+598,0,3,male,,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+599,1,1,male,49.0,1,0,56.9292,C,First,man,True,A,Cherbourg,yes,False
+600,1,2,female,24.0,2,1,27.0,S,Second,woman,False,,Southampton,yes,False
+601,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+602,0,1,male,,0,0,42.4,S,First,man,True,,Southampton,no,True
+603,0,3,male,44.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+604,1,1,male,35.0,0,0,26.55,C,First,man,True,,Cherbourg,yes,True
+605,0,3,male,36.0,1,0,15.55,S,Third,man,True,,Southampton,no,False
+606,0,3,male,30.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+607,1,1,male,27.0,0,0,30.5,S,First,man,True,,Southampton,yes,True
+608,1,2,female,22.0,1,2,41.5792,C,Second,woman,False,,Cherbourg,yes,False
+609,1,1,female,40.0,0,0,153.4625,S,First,woman,False,C,Southampton,yes,True
+610,0,3,female,39.0,1,5,31.275,S,Third,woman,False,,Southampton,no,False
+611,0,3,male,,0,0,7.05,S,Third,man,True,,Southampton,no,True
+612,1,3,female,,1,0,15.5,Q,Third,woman,False,,Queenstown,yes,False
+613,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+614,0,3,male,35.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+615,1,2,female,24.0,1,2,65.0,S,Second,woman,False,,Southampton,yes,False
+616,0,3,male,34.0,1,1,14.4,S,Third,man,True,,Southampton,no,False
+617,0,3,female,26.0,1,0,16.1,S,Third,woman,False,,Southampton,no,False
+618,1,2,female,4.0,2,1,39.0,S,Second,child,False,F,Southampton,yes,False
+619,0,2,male,26.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+620,0,3,male,27.0,1,0,14.4542,C,Third,man,True,,Cherbourg,no,False
+621,1,1,male,42.0,1,0,52.5542,S,First,man,True,D,Southampton,yes,False
+622,1,3,male,20.0,1,1,15.7417,C,Third,man,True,,Cherbourg,yes,False
+623,0,3,male,21.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+624,0,3,male,21.0,0,0,16.1,S,Third,man,True,,Southampton,no,True
+625,0,1,male,61.0,0,0,32.3208,S,First,man,True,D,Southampton,no,True
+626,0,2,male,57.0,0,0,12.35,Q,Second,man,True,,Queenstown,no,True
+627,1,1,female,21.0,0,0,77.9583,S,First,woman,False,D,Southampton,yes,True
+628,0,3,male,26.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+629,0,3,male,,0,0,7.7333,Q,Third,man,True,,Queenstown,no,True
+630,1,1,male,80.0,0,0,30.0,S,First,man,True,A,Southampton,yes,True
+631,0,3,male,51.0,0,0,7.0542,S,Third,man,True,,Southampton,no,True
+632,1,1,male,32.0,0,0,30.5,C,First,man,True,B,Cherbourg,yes,True
+633,0,1,male,,0,0,0.0,S,First,man,True,,Southampton,no,True
+634,0,3,female,9.0,3,2,27.9,S,Third,child,False,,Southampton,no,False
+635,1,2,female,28.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+636,0,3,male,32.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+637,0,2,male,31.0,1,1,26.25,S,Second,man,True,,Southampton,no,False
+638,0,3,female,41.0,0,5,39.6875,S,Third,woman,False,,Southampton,no,False
+639,0,3,male,,1,0,16.1,S,Third,man,True,,Southampton,no,False
+640,0,3,male,20.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+641,1,1,female,24.0,0,0,69.3,C,First,woman,False,B,Cherbourg,yes,True
+642,0,3,female,2.0,3,2,27.9,S,Third,child,False,,Southampton,no,False
+643,1,3,male,,0,0,56.4958,S,Third,man,True,,Southampton,yes,True
+644,1,3,female,0.75,2,1,19.2583,C,Third,child,False,,Cherbourg,yes,False
+645,1,1,male,48.0,1,0,76.7292,C,First,man,True,D,Cherbourg,yes,False
+646,0,3,male,19.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+647,1,1,male,56.0,0,0,35.5,C,First,man,True,A,Cherbourg,yes,True
+648,0,3,male,,0,0,7.55,S,Third,man,True,,Southampton,no,True
+649,1,3,female,23.0,0,0,7.55,S,Third,woman,False,,Southampton,yes,True
+650,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+651,1,2,female,18.0,0,1,23.0,S,Second,woman,False,,Southampton,yes,False
+652,0,3,male,21.0,0,0,8.4333,S,Third,man,True,,Southampton,no,True
+653,1,3,female,,0,0,7.8292,Q,Third,woman,False,,Queenstown,yes,True
+654,0,3,female,18.0,0,0,6.75,Q,Third,woman,False,,Queenstown,no,True
+655,0,2,male,24.0,2,0,73.5,S,Second,man,True,,Southampton,no,False
+656,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+657,0,3,female,32.0,1,1,15.5,Q,Third,woman,False,,Queenstown,no,False
+658,0,2,male,23.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+659,0,1,male,58.0,0,2,113.275,C,First,man,True,D,Cherbourg,no,False
+660,1,1,male,50.0,2,0,133.65,S,First,man,True,,Southampton,yes,False
+661,0,3,male,40.0,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+662,0,1,male,47.0,0,0,25.5875,S,First,man,True,E,Southampton,no,True
+663,0,3,male,36.0,0,0,7.4958,S,Third,man,True,,Southampton,no,True
+664,1,3,male,20.0,1,0,7.925,S,Third,man,True,,Southampton,yes,False
+665,0,2,male,32.0,2,0,73.5,S,Second,man,True,,Southampton,no,False
+666,0,2,male,25.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+667,0,3,male,,0,0,7.775,S,Third,man,True,,Southampton,no,True
+668,0,3,male,43.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+669,1,1,female,,1,0,52.0,S,First,woman,False,C,Southampton,yes,False
+670,1,2,female,40.0,1,1,39.0,S,Second,woman,False,,Southampton,yes,False
+671,0,1,male,31.0,1,0,52.0,S,First,man,True,B,Southampton,no,False
+672,0,2,male,70.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+673,1,2,male,31.0,0,0,13.0,S,Second,man,True,,Southampton,yes,True
+674,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+675,0,3,male,18.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+676,0,3,male,24.5,0,0,8.05,S,Third,man,True,,Southampton,no,True
+677,1,3,female,18.0,0,0,9.8417,S,Third,woman,False,,Southampton,yes,True
+678,0,3,female,43.0,1,6,46.9,S,Third,woman,False,,Southampton,no,False
+679,1,1,male,36.0,0,1,512.3292,C,First,man,True,B,Cherbourg,yes,False
+680,0,3,female,,0,0,8.1375,Q,Third,woman,False,,Queenstown,no,True
+681,1,1,male,27.0,0,0,76.7292,C,First,man,True,D,Cherbourg,yes,True
+682,0,3,male,20.0,0,0,9.225,S,Third,man,True,,Southampton,no,True
+683,0,3,male,14.0,5,2,46.9,S,Third,child,False,,Southampton,no,False
+684,0,2,male,60.0,1,1,39.0,S,Second,man,True,,Southampton,no,False
+685,0,2,male,25.0,1,2,41.5792,C,Second,man,True,,Cherbourg,no,False
+686,0,3,male,14.0,4,1,39.6875,S,Third,child,False,,Southampton,no,False
+687,0,3,male,19.0,0,0,10.1708,S,Third,man,True,,Southampton,no,True
+688,0,3,male,18.0,0,0,7.7958,S,Third,man,True,,Southampton,no,True
+689,1,1,female,15.0,0,1,211.3375,S,First,child,False,B,Southampton,yes,False
+690,1,1,male,31.0,1,0,57.0,S,First,man,True,B,Southampton,yes,False
+691,1,3,female,4.0,0,1,13.4167,C,Third,child,False,,Cherbourg,yes,False
+692,1,3,male,,0,0,56.4958,S,Third,man,True,,Southampton,yes,True
+693,0,3,male,25.0,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+694,0,1,male,60.0,0,0,26.55,S,First,man,True,,Southampton,no,True
+695,0,2,male,52.0,0,0,13.5,S,Second,man,True,,Southampton,no,True
+696,0,3,male,44.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+697,1,3,female,,0,0,7.7333,Q,Third,woman,False,,Queenstown,yes,True
+698,0,1,male,49.0,1,1,110.8833,C,First,man,True,C,Cherbourg,no,False
+699,0,3,male,42.0,0,0,7.65,S,Third,man,True,F,Southampton,no,True
+700,1,1,female,18.0,1,0,227.525,C,First,woman,False,C,Cherbourg,yes,False
+701,1,1,male,35.0,0,0,26.2875,S,First,man,True,E,Southampton,yes,True
+702,0,3,female,18.0,0,1,14.4542,C,Third,woman,False,,Cherbourg,no,False
+703,0,3,male,25.0,0,0,7.7417,Q,Third,man,True,,Queenstown,no,True
+704,0,3,male,26.0,1,0,7.8542,S,Third,man,True,,Southampton,no,False
+705,0,2,male,39.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+706,1,2,female,45.0,0,0,13.5,S,Second,woman,False,,Southampton,yes,True
+707,1,1,male,42.0,0,0,26.2875,S,First,man,True,E,Southampton,yes,True
+708,1,1,female,22.0,0,0,151.55,S,First,woman,False,,Southampton,yes,True
+709,1,3,male,,1,1,15.2458,C,Third,man,True,,Cherbourg,yes,False
+710,1,1,female,24.0,0,0,49.5042,C,First,woman,False,C,Cherbourg,yes,True
+711,0,1,male,,0,0,26.55,S,First,man,True,C,Southampton,no,True
+712,1,1,male,48.0,1,0,52.0,S,First,man,True,C,Southampton,yes,False
+713,0,3,male,29.0,0,0,9.4833,S,Third,man,True,,Southampton,no,True
+714,0,2,male,52.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+715,0,3,male,19.0,0,0,7.65,S,Third,man,True,F,Southampton,no,True
+716,1,1,female,38.0,0,0,227.525,C,First,woman,False,C,Cherbourg,yes,True
+717,1,2,female,27.0,0,0,10.5,S,Second,woman,False,E,Southampton,yes,True
+718,0,3,male,,0,0,15.5,Q,Third,man,True,,Queenstown,no,True
+719,0,3,male,33.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+720,1,2,female,6.0,0,1,33.0,S,Second,child,False,,Southampton,yes,False
+721,0,3,male,17.0,1,0,7.0542,S,Third,man,True,,Southampton,no,False
+722,0,2,male,34.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+723,0,2,male,50.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+724,1,1,male,27.0,1,0,53.1,S,First,man,True,E,Southampton,yes,False
+725,0,3,male,20.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+726,1,2,female,30.0,3,0,21.0,S,Second,woman,False,,Southampton,yes,False
+727,1,3,female,,0,0,7.7375,Q,Third,woman,False,,Queenstown,yes,True
+728,0,2,male,25.0,1,0,26.0,S,Second,man,True,,Southampton,no,False
+729,0,3,female,25.0,1,0,7.925,S,Third,woman,False,,Southampton,no,False
+730,1,1,female,29.0,0,0,211.3375,S,First,woman,False,B,Southampton,yes,True
+731,0,3,male,11.0,0,0,18.7875,C,Third,child,False,,Cherbourg,no,True
+732,0,2,male,,0,0,0.0,S,Second,man,True,,Southampton,no,True
+733,0,2,male,23.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+734,0,2,male,23.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+735,0,3,male,28.5,0,0,16.1,S,Third,man,True,,Southampton,no,True
+736,0,3,female,48.0,1,3,34.375,S,Third,woman,False,,Southampton,no,False
+737,1,1,male,35.0,0,0,512.3292,C,First,man,True,B,Cherbourg,yes,True
+738,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+739,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+740,1,1,male,,0,0,30.0,S,First,man,True,D,Southampton,yes,True
+741,0,1,male,36.0,1,0,78.85,S,First,man,True,C,Southampton,no,False
+742,1,1,female,21.0,2,2,262.375,C,First,woman,False,B,Cherbourg,yes,False
+743,0,3,male,24.0,1,0,16.1,S,Third,man,True,,Southampton,no,False
+744,1,3,male,31.0,0,0,7.925,S,Third,man,True,,Southampton,yes,True
+745,0,1,male,70.0,1,1,71.0,S,First,man,True,B,Southampton,no,False
+746,0,3,male,16.0,1,1,20.25,S,Third,man,True,,Southampton,no,False
+747,1,2,female,30.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+748,0,1,male,19.0,1,0,53.1,S,First,man,True,D,Southampton,no,False
+749,0,3,male,31.0,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+750,1,2,female,4.0,1,1,23.0,S,Second,child,False,,Southampton,yes,False
+751,1,3,male,6.0,0,1,12.475,S,Third,child,False,E,Southampton,yes,False
+752,0,3,male,33.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+753,0,3,male,23.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+754,1,2,female,48.0,1,2,65.0,S,Second,woman,False,,Southampton,yes,False
+755,1,2,male,0.67,1,1,14.5,S,Second,child,False,,Southampton,yes,False
+756,0,3,male,28.0,0,0,7.7958,S,Third,man,True,,Southampton,no,True
+757,0,2,male,18.0,0,0,11.5,S,Second,man,True,,Southampton,no,True
+758,0,3,male,34.0,0,0,8.05,S,Third,man,True,,Southampton,no,True
+759,1,1,female,33.0,0,0,86.5,S,First,woman,False,B,Southampton,yes,True
+760,0,3,male,,0,0,14.5,S,Third,man,True,,Southampton,no,True
+761,0,3,male,41.0,0,0,7.125,S,Third,man,True,,Southampton,no,True
+762,1,3,male,20.0,0,0,7.2292,C,Third,man,True,,Cherbourg,yes,True
+763,1,1,female,36.0,1,2,120.0,S,First,woman,False,B,Southampton,yes,False
+764,0,3,male,16.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+765,1,1,female,51.0,1,0,77.9583,S,First,woman,False,D,Southampton,yes,False
+766,0,1,male,,0,0,39.6,C,First,man,True,,Cherbourg,no,True
+767,0,3,female,30.5,0,0,7.75,Q,Third,woman,False,,Queenstown,no,True
+768,0,3,male,,1,0,24.15,Q,Third,man,True,,Queenstown,no,False
+769,0,3,male,32.0,0,0,8.3625,S,Third,man,True,,Southampton,no,True
+770,0,3,male,24.0,0,0,9.5,S,Third,man,True,,Southampton,no,True
+771,0,3,male,48.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+772,0,2,female,57.0,0,0,10.5,S,Second,woman,False,E,Southampton,no,True
+773,0,3,male,,0,0,7.225,C,Third,man,True,,Cherbourg,no,True
+774,1,2,female,54.0,1,3,23.0,S,Second,woman,False,,Southampton,yes,False
+775,0,3,male,18.0,0,0,7.75,S,Third,man,True,,Southampton,no,True
+776,0,3,male,,0,0,7.75,Q,Third,man,True,F,Queenstown,no,True
+777,1,3,female,5.0,0,0,12.475,S,Third,child,False,,Southampton,yes,True
+778,0,3,male,,0,0,7.7375,Q,Third,man,True,,Queenstown,no,True
+779,1,1,female,43.0,0,1,211.3375,S,First,woman,False,B,Southampton,yes,False
+780,1,3,female,13.0,0,0,7.2292,C,Third,child,False,,Cherbourg,yes,True
+781,1,1,female,17.0,1,0,57.0,S,First,woman,False,B,Southampton,yes,False
+782,0,1,male,29.0,0,0,30.0,S,First,man,True,D,Southampton,no,True
+783,0,3,male,,1,2,23.45,S,Third,man,True,,Southampton,no,False
+784,0,3,male,25.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+785,0,3,male,25.0,0,0,7.25,S,Third,man,True,,Southampton,no,True
+786,1,3,female,18.0,0,0,7.4958,S,Third,woman,False,,Southampton,yes,True
+787,0,3,male,8.0,4,1,29.125,Q,Third,child,False,,Queenstown,no,False
+788,1,3,male,1.0,1,2,20.575,S,Third,child,False,,Southampton,yes,False
+789,0,1,male,46.0,0,0,79.2,C,First,man,True,B,Cherbourg,no,True
+790,0,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+791,0,2,male,16.0,0,0,26.0,S,Second,man,True,,Southampton,no,True
+792,0,3,female,,8,2,69.55,S,Third,woman,False,,Southampton,no,False
+793,0,1,male,,0,0,30.6958,C,First,man,True,,Cherbourg,no,True
+794,0,3,male,25.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+795,0,2,male,39.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+796,1,1,female,49.0,0,0,25.9292,S,First,woman,False,D,Southampton,yes,True
+797,1,3,female,31.0,0,0,8.6833,S,Third,woman,False,,Southampton,yes,True
+798,0,3,male,30.0,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+799,0,3,female,30.0,1,1,24.15,S,Third,woman,False,,Southampton,no,False
+800,0,2,male,34.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+801,1,2,female,31.0,1,1,26.25,S,Second,woman,False,,Southampton,yes,False
+802,1,1,male,11.0,1,2,120.0,S,First,child,False,B,Southampton,yes,False
+803,1,3,male,0.42,0,1,8.5167,C,Third,child,False,,Cherbourg,yes,False
+804,1,3,male,27.0,0,0,6.975,S,Third,man,True,,Southampton,yes,True
+805,0,3,male,31.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+806,0,1,male,39.0,0,0,0.0,S,First,man,True,A,Southampton,no,True
+807,0,3,female,18.0,0,0,7.775,S,Third,woman,False,,Southampton,no,True
+808,0,2,male,39.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+809,1,1,female,33.0,1,0,53.1,S,First,woman,False,E,Southampton,yes,False
+810,0,3,male,26.0,0,0,7.8875,S,Third,man,True,,Southampton,no,True
+811,0,3,male,39.0,0,0,24.15,S,Third,man,True,,Southampton,no,True
+812,0,2,male,35.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+813,0,3,female,6.0,4,2,31.275,S,Third,child,False,,Southampton,no,False
+814,0,3,male,30.5,0,0,8.05,S,Third,man,True,,Southampton,no,True
+815,0,1,male,,0,0,0.0,S,First,man,True,B,Southampton,no,True
+816,0,3,female,23.0,0,0,7.925,S,Third,woman,False,,Southampton,no,True
+817,0,2,male,31.0,1,1,37.0042,C,Second,man,True,,Cherbourg,no,False
+818,0,3,male,43.0,0,0,6.45,S,Third,man,True,,Southampton,no,True
+819,0,3,male,10.0,3,2,27.9,S,Third,child,False,,Southampton,no,False
+820,1,1,female,52.0,1,1,93.5,S,First,woman,False,B,Southampton,yes,False
+821,1,3,male,27.0,0,0,8.6625,S,Third,man,True,,Southampton,yes,True
+822,0,1,male,38.0,0,0,0.0,S,First,man,True,,Southampton,no,True
+823,1,3,female,27.0,0,1,12.475,S,Third,woman,False,E,Southampton,yes,False
+824,0,3,male,2.0,4,1,39.6875,S,Third,child,False,,Southampton,no,False
+825,0,3,male,,0,0,6.95,Q,Third,man,True,,Queenstown,no,True
+826,0,3,male,,0,0,56.4958,S,Third,man,True,,Southampton,no,True
+827,1,2,male,1.0,0,2,37.0042,C,Second,child,False,,Cherbourg,yes,False
+828,1,3,male,,0,0,7.75,Q,Third,man,True,,Queenstown,yes,True
+829,1,1,female,62.0,0,0,80.0,,First,woman,False,B,,yes,True
+830,1,3,female,15.0,1,0,14.4542,C,Third,child,False,,Cherbourg,yes,False
+831,1,2,male,0.83,1,1,18.75,S,Second,child,False,,Southampton,yes,False
+832,0,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+833,0,3,male,23.0,0,0,7.8542,S,Third,man,True,,Southampton,no,True
+834,0,3,male,18.0,0,0,8.3,S,Third,man,True,,Southampton,no,True
+835,1,1,female,39.0,1,1,83.1583,C,First,woman,False,E,Cherbourg,yes,False
+836,0,3,male,21.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+837,0,3,male,,0,0,8.05,S,Third,man,True,,Southampton,no,True
+838,1,3,male,32.0,0,0,56.4958,S,Third,man,True,,Southampton,yes,True
+839,1,1,male,,0,0,29.7,C,First,man,True,C,Cherbourg,yes,True
+840,0,3,male,20.0,0,0,7.925,S,Third,man,True,,Southampton,no,True
+841,0,2,male,16.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+842,1,1,female,30.0,0,0,31.0,C,First,woman,False,,Cherbourg,yes,True
+843,0,3,male,34.5,0,0,6.4375,C,Third,man,True,,Cherbourg,no,True
+844,0,3,male,17.0,0,0,8.6625,S,Third,man,True,,Southampton,no,True
+845,0,3,male,42.0,0,0,7.55,S,Third,man,True,,Southampton,no,True
+846,0,3,male,,8,2,69.55,S,Third,man,True,,Southampton,no,False
+847,0,3,male,35.0,0,0,7.8958,C,Third,man,True,,Cherbourg,no,True
+848,0,2,male,28.0,0,1,33.0,S,Second,man,True,,Southampton,no,False
+849,1,1,female,,1,0,89.1042,C,First,woman,False,C,Cherbourg,yes,False
+850,0,3,male,4.0,4,2,31.275,S,Third,child,False,,Southampton,no,False
+851,0,3,male,74.0,0,0,7.775,S,Third,man,True,,Southampton,no,True
+852,0,3,female,9.0,1,1,15.2458,C,Third,child,False,,Cherbourg,no,False
+853,1,1,female,16.0,0,1,39.4,S,First,woman,False,D,Southampton,yes,False
+854,0,2,female,44.0,1,0,26.0,S,Second,woman,False,,Southampton,no,False
+855,1,3,female,18.0,0,1,9.35,S,Third,woman,False,,Southampton,yes,False
+856,1,1,female,45.0,1,1,164.8667,S,First,woman,False,,Southampton,yes,False
+857,1,1,male,51.0,0,0,26.55,S,First,man,True,E,Southampton,yes,True
+858,1,3,female,24.0,0,3,19.2583,C,Third,woman,False,,Cherbourg,yes,False
+859,0,3,male,,0,0,7.2292,C,Third,man,True,,Cherbourg,no,True
+860,0,3,male,41.0,2,0,14.1083,S,Third,man,True,,Southampton,no,False
+861,0,2,male,21.0,1,0,11.5,S,Second,man,True,,Southampton,no,False
+862,1,1,female,48.0,0,0,25.9292,S,First,woman,False,D,Southampton,yes,True
+863,0,3,female,,8,2,69.55,S,Third,woman,False,,Southampton,no,False
+864,0,2,male,24.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+865,1,2,female,42.0,0,0,13.0,S,Second,woman,False,,Southampton,yes,True
+866,1,2,female,27.0,1,0,13.8583,C,Second,woman,False,,Cherbourg,yes,False
+867,0,1,male,31.0,0,0,50.4958,S,First,man,True,A,Southampton,no,True
+868,0,3,male,,0,0,9.5,S,Third,man,True,,Southampton,no,True
+869,1,3,male,4.0,1,1,11.1333,S,Third,child,False,,Southampton,yes,False
+870,0,3,male,26.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+871,1,1,female,47.0,1,1,52.5542,S,First,woman,False,D,Southampton,yes,False
+872,0,1,male,33.0,0,0,5.0,S,First,man,True,B,Southampton,no,True
+873,0,3,male,47.0,0,0,9.0,S,Third,man,True,,Southampton,no,True
+874,1,2,female,28.0,1,0,24.0,C,Second,woman,False,,Cherbourg,yes,False
+875,1,3,female,15.0,0,0,7.225,C,Third,child,False,,Cherbourg,yes,True
+876,0,3,male,20.0,0,0,9.8458,S,Third,man,True,,Southampton,no,True
+877,0,3,male,19.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+878,0,3,male,,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+879,1,1,female,56.0,0,1,83.1583,C,First,woman,False,C,Cherbourg,yes,False
+880,1,2,female,25.0,0,1,26.0,S,Second,woman,False,,Southampton,yes,False
+881,0,3,male,33.0,0,0,7.8958,S,Third,man,True,,Southampton,no,True
+882,0,3,female,22.0,0,0,10.5167,S,Third,woman,False,,Southampton,no,True
+883,0,2,male,28.0,0,0,10.5,S,Second,man,True,,Southampton,no,True
+884,0,3,male,25.0,0,0,7.05,S,Third,man,True,,Southampton,no,True
+885,0,3,female,39.0,0,5,29.125,Q,Third,woman,False,,Queenstown,no,False
+886,0,2,male,27.0,0,0,13.0,S,Second,man,True,,Southampton,no,True
+887,1,1,female,19.0,0,0,30.0,S,First,woman,False,B,Southampton,yes,True
+888,0,3,female,,1,2,23.45,S,Third,woman,False,,Southampton,no,False
+889,1,1,male,26.0,0,0,30.0,C,First,man,True,C,Cherbourg,yes,True
+890,0,3,male,32.0,0,0,7.75,Q,Third,man,True,,Queenstown,no,True
+</div>
+    </body>
+</html>
+</div></div>
+</div>
+<p><strong>Watermark</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">watermark</span> <span class="kn">import</span> <span class="n">watermark</span>
+<span class="n">watermark</span><span class="p">(</span><span class="n">iversions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">globals_</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">watermark</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">watermark</span><span class="p">(</span><span class="n">packages</span><span class="o">=</span><span class="s2">&quot;watermark,numpy,pandas,seaborn,pivottablejs&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2023-08-15T07:18:44.450998+00:00
+
+Python implementation: CPython
+Python version       : 3.10.12
+IPython version      : 7.34.0
+
+Compiler    : GCC 11.4.0
+OS          : Linux
+Release     : 5.15.109+
+Machine     : x86_64
+Processor   : x86_64
+CPU cores   : 2
+Architecture: 64bit
+
+watermark   : 2.4.3
+numpy       : 1.23.5
+pandas      : 1.5.3
+seaborn     : 0.12.2
+pivottablejs: 0.9.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./day2d_pandas_statistics"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_Pandas_EDA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploratory Data Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../day3/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Day 3: Plotting and Workflow Exercise</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic Plots, Groupping and Multi-Level Tables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-pandas">Intro to pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-plotting">Simple Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables">Pivot Tables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-syntax">Pivot Table Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-widgets">Pivot Table Widgets</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Allysson Ryan, Jan Brocher, Johannes Soltwedel, Marcelo Zoccoler, Marco Musy, Martin Schatz, Till Korten, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
