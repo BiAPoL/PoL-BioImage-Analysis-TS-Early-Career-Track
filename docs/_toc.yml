@@ -28,8 +28,16 @@ chapters:
           - file: day1c_Python_loops_conditions_functions/07_Conditions
           - file: day1c_Python_loops_conditions_functions/08_custom_functions
           - file: day1c_Python_loops_conditions_functions/09_loops
-      - file: day1d_image_analysis_basics_filtering/intro
+      - file: day1d_image_analysis_basics/intro
+        sections:
+          - file: day1d_image_analysis_basics/01_images_are_numpy_arrays
+          - file: day1d_image_analysis_basics/02_Brightness_and_Contrast
+          - file: day1d_image_analysis_basics/03_Napari_from_Jupyter_introduction
+          - file: day1d_image_analysis_basics/04_opening_images_using_aicsimageio
       - file: day1e_image_processing/intro
+        sections:
+          - file: day1e_image_processing/04_Filters
+          - file: day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data
 
   - file: day2/intro
     sections:
