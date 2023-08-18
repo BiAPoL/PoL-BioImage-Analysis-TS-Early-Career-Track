@@ -1,1 +1,0 @@
-# Image Analysis Basics + Filtering
