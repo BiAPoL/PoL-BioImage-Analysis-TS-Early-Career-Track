@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Image Analysis Basics + Filtering &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+    <title>Reading files with AICSImageIO &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
   
   
   
@@ -61,11 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day1d_image_analysis_basics_filtering/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day1d_image_analysis_basics/04_opening_images_using_aicsimageio';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Image Processing" href="../day1e_image_processing/intro.html" />
-    <link rel="prev" title="Loops" href="../day1c_Python_loops_conditions_functions/09_loops.html" />
+    <link rel="prev" title="Using Napari to visualize and interact with images" href="03_Napari_from_Jupyter_introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -192,12 +192,27 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image Analysis Basics + Filtering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../day1e_image_processing/intro.html">Image Processing</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Image Analysis Basics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01_images_are_numpy_arrays.html">Images in python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_Brightness_and_Contrast.html">Brightness and Contrast</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="03_Napari_from_Jupyter_introduction.html">Using Napari to visualize and interact with images</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Reading files with AICSImageIO</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day1e_image_processing/intro.html">Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../day1e_image_processing/04_Filters.html">Noise reduction</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data.html">Optional: 3D Image Filters</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/03_Morphological_operations.html">Morphological Image Processing</a></li>
 
@@ -223,7 +238,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/01_supervised_machine_learning.html">Supervised machine learning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.html">Exercise: Interactive pixel and object classification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
@@ -233,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../day2b_machine_learning_apoc/05_train_on_folders.html">Training classifiers from folders of images</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2c_feature_extraction/01_EXERCISE_quantiative_measurements.html">Quantitative image analysis</a></li>
 
 
@@ -244,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2d_pandas_statistics/00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2d_pandas_statistics/01_Pandas_Intro.html">Introduction to Pandas</a></li>
 
@@ -260,8 +275,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
 
@@ -270,7 +285,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
 </ul>
 </li>
@@ -347,7 +362,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday1d_image_analysis_basics_filtering/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday1d_image_analysis_basics/04_opening_images_using_aicsimageio.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +392,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/day1d_image_analysis_basics_filtering/intro.md" target="_blank"
+      <li><a href="../_sources/day1d_image_analysis_basics/04_opening_images_using_aicsimageio.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -387,7 +402,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -446,7 +461,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -457,11 +474,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Image Analysis Basics + Filtering</h1>
+    <h1>Reading files with AICSImageIO</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-meta-data">Reading meta data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -471,8 +497,154 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="image-analysis-basics-filtering">
-<h1>Image Analysis Basics + Filtering<a class="headerlink" href="#image-analysis-basics-filtering" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="reading-files-with-aicsimageio">
+<h1>Reading files with AICSImageIO<a class="headerlink" href="#reading-files-with-aicsimageio" title="Permalink to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio">AICSImageIO library</a> aims streamlining reading microscopy image data. There is also a <a class="reference external" href="https://github.com/AllenCellModeling/napari-aicsimageio#napari-aicsimageio">napari plugin</a>, but here we explain how to read it with the library.</p>
+<p>To install the library, you need to call these commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">install</span> <span class="n">aicsimageio</span> <span class="n">bioformats_jar</span>
+</pre></div>
+</div>
+<p>In case some specific proprietary file formats fails to be read, additional software must be installed. <a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio#extra-format-installation">Check the documentation for details</a>.</p>
+<p>For this notebook, we also need to install <a class="reference external" href="https://pypi.org/project/aicspylibczi/">aicspylibczi</a> to be able to read a <code class="docutils literal notranslate"><span class="pre">.czi</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">aicspylibczi</span><span class="o">&gt;=</span><span class="mf">3.0.5</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">aicsimageio</span> <span class="kn">import</span> <span class="n">AICSImage</span>
+
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>First, we create an <code class="docutils literal notranslate"><span class="pre">AICSImage</span></code> object to see if it understands our file format.  In the following we are using an image showing a Drosophila wing during pupal stage kindly provided by Romina Piscitello-Gómez (MPI CBG).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aics_image</span> <span class="o">=</span> <span class="n">AICSImage</span><span class="p">(</span><span class="s2">&quot;../../data/PupalWing.czi&quot;</span><span class="p">)</span>
+<span class="n">aics_image</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AICSImage [Reader: CziReader, Image-is-in-Memory: False]&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>This object can already give us basic information such as image size/shape, dimensions and dimension names and order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aics_image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 1, 80, 520, 692)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aics_image</span><span class="o">.</span><span class="n">dims</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Dimensions [T: 1, C: 1, Z: 80, Y: 520, X: 692]&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aics_image</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">order</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;TCZYX&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this object, we can also retrieve pixels as numpy arrays.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np_image</span> <span class="o">=</span> <span class="n">aics_image</span><span class="o">.</span><span class="n">get_image_data</span><span class="p">(</span><span class="s2">&quot;ZYX&quot;</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">np_image</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(80, 520, 692)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">np_image</span><span class="p">[</span><span class="mi">36</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\mazo260d\mambaforge\envs\devbio-napari-env\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:149: UserWarning: Low image data range; displaying image with stretched contrast.
+  lo, hi, cmap = _get_display_range(image)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x20dc87ce070&gt;
+</pre></div>
+</div>
+<img alt="../_images/0c9fea73eeb12dd758f0ad711b78dc20a7ef31d1dab4a9794559f11921a53cf7.png" src="../_images/0c9fea73eeb12dd758f0ad711b78dc20a7ef31d1dab4a9794559f11921a53cf7.png" />
+</div>
+</div>
+<section id="reading-meta-data">
+<h2>Reading meta data<a class="headerlink" href="#reading-meta-data" title="Permalink to this heading">#</a></h2>
+<p>When working with microscopy image data, it is important to be aware of meta data, for example the voxel size. In order to do volume measurements in proper physical units, we need to know how large a voxel is in X, Y and Z.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aics_image</span><span class="o">.</span><span class="n">physical_pixel_sizes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PhysicalPixelSizes(Z=1.0, Y=0.20476190476190476, X=0.20476190476190476)
+</pre></div>
+</div>
+</div>
+</div>
+<p>And one can define a helper function for reading the voxel size in Z/Y/X format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_voxel_size_from_aics_image</span><span class="p">(</span><span class="n">aics_image</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">aics_image</span><span class="o">.</span><span class="n">physical_pixel_sizes</span><span class="o">.</span><span class="n">Z</span><span class="p">,</span>
+            <span class="n">aics_image</span><span class="o">.</span><span class="n">physical_pixel_sizes</span><span class="o">.</span><span class="n">Y</span><span class="p">,</span>
+            <span class="n">aics_image</span><span class="o">.</span><span class="n">physical_pixel_sizes</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">voxel_size</span> <span class="o">=</span> <span class="n">get_voxel_size_from_aics_image</span><span class="p">(</span><span class="n">aics_image</span><span class="p">)</span>
+<span class="n">voxel_size</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0, 0.20476190476190476, 0.20476190476190476)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Load this image to napari with the correct pixel sizes.</p>
+<p><em>Hint: Set the <code class="docutils literal notranslate"><span class="pre">scale</span></code> argument of the <code class="docutils literal notranslate"><span class="pre">.add_image</span></code> method with the voxel size.</em></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -488,7 +660,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./day1d_image_analysis_basics_filtering"
+            path: "./day1d_image_analysis_basics"
         },
         predefinedOutput: true
     }
@@ -507,12 +679,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../day1c_Python_loops_conditions_functions/09_loops.html"
+       href="03_Napari_from_Jupyter_introduction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Loops</p>
+        <p class="prev-next-title">Using Napari to visualize and interact with images</p>
       </div>
     </a>
     <a class="right-next"
@@ -533,6 +705,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-meta-data">Reading meta data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
