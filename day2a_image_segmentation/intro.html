@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Image segmentation &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+    <title>Image segmentation &amp; surfaces &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
   
   
   
@@ -212,7 +212,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Image segmentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Image segmentation &amp; surfaces</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="03_Morphological_operations.html">Morphological Image Processing</a></li>
 
@@ -236,6 +236,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l3"><a class="reference internal" href="19_the_segmentation_game.html">The Segmentation Game</a></li>
 <li class="toctree-l3"><a class="reference internal" href="20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="21_EXERCISE_marching_cubes.html">Marching cubes</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -461,7 +462,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -472,11 +475,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Image segmentation</h1>
+    <h1>Image segmentation & surfaces</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-exercise">Notebooks for exercise</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -486,20 +497,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="image-segmentation">
-<h1>Image segmentation<a class="headerlink" href="#image-segmentation" title="Permalink to this heading">#</a></h1>
-<p>This section contains an introdcution into image segmentation, a.k.a. pixel classification. In this chapter, you learn about basic terminology and the simplest segmentation technique - thresholding.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="image-segmentation-surfaces">
+<h1>Image segmentation &amp; surfaces<a class="headerlink" href="#image-segmentation-surfaces" title="Permalink to this heading">#</a></h1>
+<p>This section contains an introdcution into image segmentation, a.k.a. pixel classification as well as creating meshes from segmented data. In particular, this will cover the following topics:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Topic</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Link</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Segmentation &amp; Surfaces</strong></p></td>
+<td><p>Introduction to image segmentation and surface extraction &amp; processing</p></td>
+<td><p><span class="xref myst">Slides</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Thresholding</p></td>
+<td><p>Basic technique to separate foreground from background</p></td>
+<td><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/Thresholding.pdf">Slides</a></p></td>
+</tr>
+<tr class="row-even"><td><p>Instance segmentation</p></td>
+<td><p>Separating different objects in an image</p></td>
+<td><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/Instance_segmentation.pdf">Slides</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Segmentation quality estimation</p></td>
+<td><p>How to measure the quality of a segmentation</p></td>
+<td><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/segmentation_quality_estimation.pdf">Slides</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>The course will follow along the slides on <strong>Segmentation &amp; Surfaces</strong>. The other slides are provided for reference and further explanations, if needed.</p>
+<section id="notebooks-for-exercise">
+<h2>Notebooks for exercise<a class="headerlink" href="#notebooks-for-exercise" title="Permalink to this heading">#</a></h2>
+<p>While the section contains a lot of content, make short to execute the following notebooks:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/Thresholding.pdf">Slides</a></p></li>
+<li><p><a class="reference internal" href="01_EXERCISE_Thresholding.html"><span class="doc std std-doc">Thresholding</span></a></p></li>
+<li><p><a class="reference internal" href="09_connected_component_labeling.html"><span class="doc std std-doc">Connected components</span></a></p></li>
+<li><p><a class="reference internal" href="11_voronoi_otsu_labeling.html"><span class="doc std std-doc">Voronoi otsu labelling</span></a></p></li>
+<li><p><a class="reference internal" href="21_EXERCISE_marching_cubes.html"><span class="doc std std-doc">Marching cubes</span></a></p></li>
 </ul>
-<p>In this session we will explore different algorithms for instance segmentation. Classical methods are typically combinations of image filtering methods, threshold algorithms and labeling algorithms such as connected component analysis.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/Instance_segmentation.pdf">Slides</a></p></li>
-</ul>
-<p>We will also dive into instance segmentation quality metrics and play <a class="reference external" href="https://github.com/haesleinhuepf/the-segmentation-game">The Segmentation Game</a>.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/segmentation_quality_estimation.pdf">Slides</a></p></li>
-</ul>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -562,6 +599,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-exercise">Notebooks for exercise</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
