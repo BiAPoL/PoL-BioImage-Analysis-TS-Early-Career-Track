@@ -10,3 +10,12 @@ This section contains an introdcution into image segmentation, a.k.a. pixel clas
 | Segmentation quality estimation | How to measure the quality of a segmentation | [Slides](https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2d_image_segmentation/segmentation_quality_estimation.pdf)
 
 The course will follow along the slides on **Segmentation & Surfaces**. The other slides are provided for reference and further explanations, if needed.
+
+## Notebooks for exercise
+
+While the section contains a lot of content, make short to execute the following notebooks:
+
+- [Thresholding](./01_EXERCISE_Thresholding.ipynb)
+- [Connected components](./09_connected_component_labeling.ipynb)
+- [Voronoi otsu labelling](./11_voronoi_otsu_labeling.ipynb)
+- [Marching cubes](./21_EXERCISE_marching_cubes.ipynb)
