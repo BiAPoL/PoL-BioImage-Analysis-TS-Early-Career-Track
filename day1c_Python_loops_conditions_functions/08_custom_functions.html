@@ -497,6 +497,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">Exercise 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4">Exercise 4</a></li>
 </ul>
 </li>
 </ul>
@@ -744,32 +746,6 @@ document.write(`
 <p>Write a function that takes two parameters: <code class="docutils literal notranslate"><span class="pre">number_of_points_achieved</span></code> and <code class="docutils literal notranslate"><span class="pre">number_of_total_points_in_exam</span></code> and returns a grade from 1 to 5. Students with &gt; 95% of the points get grade 1, above 80% they get grade 2, above 60% grade 3 and above 50% grade 4. Students with less than 50% get grade 5 and have to repeat the exam. Then, call the function for three students who had 15, 25 and 29 points in an exam with 30 total points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grade_student_exams</span><span class="p">(</span><span class="n">number_of_points_achieved</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">number_of_total_points_in_exam</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="n">percentage</span> <span class="o">=</span> <span class="n">number_of_points_achieved</span> <span class="o">/</span> <span class="n">number_of_total_points_in_exam</span> <span class="o">*</span> <span class="mi">100</span>
-    <span class="k">if</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">95</span><span class="p">:</span>
-        <span class="n">grade</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
-        <span class="n">grade</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="k">elif</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
-        <span class="n">grade</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="k">elif</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
-        <span class="n">grade</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">grade</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="k">return</span> <span class="n">grade</span>
-
-<span class="k">def</span> <span class="nf">grade_pass_fail_exam</span><span class="p">(</span><span class="n">number_of_points_achieved</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">number_of_total_points_in_exam</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="n">grade</span> <span class="o">=</span> <span class="n">grade_student_exams</span><span class="p">(</span><span class="n">number_of_points_achieved</span><span class="p">,</span> <span class="n">number_of_total_points_in_exam</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">grade</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grade_student_exams</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span> <span class="n">pass_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -780,6 +756,14 @@ document.write(`
 <h2>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this heading">#</a></h2>
 <p>write a docstring for your function that describes what it does, the input parameters it expects and the output it returns.</p>
 <p>Explore how the jupyter autocompletion and inspecting it with a <code class="docutils literal notranslate"><span class="pre">?</span></code> helps you when you use the function.</p>
+</section>
+<section id="exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this heading">#</a></h2>
+<p>add an optional parameter <code class="docutils literal notranslate"><span class="pre">pass_fail=True</span></code> to add the possibility to evaluate an exam where students with more than 50% pass the exam.</p>
+</section>
+<section id="exercise-4">
+<h2>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this heading">#</a></h2>
+<p>split the complicated function from Exercise 3 into two simpler functions</p>
 </section>
 </section>
 
@@ -862,6 +846,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1">Exercise 1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2">Exercise 2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3">Exercise 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4">Exercise 4</a></li>
 </ul>
 </li>
 </ul>

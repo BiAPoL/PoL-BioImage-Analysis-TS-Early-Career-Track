@@ -488,9 +488,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Loops</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">For loops</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-lists-in-loops">Generating lists in loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-while-loops"><em>Optional</em>: While loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-interrupting-loops"><em>Optional</em>: Interrupting loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-skipping-iterations-in-loops"><em>Optional</em>: Skipping iterations in loops</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
@@ -628,63 +625,6 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="optional-while-loops">
-<h2><em>Optional</em>: While loops<a class="headerlink" href="#optional-while-loops" title="Permalink to this heading">#</a></h2>
-<p>Another way of looping is using the <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. It works by checking a condition, similar to the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement. It will interrupt execution as soon as the condition is no longer true:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mi">1024</span>
-
-<span class="k">while</span> <span class="p">(</span><span class="n">number</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">number</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="optional-interrupting-loops">
-<h2><em>Optional</em>: Interrupting loops<a class="headerlink" href="#optional-interrupting-loops" title="Permalink to this heading">#</a></h2>
-<p>You can interrupt loops at specific points in your code using the <code class="docutils literal notranslate"><span class="pre">break</span></code> command:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">number</span> <span class="o">=</span> <span class="mi">1024</span>
-
-<span class="k">while</span> <span class="p">(</span><span class="kc">True</span><span class="p">):</span>
-    <span class="n">number</span> <span class="o">=</span> <span class="n">number</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">break</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="k">break</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="optional-skipping-iterations-in-loops">
-<h2><em>Optional</em>: Skipping iterations in loops<a class="headerlink" href="#optional-skipping-iterations-in-loops" title="Permalink to this heading">#</a></h2>
-<p>If you want to skip iterations, you can use the <code class="docutils literal notranslate"><span class="pre">continue</span></code> statement. That often makes sense in combination with an <code class="docutils literal notranslate"><span class="pre">if</span></code>:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
-        <span class="k">continue</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="exercises">
 <h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h1>
@@ -782,9 +722,6 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Loops</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops">For loops</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-lists-in-loops">Generating lists in loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-while-loops"><em>Optional</em>: While loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-interrupting-loops"><em>Optional</em>: Interrupting loops</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-skipping-iterations-in-loops"><em>Optional</em>: Skipping iterations in loops</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
