@@ -1,4 +1,4 @@
-# Image segmentation & surfaces
+# Image segmentation
 
 This section contains an introdcution into image segmentation, a.k.a. pixel classification as well as creating meshes from segmented data. In particular, this will cover the following topics:
 
