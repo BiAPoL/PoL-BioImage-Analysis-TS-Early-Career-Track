@@ -214,28 +214,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/03_Morphological_operations.html">Morphological Image Processing</a></li>
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/04_Otsu_threshold.html">Otsu’s threshold method (optional)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/09_connected_component_labeling.html">Label images</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/10_touching_objects_labeling.html">Touching objects labeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/11_voronoi_tesselation.html">Voronoi tesselation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/11_voronoi_otsu_labeling.html">Voronoi-Otsu-labeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/12_Segmentation_3D.html">3D Image Segmentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/14_segmentation_2d_membranes.html">Seeded watershed for membrane-based cell segmentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/15_EXERCISE_Seeded_watershed.html">Exercise: Seeded watershed in Napari</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/15_remove_labels_on_image_edges.html">Remove labels on image edges</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/16_open_close_labels.html">Label image refinement</a></li>
-
-
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/19_the_segmentation_game.html">The Segmentation Game</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/21_EXERCISE_marching_cubes.html">Marching cubes</a></li>
 </ul>
 </li>
@@ -513,14 +494,14 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="parametric-map-images-in-napari">
 <h1>Parametric map images in Napari<a class="headerlink" href="#parametric-map-images-in-napari" title="Permalink to this heading">#</a></h1>
 <p>Start napari and open the example image <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Open</span> <span class="pre">Samples</span> <span class="pre">&gt;</span> <span class="pre">clEsperanto</span> <span class="pre">&gt;</span> <span class="pre">Blobs</span> <span class="pre">(from</span> <span class="pre">ImageJ)</span></code>.</p>
-<p><img alt="img.png" src="../_images/img2.png" /></p>
+<p><img alt="img.png" src="../_images/img1.png" /></p>
 <p>Start the Assistant from the menu <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Utilities</span> <span class="pre">&gt;</span> <span class="pre">Assistant</span> <span class="pre">(na)</span></code> and segment the blobs. Use the <code class="docutils literal notranslate"><span class="pre">Binarize</span></code> button, Threshold Otsu, the <code class="docutils literal notranslate"><span class="pre">Label</span></code> button and Connected Component Labeling.</p>
-<p><img alt="img_1.png" src="../_images/img_14.png" /></p>
+<p><img alt="img_1.png" src="../_images/img_1.png" /></p>
 <p>Click the <code class="docutils literal notranslate"><span class="pre">Measurement</span> <span class="pre">button</span></code> in the Assistant. Close the Assistant to make some space for the measurement table.
 Select <code class="docutils literal notranslate"><span class="pre">shape</span></code> measurements and click on <code class="docutils literal notranslate"><span class="pre">Run</span></code>.</p>
-<p><img alt="img_2.png" src="../_images/img_21.png" /></p>
+<p><img alt="img_2.png" src="../_images/img_2.png" /></p>
 <p>Double-click on the table colum <code class="docutils literal notranslate"><span class="pre">elongation</span></code> to create a parametric map image representing elongation of the segmented objects.</p>
-<p><img alt="img_3.png" src="../_images/img_31.png" /></p>
+<p><img alt="img_3.png" src="../_images/img_3.png" /></p>
 <section id="optional-exercise">
 <h2>Optional exercise<a class="headerlink" href="#optional-exercise" title="Permalink to this heading">#</a></h2>
 <p>Export a Python Jupyter notebook from the Napari session and open it in Jupyter Lab. Implement the feature extraction and parametric map generation (<a class="reference external" href="https://haesleinhuepf.github.io/BioImageAnalysisNotebooks/60_data_visualization/parametric_maps.html">hints</a>).</p>

@@ -214,28 +214,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">Image segmentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03_Morphological_operations.html">Morphological Image Processing</a></li>
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="04_Otsu_threshold.html">Otsu’s threshold method (optional)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="09_connected_component_labeling.html">Label images</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="10_touching_objects_labeling.html">Touching objects labeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11_voronoi_tesselation.html">Voronoi tesselation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="11_voronoi_otsu_labeling.html">Voronoi-Otsu-labeling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="12_Segmentation_3D.html">3D Image Segmentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="14_segmentation_2d_membranes.html">Seeded watershed for membrane-based cell segmentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="15_EXERCISE_Seeded_watershed.html">Exercise: Seeded watershed in Napari</a></li>
-<li class="toctree-l3"><a class="reference internal" href="15_remove_labels_on_image_edges.html">Remove labels on image edges</a></li>
-<li class="toctree-l3"><a class="reference internal" href="16_open_close_labels.html">Label image refinement</a></li>
-
-
-
-
-
-<li class="toctree-l3"><a class="reference internal" href="19_the_segmentation_game.html">The Segmentation Game</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="21_EXERCISE_marching_cubes.html">Marching cubes</a></li>
 </ul>
 </li>
@@ -499,6 +480,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-exercise">Notebooks for exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further information</a></li>
 </ul>
             </nav>
         </div>
@@ -542,12 +524,29 @@ document.write(`
 <p>The course will follow along the slides on <strong>Segmentation &amp; Surfaces</strong>. The other slides are provided for reference and further explanations, if needed.</p>
 <section id="notebooks-for-exercise">
 <h2>Notebooks for exercise<a class="headerlink" href="#notebooks-for-exercise" title="Permalink to this heading">#</a></h2>
-<p>While the section contains a lot of content, make short to execute the following notebooks:</p>
+<p>In this session, make sure to execute the following notebooks:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="01_EXERCISE_Thresholding.html"><span class="doc std std-doc">Thresholding</span></a></p></li>
 <li><p><a class="reference internal" href="09_connected_component_labeling.html"><span class="doc std std-doc">Connected components</span></a></p></li>
 <li><p><a class="reference internal" href="11_voronoi_otsu_labeling.html"><span class="doc std std-doc">Voronoi otsu labelling</span></a></p></li>
 <li><p><a class="reference internal" href="21_EXERCISE_marching_cubes.html"><span class="doc std std-doc">Marching cubes</span></a></p></li>
+</ul>
+</section>
+<section id="further-information">
+<h2>Further information<a class="headerlink" href="#further-information" title="Permalink to this heading">#</a></h2>
+<p>Segmentation is a big topic. For further information, also check out the following topics and notebooks:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2b_image_segmentation/03_Morphological_operations.ipynb">Morphological operations</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2b_image_segmentation/04_Otsu_threshold.ipynb">Otsu thresholding</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2c_instance_segmentation/10_touching_objects_labeling.ipynb">Touching objects labelling</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2c_instance_segmentation/11_voronoi_tesselation.ipynb">Voronoi tesselation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2c_instance_segmentation/12_Segmentation_3D.ipynb">Segmentation in 3D</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day2c_instance_segmentation/14_segmentation_2d_membranes.ipynb">Segmenting membranes in 2D</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/blob/main/docs/day2d_image_segmentation/15_EXERCISE_Seeded_watershed.md">Seeded watershed</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/blob/main/docs/day2d_image_segmentation/15_remove_labels_on_image_edges.ipynb">Removing labels at image edges</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/blob/main/docs/day2d_image_segmentation/16_open_close_labels.ipynb">Morphological opening and closing</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/blob/main/docs/day2d_image_segmentation/19_the_segmentation_game.md">Segmentation metrics: The segmentation game</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/blob/main/docs/day2d_image_segmentation/20_EXERCISE_Segmentation_quality_estimation.ipynb">Segmentation metrics: Estimate quality</a></p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
@@ -622,6 +621,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks-for-exercise">Notebooks for exercise</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-information">Further information</a></li>
 </ul>
   </nav></div>
 
