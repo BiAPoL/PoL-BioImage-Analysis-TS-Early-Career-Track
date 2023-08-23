@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Mesh manipulation &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day2aa_surface_processing/vedo_material/notebooks/08-warp_mesh';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Signed distance from mesh surface" href="09-signed_distance.html" />
+    <link rel="prev" title="Convert images to meshes" href="07-grab_scalars.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/biapol_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/biapol_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Physics of Life Bio-Image Analysis Training School - Early Career Track
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../day1/intro.html">Day 1: Introduction to Python and Bio-image Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../day1a_setup_conda/intro.html">Course preparation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1b_Python_Introduction/intro.html">Introduction to Python part I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/02_Math_in_python.html">Basic math in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/03_Dont_try_this_at_home.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/04_Basic_types.html">Basic types in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05_lists_tuples.html">Lists and tuples</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05a_cropping_lists.html">Cropping lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05b_cropping_images.html">Cropping images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05c_sorting_lists.html">Sorting lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05d_masking.html">Masking numpy arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/06_Dictionaries_and_tables.html">Dictionaries</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/intro.html">Introduction to Python part II</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/07_Conditions.html">Conditions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/08_custom_functions.html">Functions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/09_loops.html">Loops</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1d_image_analysis_basics/intro.html">Image Analysis Basics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/01_images_are_numpy_arrays.html">Images in python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/02_Brightness_and_Contrast.html">Brightness and Contrast</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/03_Napari_from_Jupyter_introduction.html">Using Napari to visualize and interact with images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/04_opening_images_using_aicsimageio.html">Reading files with AICSImageIO</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1e_image_processing/intro.html">Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1e_image_processing/04_Filters.html">Noise reduction</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data.html">Optional: 3D Image Filters</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/03_Morphological_operations.html">Morphological Image Processing</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/04_Otsu_threshold.html">Otsu’s threshold method (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/09_connected_component_labeling.html">Label images</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/10_touching_objects_labeling.html">Touching objects labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/11_voronoi_tesselation.html">Voronoi tesselation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/11_voronoi_otsu_labeling.html">Voronoi-Otsu-labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/12_Segmentation_3D.html">3D Image Segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/14_segmentation_2d_membranes.html">Seeded watershed for membrane-based cell segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/15_EXERCISE_Seeded_watershed.html">Exercise: Seeded watershed in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/15_remove_labels_on_image_edges.html">Remove labels on image edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/16_open_close_labels.html">Label image refinement</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/19_the_segmentation_game.html">The Segmentation Game</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2a_image_segmentation/21_EXERCISE_marching_cubes.html">Marching cubes</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../../intro.html">Working with surfaces</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="01-basics.html">Basics of vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-vis_volume.html">Volume data in vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-points_cut.html">Point clouds in vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-build_mesh.html">Build a mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-gene_mesh.html">Map data on mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-interpolate_scalar.html">Interpolate scalar data on mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-grab_scalars.html">Convert images to meshes</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Mesh manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09-signed_distance.html">Signed distance from mesh surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-morph_ab.html">Advanced mesh morphing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/01_supervised_machine_learning.html">Supervised machine learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.html">Exercise: Interactive pixel and object classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/04_EXERCISE_demo_object_segmenter.html">Object segmentation on OpenCL-compatible GPUs</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/05_train_on_folders.html">Training classifiers from folders of images</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/01_EXERCISE_quantiative_measurements.html">Quantitative image analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/02_statistics_with_simpleitk.html">Statistics using SimpleITK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/03_statistics_with_pyclesperanto.html">Basic statistics with pyclesperanto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/04_EXERCISE_parametric_images_in_napari.html">Parametric map images in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/05_quantitative_neighbor_maps.html">Quantiative neighborhood measurements</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/01_Pandas_Intro.html">Introduction to Pandas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/02_Pandas_operations.html">Basic Operations</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3b_workflow/workflow.html">Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday2aa_surface_processing/vedo_material/notebooks/08-warp_mesh.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/day2aa_surface_processing/vedo_material/notebooks/08-warp_mesh.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mesh manipulation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mesh-manipulation">
+<h1>Mesh manipulation<a class="headerlink" href="#mesh-manipulation" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vedo</span> <span class="kn">import</span> <span class="n">dataurl</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">Arrows</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">settings</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">default_backend</span> <span class="o">=</span> <span class="s2">&quot;vtk&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">dataurl</span><span class="o">+</span><span class="s2">&quot;man.vtk&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">mesh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src='data:image/png;base64,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'></img>
+</td>
+<td style='text-align: center; vertical-align: center;'><br/>
+<b><a href="https://vedo.embl.es/docs/vedo/mesh.html" target="_blank">vedo.mesh.Mesh</a></b><br/><code><i>(....embl.es/examples/data/man.vtk)</i></code>
+<table>
+<tr><td><b> bounds </b> <br/> (x/y/z) </td><td>-0.9169 ... 0.9169<br/>-0.3300 ... 0.2617<br/>-1.570 ... 1.685</td></tr>
+<tr><td><b> center of mass </b></td><td>(1.01e-10, 4.06e-11, 2.20e-11)</td></tr>
+<tr><td><b> average size </b></td><td>0.911</td></tr>
+<tr><td><b> nr. points&nbsp/&nbspfaces </b></td><td>24461&nbsp/&nbsp24459</td></tr>
+
+<tr><td><b> cell data array </b></td><td>MaterialIds</td></tr>
+</table>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a heavily decimated copy with about 200 points</span>
+<span class="c1"># (to speed up the computation)</span>
+<span class="n">mesh_dec</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">triangulate</span><span class="p">()</span><span class="o">.</span><span class="n">decimate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">mesh_dec</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src='data:image/png;base64,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'></img>
+</td>
+<td style='text-align: center; vertical-align: center;'><br/>
+<b><a href="https://vedo.embl.es/docs/vedo/mesh.html" target="_blank">vedo.mesh.Mesh</a></b><br/><code><i>(....embl.es/examples/data/man.vtk)</i></code>
+<table>
+<tr><td><b> bounds </b> <br/> (x/y/z) </td><td>-0.9070 ... 0.9041<br/>-0.3287 ... 0.2765<br/>-1.566 ... 1.691</td></tr>
+<tr><td><b> center of mass </b></td><td>(-3.62e-3, 0.0158, 0.0810)</td></tr>
+<tr><td><b> average size </b></td><td>0.945</td></tr>
+<tr><td><b> nr. points&nbsp/&nbspfaces </b></td><td>205&nbsp/&nbsp399</td></tr>
+
+
+</table>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sources</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]]</span>  <span class="c1"># this point moves</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">]]</span>  <span class="c1"># ...to this.</span>
+<span class="k">for</span> <span class="n">pt</span> <span class="ow">in</span> <span class="n">mesh_dec</span><span class="o">.</span><span class="n">points</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.3</span><span class="p">:</span>          <span class="c1"># while these pts don&#39;t move</span>
+        <span class="n">sources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>   <span class="c1"># (e.i. source = target)</span>
+        <span class="n">targets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Warp the mesh</span>
+<span class="n">mesh_warped</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">warp</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+<span class="n">mesh_warped</span><span class="o">.</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">wireframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src='data:image/png;base64,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'></img>
+</td>
+<td style='text-align: center; vertical-align: center;'><br/>
+<b><a href="https://vedo.embl.es/docs/vedo/mesh.html" target="_blank">vedo.mesh.Mesh</a></b><br/><code><i>(....embl.es/examples/data/man.vtk)</i></code>
+<table>
+<tr><td><b> bounds </b> <br/> (x/y/z) </td><td>-0.9177 ... 1.173<br/>-0.3300 ... 0.2617<br/>-1.570 ... 1.684</td></tr>
+<tr><td><b> center of mass </b></td><td>(0.0237, 4.06e-11, 0.0158)</td></tr>
+<tr><td><b> average size </b></td><td>0.935</td></tr>
+<tr><td><b> nr. points&nbsp/&nbspfaces </b></td><td>24461&nbsp/&nbsp24459</td></tr>
+
+<tr><td><b> cell data array </b></td><td>MaterialIds</td></tr>
+</table>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the arrows representing the displacement</span>
+<span class="n">arrow</span> <span class="o">=</span> <span class="n">Arrows</span><span class="p">(</span><span class="n">sources</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+
+<span class="c1"># Show the meshes and the arrow</span>
+<span class="n">show</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">mesh_warped</span><span class="p">,</span> <span class="n">arrow</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./day2aa_surface_processing/vedo_material/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07-grab_scalars.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Convert images to meshes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09-signed_distance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Signed distance from mesh surface</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Allysson Ryan, Jan Brocher, Johannes Soltwedel, Marcelo Zoccoler, Marco Musy, Martin Schatz, Till Korten, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

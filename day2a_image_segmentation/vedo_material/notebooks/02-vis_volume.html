@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day2a_image_segmentation/vedo_material/notebooks/02-vis_volume';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/biapol_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/biapol_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Physics of Life Bio-Image Analysis Training School - Early Career Track
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../day1/intro.html">Day 1: Introduction to Python and Bio-image Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../day1a_setup_conda/intro.html">Course preparation</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1b_Python_Introduction/intro.html">Introduction to Python part I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/02_Math_in_python.html">Basic math in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/03_Dont_try_this_at_home.html">Pitfalls when working with Jupyter notebooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/04_Basic_types.html">Basic types in python</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05_lists_tuples.html">Lists and tuples</a></li>
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05a_cropping_lists.html">Cropping lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05b_cropping_images.html">Cropping images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05c_sorting_lists.html">Sorting lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/05d_masking.html">Masking numpy arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1b_Python_Introduction/06_Dictionaries_and_tables.html">Dictionaries</a></li>
+
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/intro.html">Introduction to Python part II</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/07_Conditions.html">Conditions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/08_custom_functions.html">Functions</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1c_Python_loops_conditions_functions/09_loops.html">Loops</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1d_image_analysis_basics/intro.html">Image Analysis Basics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/01_images_are_numpy_arrays.html">Images in python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/02_Brightness_and_Contrast.html">Brightness and Contrast</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/03_Napari_from_Jupyter_introduction.html">Using Napari to visualize and interact with images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1d_image_analysis_basics/04_opening_images_using_aicsimageio.html">Reading files with AICSImageIO</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day1e_image_processing/intro.html">Image Processing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day1e_image_processing/04_Filters.html">Noise reduction</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data.html">Optional: 3D Image Filters</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03_Morphological_operations.html">Morphological Image Processing</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../04_Otsu_threshold.html">Otsu’s threshold method (optional)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09_connected_component_labeling.html">Label images</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../10_touching_objects_labeling.html">Touching objects labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11_voronoi_tesselation.html">Voronoi tesselation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../11_voronoi_otsu_labeling.html">Voronoi-Otsu-labeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../12_Segmentation_3D.html">3D Image Segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../14_segmentation_2d_membranes.html">Seeded watershed for membrane-based cell segmentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../15_EXERCISE_Seeded_watershed.html">Exercise: Seeded watershed in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../15_remove_labels_on_image_edges.html">Remove labels on image edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../16_open_close_labels.html">Label image refinement</a></li>
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../19_the_segmentation_game.html">The Segmentation Game</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../20_EXERCISE_Segmentation_quality_estimation.html">Image segmentation quality measurements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../21_EXERCISE_marching_cubes.html">Marching cubes</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2aa_surface_processing/intro.html">Working with surfaces</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/01-basics.html">Basics of vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/02-vis_volume.html">Volume data in vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/03-points_cut.html">Point clouds in vedo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/04-build_mesh.html">Build a mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/05-gene_mesh.html">Map data on mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/06-interpolate_scalar.html">Interpolate scalar data on mesh</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/07-grab_scalars.html">Convert images to meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/08-warp_mesh.html">Mesh manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/09-signed_distance.html">Signed distance from mesh surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2aa_surface_processing/vedo_material/notebooks/10-morph_ab.html">Advanced mesh morphing</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2b_machine_learning_apoc/intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/01_supervised_machine_learning.html">Supervised machine learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.html">Exercise: Interactive pixel and object classification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/04_EXERCISE_demo_object_segmenter.html">Object segmentation on OpenCL-compatible GPUs</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2b_machine_learning_apoc/05_train_on_folders.html">Training classifiers from folders of images</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/01_EXERCISE_quantiative_measurements.html">Quantitative image analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/02_statistics_with_simpleitk.html">Statistics using SimpleITK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/03_statistics_with_pyclesperanto.html">Basic statistics with pyclesperanto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/04_EXERCISE_parametric_images_in_napari.html">Parametric map images in Napari</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2c_feature_extraction/05_quantitative_neighbor_maps.html">Quantiative neighborhood measurements</a></li>
+
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/01_Pandas_Intro.html">Introduction to Pandas</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/02_Pandas_operations.html">Basic Operations</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day2d_pandas_statistics/04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
+
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../day3/intro.html">Day 3: Plotting and Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="../../../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../day3b_workflow/workflow.html">Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday2a_image_segmentation/vedo_material/notebooks/02-vis_volume.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/day2a_image_segmentation/vedo_material/notebooks/02-vis_volume.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vedo</span> <span class="kn">import</span> <span class="n">Volume</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">dataurl</span>
+<span class="kn">from</span> <span class="nn">vedo.applications</span> <span class="kn">import</span> <span class="n">RayCastPlotter</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">default_backend</span> <span class="o">=</span> <span class="s2">&quot;vtk&quot;</span>  <span class="c1"># or k3d, ipyvtk, or 2d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vol</span> <span class="o">=</span> <span class="n">Volume</span><span class="p">(</span><span class="n">dataurl</span> <span class="o">+</span> <span class="s2">&quot;embryo.tif&quot;</span><span class="p">)</span>
+<span class="n">vol</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cmap</span><span class="p">(</span><span class="s2">&quot;jet&quot;</span><span class="p">)</span>  <span class="c1"># change appearance</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table>
+<tr>
+<td>
+<img src='data:image/png;base64,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'></img>
+</td>
+<td style='text-align: center; vertical-align: center;'><br/>
+<b><a href="https://vedo.embl.es/docs/vedo/volume.html" target="_blank">vedo.volume.Volume</a></b>
+<table>
+<tr><td><b> bounds </b> <br/> (x/y/z) </td><td>0 ... 1.290e+4<br/>0 ... 8219<br/>0 ... 1.103e+4</td></tr>
+<tr><td><b> dimensions </b></td><td>(125, 80, 107)</td></tr>
+<tr><td><b> voxel spacing </b></td><td>(104, 104, 104)</td></tr>
+<tr><td><b> in memory size </b></td><td>1MB</td></tr>
+<tr><td><b> point data array </b></td><td>Tiff Scalars</td></tr>
+
+<tr><td><b> scalar range </b></td><td>(0, 150.0)</td></tr>
+</table>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span> <span class="o">=</span> <span class="n">RayCastPlotter</span><span class="p">(</span><span class="n">vol</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blackboard&quot;</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">viewup</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./day2a_image_segmentation/vedo_material/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Allysson Ryan, Jan Brocher, Johannes Soltwedel, Marcelo Zoccoler, Marco Musy, Martin Schatz, Till Korten, Robert Haase
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
