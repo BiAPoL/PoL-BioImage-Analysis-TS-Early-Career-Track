@@ -59,6 +59,21 @@ chapters:
           - file: day2a_image_segmentation/20_EXERCISE_Segmentation_quality_estimation
           - file: day2a_image_segmentation/21_EXERCISE_marching_cubes
 
+      - file: day2aa_surface_processing/intro
+        sections:
+          - file: day2aa_surface_processing/vedo_material/notebooks/01-basics
+          - file: day2aa_surface_processing/vedo_material/notebooks/02-vis_volume
+          - file: day2aa_surface_processing/vedo_material/notebooks/03-points_cut
+          - file: day2aa_surface_processing/vedo_material/notebooks/04-build_mesh
+          - file: day2aa_surface_processing/vedo_material/notebooks/05-gene_mesh
+          - file: day2aa_surface_processing/vedo_material/notebooks/06-interpolate_scalar
+          - file: day2aa_surface_processing/vedo_material/notebooks/07-grab_scalars
+          - file: day2aa_surface_processing/vedo_material/notebooks/08-warp_mesh
+          - file: day2aa_surface_processing/vedo_material/notebooks/09-signed_distance
+          - file: day2aa_surface_processing/vedo_material/notebooks/10-morph_ab
+          - file: day2aa_surface_processing/vedo_material/notebooks/11-point_density
+          - file: day2aa_surface_processing/vedo_material/notebooks/12-cells_segment
+
       - file: day2b_machine_learning_apoc/intro
         sections:
           - file: day2b_machine_learning_apoc/01_supervised_machine_learning
