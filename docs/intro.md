@@ -1,6 +1,5 @@
-# Physics of Life Bio-Image Analysis Training School - Early Career Track
+# PoL Bio-Image Analysis Training School - Early Career Track
 
-:construction: :construction: :construction:
 
 This [Jupyter book](https://jupyterbook.org/) contains training resources for scientists who want to dive into image processing with Python. 
 It specifically aims for students and scientists working with microscopy images in the life sciences.
@@ -8,8 +7,8 @@ We presume the attendees have some basic programming and image analysis knowledg
 To get everyone on the same level, we start with Python programming basics.
 We will process images using [numpy](https://numpy.org), [scipy](https://www.scipy.org/), [scikit-image](https://scikit-image.org/), [SimpleITK](https://simpleitk.org/) and [clEsperanto](https://github.com/clEsperanto/pyclesperanto_prototype).
 We will explore [Napari](https://napari.org) for interactive image data analysis and the [Napari-Assistant](https://github.com/haesleinhuepf/napari-assistant) for generating [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/) from interactively designed image processing workflows. 
-We will use [scikit-learn](https://scikit-learn.org/stable/) to process images using machine learning and deep learning techniques.
-We then dive into working with tables and [matplotlib](https://matplotlib.org/) and [seaborn](https://seaborn.pydata.org/) for plotting results.
+We will use [scikit-learn](https://scikit-learn.org/stable/) and [apoc](https://github.com/haesleinhuepf/apoc) to process images using machine learning techniques.
+We then dive into working with tables using [pandas](https://pandas.pydata.org/) and [matplotlib](https://matplotlib.org/) and [seaborn](https://seaborn.pydata.org/) for plotting results.
 We will use unsupervised machine learning techniques to explore relationships between parameters extracted from biological imaging data. We will use these techniques interactively in the [Napari Clusters Plotter](https://github.com/BiAPoL/napari-clusters-plotter).
 Last but not least we will learn about good scientific practice in the programming context, and sharing code, data and documentation best practices.
 
@@ -20,7 +19,7 @@ Last but not least we will learn about good scientific practice in the programmi
 
 ## How to use this material
 
-For following the course, we recommend downloading [the repository from which this Jupyter book is made](https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022).
+For following the course, we recommend downloading [the repository from which this Jupyter book is made](https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track).
 All Jupyter Notebooks are executable so that attendees can reproduce all demos and exercises.
 
 ![img.png](how_to_download.png)
@@ -28,10 +27,14 @@ All Jupyter Notebooks are executable so that attendees can reproduce all demos a
 Assuming you downloaded the repository to your Desktop, you can open the Jupyter book by opening a terminal and typing:
 
 ```bash
-cd Desktop/Image-data-science-with-Python-and-Napari-EPFL2022
+cd Desktop/PoL-BioImage-Analysis-TS-Early-Career-Track
+```
 
+```bash
 conda activate devbio-napari-env
+```
 
+```bash
 jupyter lab
 ```
 
