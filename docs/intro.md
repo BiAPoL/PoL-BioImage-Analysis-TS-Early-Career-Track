@@ -20,7 +20,9 @@ Last but not least we will learn about good scientific practice in the programmi
 
 ## How to use this material
 
-For following the course, we recommend downloading [the repository from which this Jupyter book is made](https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022).
+For following the course, please first install `mamba-forge` and configure an environment following the instructions provided [here](https://biapol.github.io/PoL-BioImage-Analysis-TS-Early-Career-Track/day1a_setup_conda/intro).
+
+Then, we recommend downloading [the repository from which this Jupyter book is made](https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track).
 All Jupyter Notebooks are executable so that attendees can reproduce all demos and exercises.
 
 ![img.png](how_to_download.png)
@@ -28,9 +30,9 @@ All Jupyter Notebooks are executable so that attendees can reproduce all demos a
 Assuming you downloaded the repository to your Desktop, you can open the Jupyter book by opening a terminal and typing:
 
 ```bash
-cd Desktop/Image-data-science-with-Python-and-Napari-EPFL2022
+cd Desktop/PoL-BioImage-Analysis-TS-Early-Career-Track
 
-conda activate devbio-napari-env
+mamba activate devbio-napari-env
 
 jupyter lab
 ```
