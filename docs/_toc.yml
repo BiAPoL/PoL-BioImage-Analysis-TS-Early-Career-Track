@@ -37,7 +37,10 @@ chapters:
       - file: day1e_image_processing/intro
         sections:
           - file: day1e_image_processing/04_Filters
+          - file: day1e_image_processing/napari-assistant
+          - file: day1e_image_processing/notebook_export
           - file: day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data
+          
 
   - file: day2/intro
     sections:
@@ -66,10 +69,11 @@ chapters:
       - file: day2b_machine_learning_apoc/intro
         sections:
           - file: day2b_machine_learning_apoc/01_supervised_machine_learning
-          - file: day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance
+          - file: day2b_machine_learning_apoc/interactive_pixel_classification/readme
           - file: day2b_machine_learning_apoc/02_scikit_learn_random_forest_pixel_classifier
-          - file: day2b_machine_learning_apoc/04_EXERCISE_demo_object_segmenter
-          - file: day2b_machine_learning_apoc/05_train_on_folders
+          - file: day2b_machine_learning_apoc/interactive_object_classification/readme
+          - file: day2b_machine_learning_apoc/04_demo_object_segmenter
+
 
       - file: day2c_feature_extraction/intro
         sections:
