@@ -4,7 +4,7 @@
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
-This work is licensed by Alysson Ryan, Marcelo Leomil Zoccoler, Johannes Richard Soltwedel, Till Korten and Robert Haase, [PoL Dresden](http://physics-of-life.tu-dresden.de/bia); Jan Brocher [BioVoxxel](https://www.biovoxxel.de); Marco Musy [INSERT AFFILIATION](); Martin Schätz [INSERT AFFILIATION]() under a
+This work is licensed by Alysson Ryan, Marcelo Leomil Zoccoler, Johannes Richard Soltwedel, Till Korten and Robert Haase, [PoL Dresden](http://physics-of-life.tu-dresden.de/bia); Jan Brocher [BioVoxxel](https://www.biovoxxel.de); Marco Musy [EMBL Barcelona](https://www.embl.org/sites/barcelona/); Martin Schätz [INSERT AFFILIATION]() under a
 [Creative Commons Attribution 4.0 International License][cc-by].
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
