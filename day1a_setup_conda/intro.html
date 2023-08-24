@@ -475,10 +475,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-errors-in-jupyter-lab">Troubleshooting: Errors in Jupyter lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-napari-jumping-out-of-the-screen">Troubleshooting: Napari jumping out of the screen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-dll-load-failed">Troubleshooting: DLL load failed</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-graphics-cards-drivers">Troubleshooting: Graphics cards drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#online-support">Online support</a></li>
 </ul>
             </nav>
         </div>
@@ -492,7 +491,12 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="course-preparation">
 <h1>Course preparation<a class="headerlink" href="#course-preparation" title="Permalink to this heading">#</a></h1>
-<p>Before attending the course, please install mambaforge on your computer as explained in this <a class="reference external" href="https://biapol.github.io/blog/mara_lampert/getting_started_with_mambaforge_and_python/readme.html">blog post</a>. There you also find instructions to create a conda enviroment for this course with <a class="reference external" href="https://github.com/haesleinhuepf/devbio-napari#installation">devbio-napari</a>. Furthermore, please install <a class="reference external" href="https://desktop.github.com/">Github desktop</a>.</p>
+<p>Before attending the course, please install mambaforge on your computer as explained in this <a class="reference external" href="https://biapol.github.io/blog/johannes_mueller/anaconda_getting_started/">blog post</a>.</p>
+<p>If you already have some conda or anaconda installation on your computer, <em><strong>please install mambaforge</strong></em> anyway as explained in the blog post linked above.</p>
+<p>Furthermore, please install <a class="reference external" href="https://github.com/haesleinhuepf/devbio-napari#installation">devbio-napari</a> into a fresh conda environment, e.g. using this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.9</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span> <span class="n">pyqt</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
 <p>When you are done, you can test your setup by executing these commands from the command line:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span>
 
@@ -501,22 +505,6 @@ document.write(`
 </div>
 <p>After Napari opens, click the menu <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Open</span> <span class="pre">Samples</span> <span class="pre">&gt;</span> <span class="pre">clEsperanto</span> <span class="pre">&gt;</span> <span class="pre">blobs</span> <span class="pre">(from</span> <span class="pre">ImageJ)</span></code>. In the Panel on the right click on the <code class="docutils literal notranslate"><span class="pre">Label</span></code> button. If Napari then looks like this, you are ready to go:</p>
 <p><img alt="img.png" src="../_images/img.png" /></p>
-<section id="troubleshooting-errors-in-jupyter-lab">
-<h2>Troubleshooting: Errors in Jupyter lab<a class="headerlink" href="#troubleshooting-errors-in-jupyter-lab" title="Permalink to this heading">#</a></h2>
-<p>In case you installed devbio-napari between approximately December 6st and December 11th, there are error messages appearing in Jupyter lab such as those shown below (<a class="reference external" href="https://github.com/jupyter-server/jupyter_server/issues/1127">potentially related to this</a>).</p>
-<p><img alt="" src="../_images/error_jupyter_server.png" /></p>
-<p>This can be fixed by calling this from inside the <code class="docutils literal notranslate"><span class="pre">devbio-napari-env</span></code> environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">install</span> <span class="n">jupyter_server</span><span class="o">=</span><span class="mf">1.23.3</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-</pre></div>
-</div>
-</section>
-<section id="troubleshooting-napari-jumping-out-of-the-screen">
-<h2>Troubleshooting: Napari jumping out of the screen<a class="headerlink" href="#troubleshooting-napari-jumping-out-of-the-screen" title="Permalink to this heading">#</a></h2>
-<p>When using some plugins, the Napari window increases and jumps out of the screen. In this case, downgrade Napari to version 0.4.15:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">install</span> <span class="n">napari</span><span class="o">=</span><span class="mf">0.4.15</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
-</pre></div>
-</div>
-</section>
 <section id="troubleshooting-dll-load-failed">
 <h2>Troubleshooting: DLL load failed<a class="headerlink" href="#troubleshooting-dll-load-failed" title="Permalink to this heading">#</a></h2>
 <p>In case of error messages such as this one:</p>
@@ -555,6 +543,10 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">napari</span> <span class="o">--</span><span class="n">reset</span>
 </pre></div>
 </div>
+</section>
+<section id="online-support">
+<h2>Online support<a class="headerlink" href="#online-support" title="Permalink to this heading">#</a></h2>
+<p>In case you run into any trouble while installing software, please create a thread on <a class="reference external" href="https://image.sc">https://image.sc</a> and tag &#64;haesleinhuepf</p>
 </section>
 </section>
 
@@ -625,10 +617,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-errors-in-jupyter-lab">Troubleshooting: Errors in Jupyter lab</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-napari-jumping-out-of-the-screen">Troubleshooting: Napari jumping out of the screen</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-dll-load-failed">Troubleshooting: DLL load failed</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-graphics-cards-drivers">Troubleshooting: Graphics cards drivers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#online-support">Online support</a></li>
 </ul>
   </nav></div>
 
