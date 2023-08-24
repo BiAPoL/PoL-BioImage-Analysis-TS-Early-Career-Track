@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Exercise: Interactive pixel and object classification &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+    <title>Object segmentation on OpenCL-compatible GPUs &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
   
   
   
@@ -61,9 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'day2b_machine_learning_apoc/04_demo_object_segmenter';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Feature extraction" href="../day2c_feature_extraction/intro.html" />
+    <link rel="prev" title="Interactive object classification in Napari" href="interactive_object_classification/readme.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day1/intro.html">Day 1: Introduction to Python and Bio-image Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day1a_setup_conda/intro.html">Course preparation</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day1b_Python_Introduction/intro.html">Introduction to Python part I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -209,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/09_connected_component_labeling.html">Label images</a></li>
@@ -231,9 +233,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../day2aa_surface_processing/vedo_material/notebooks/10-morph_ab.html">Advanced mesh morphing</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Machine learning for object segmentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="01_supervised_machine_learning.html">Supervised machine learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interactive_pixel_classification/readme.html">Interactive pixel classification and object segmentation in Napari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
+
+<li class="toctree-l3"><a class="reference internal" href="interactive_object_classification/readme.html">Interactive object classification in Napari</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Object segmentation on OpenCL-compatible GPUs</a></li>
 
 </ul>
 </li>
@@ -351,7 +357,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://https://github.com/BiAPoL/PoL-BioImage-Analysis-TS-Early-Career-Track/issues/new?title=Issue%20on%20page%20%2Fday2b_machine_learning_apoc/04_demo_object_segmenter.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -381,7 +387,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/day2b_machine_learning_apoc/02_EXERCISE_apoc_feature_importance.md" target="_blank"
+      <li><a href="../_sources/day2b_machine_learning_apoc/04_demo_object_segmenter.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -391,7 +397,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -463,7 +469,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Exercise: Interactive pixel and object classification</h1>
+    <h1>Object segmentation on OpenCL-compatible GPUs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -473,11 +479,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-classification-and-object-segmentation-in-napari">Pixel classification and Object Segmentation in Napari</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-classification">Object classification</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-exercise">Extra exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Object segmentation on OpenCL-compatible GPUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-segmentation">Prediction / segmentation</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-from-a-loaded-segmenter">Segmentation from a loaded segmenter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -488,93 +500,140 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="exercise-interactive-pixel-and-object-classification">
-<h1>Exercise: Interactive pixel and object classification<a class="headerlink" href="#exercise-interactive-pixel-and-object-classification" title="Permalink to this heading">#</a></h1>
-<p>In this exercise we will train two <a class="reference external" href="https://en.wikipedia.org/wiki/Random_forest">Random Forest Classifiers</a>:
-one for pixel classification, and one for classifying segmented objects.
-We will use the napari plugins <a class="reference external" href="https://www.napari-hub.org/plugins/napari-accelerated-pixel-and-object-classification">napari-accelerated-pixel-and-object-classification</a>.</p>
-<section id="getting-started">
-<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
-<p>Open a terminal window and activate your conda environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">activate</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="object-segmentation-on-opencl-compatible-gpus">
+<h1>Object segmentation on OpenCL-compatible GPUs<a class="headerlink" href="#object-segmentation-on-opencl-compatible-gpus" title="Permalink to this heading">#</a></h1>
+<p>APOC is based on <a class="reference external" href="https://github.com/clEsperanto/pyclesperanto_prototype">pyclesperanto</a> and <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn</a>. For object segmentation, it uses a pixel classifier and connected components labeling.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span><span class="p">,</span> <span class="n">imsave</span>
+<span class="kn">import</span> <span class="nn">pyclesperanto_prototype</span> <span class="k">as</span> <span class="nn">cle</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">apoc</span>
+<span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imshow</span>
 </pre></div>
 </div>
-<p>Afterwards, start up Napari:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">napari</span>
+</div>
+</div>
+<p>Let’s start with loading an example image and some sparse annotation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs.tif&#39;</span><span class="p">)</span>
+<span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Load the “Blobs” example dataset from the menu <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Open</span> <span class="pre">Sample</span> <span class="pre">&gt;</span> <span class="pre">clEsperanto</span> <span class="pre">&gt;</span> <span class="pre">Blobs</span> <span class="pre">(from</span> <span class="pre">ImageJ)</span></code></p>
-<p><img alt="" src="../_images/apoc1.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1b3235a9820&gt;
+</pre></div>
+</div>
+<img alt="../_images/2de64a12096ff06e908f4372641ce1524c0c0d735407168e472b7ef0057149f5.png" src="../_images/2de64a12096ff06e908f4372641ce1524c0c0d735407168e472b7ef0057149f5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="kc">False</span><span class="p">:</span> <span class="c1"># you can use this to make manual annotations</span>
+    <span class="kn">import</span> <span class="nn">napari</span>
+
+    <span class="c1"># start napari</span>
+    <span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+    <span class="n">napari</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="c1"># add image</span>
+    <span class="n">viewer</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># add an empty labels layer and keep it in a variable</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">manual_annotations</span><span class="o">.</span><span class="n">add_labels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">manual_annotations</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/blobs_apoc_annotations.tif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imshow</span><span class="p">(</span><span class="n">manual_annotations</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\haase\mambaforge\envs\devbio-napari-env\lib\site-packages\skimage\io\_plugins\matplotlib_plugin.py:150: UserWarning: Low image data range; displaying image with stretched contrast.
+  lo, hi, cmap = _get_display_range(image)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1b3247cf580&gt;
+</pre></div>
+</div>
+<img alt="../_images/8acafb9c3d37c12696b233c7bb948cd797aea01617d5bd3b259bc403cb0e805e.png" src="../_images/8acafb9c3d37c12696b233c7bb948cd797aea01617d5bd3b259bc403cb0e805e.png" />
+</div>
+</div>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this heading">#</a></h2>
+<p>We now train a ObjectSegmenter, which is under the hood a <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html">scikit-learn RandomForestClassifier</a>. After training, the classifier will be converted to <a class="reference external" href="https://github.com/clEsperanto/clij-opencl-kernels">clij-compatible OpenCL code</a> and save to disk under a given filename.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define features</span>
+<span class="n">features</span> <span class="o">=</span> <span class="s1">&#39;gaussian_blur=1 sobel_of_gaussian_blur=1&#39;</span>
+
+<span class="c1"># this is where the model will be saved</span>
+<span class="n">cl_filename</span> <span class="o">=</span> <span class="s1">&#39;my_model.cl&#39;</span>
+
+<span class="n">apoc</span><span class="o">.</span><span class="n">erase_classifier</span><span class="p">(</span><span class="n">cl_filename</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">apoc</span><span class="o">.</span><span class="n">ObjectSegmenter</span><span class="p">(</span><span class="n">opencl_filename</span><span class="o">=</span><span class="n">cl_filename</span><span class="p">,</span> <span class="n">positive_class_identifier</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">manual_annotations</span><span class="p">,</span> <span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="pixel-classification-and-object-segmentation-in-napari">
-<h2>Pixel classification and Object Segmentation in Napari<a class="headerlink" href="#pixel-classification-and-object-segmentation-in-napari" title="Permalink to this heading">#</a></h2>
-<p>For segmenting objects, we can use the Object Segmentation tool in APOC. Under the hood it uses a pixel classifier and <a class="reference external" href="https://en.wikipedia.org/wiki/Connected-component_labeling">connected component labeling</a>.
-The following procedure is also shown in <a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day3a_machine_learning_apoc/apoc_object_segmentation.mp4">this video</a>.</p>
-<p>Start the object segmentation from the <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Segmentation</span> <span class="pre">/</span> <span class="pre">Labeling</span> <span class="pre">&gt;</span> <span class="pre">Object</span> <span class="pre">Segmentation</span> <span class="pre">(APOC)</span></code> menu.</p>
-<p><img alt="" src="../_images/apoc2.png" /></p>
-<p>Add a new labels layer by clicking on this button:
-<img alt="" src="../_images/apoc3.png" /></p>
-<p>Change the brush size to a small number such as 2 or 3.
-<img alt="" src="../_images/apoc4.png" /></p>
-<p>Click on the <code class="docutils literal notranslate"><span class="pre">Paint</span> <span class="pre">brush</span></code> button.
-<img alt="" src="../_images/apoc5.png" /></p>
-<p>Start annotating the <code class="docutils literal notranslate"><span class="pre">background</span></code> region where there is no object.
-<img alt="" src="../_images/apoc6.png" /></p>
-<p>Increase the label that is drawn by one.
-<img alt="" src="../_images/apoc7.png" /></p>
-<p>Draw an annotation within the objects of interest. Draw background and object annotation close by each other. The closer these two annotations are drawn, the smaller is the degree of freedom the computer has when optimizing the model later.
-<img alt="" src="../_images/apoc8.png" /></p>
-<p>Within the <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">segmentation</span></code> user interface on the right, select the image/channel that should be processed.
-<img alt="" src="../_images/apoc9.png" /></p>
-<p>Also select the annotation label image you have just drawn.
-<img alt="" src="../_images/apoc10.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Train</span></code>. A label image should show up.
-<img alt="" src="../_images/apoc11.png" /></p>
-<p>If the segmentation works well, consider backing up the <code class="docutils literal notranslate"><span class="pre">ObjectSegmenter.cl</span></code> file that has been saved. If you didn’t change the file location before training, it will be located in the folder from where you started napari on the command line.</p>
-<p>Close the <code class="docutils literal notranslate"><span class="pre">Object</span> <span class="pre">segmentation</span></code> user interface and hide or delete the <code class="docutils literal notranslate"><span class="pre">Labels</span></code> layer with your manual annotation.</p>
+<section id="prediction-segmentation">
+<h2>Prediction / segmentation<a class="headerlink" href="#prediction-segmentation" title="Permalink to this heading">#</a></h2>
+<p>The classifier can then be used to classify all pixels in the given image. Starting point is again, the feature stack. Thus, the user must make sure that the same features are used for training and for prediction. Prediction can be done on the CPU using the original scikit-learn code and on the GPU using the generated OpenCL-code. OCLRFC works well if both result images look identical.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">segmentation_result</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">segmentation_result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/840fba9aa3b965bf2bbbbff7d01dc742752fe9b5926bf7ab9cfa891bf0b30d54.png" src="../_images/840fba9aa3b965bf2bbbbff7d01dc742752fe9b5926bf7ab9cfa891bf0b30d54.png" />
+</div>
+</div>
 </section>
-<section id="object-classification">
-<h2>Object classification<a class="headerlink" href="#object-classification" title="Permalink to this heading">#</a></h2>
-<p>Objects can also be classified according to their propeties such as size, intensity and shape.
-The following procedure is also shown in <a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day3a_machine_learning_apoc/apoc_object_classification.mp4">this video</a>.</p>
-<p>Add another label image.
-<img alt="" src="../_images/apoc21.png" /></p>
-<p>Rename the label image e.g. to <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">class</span> <span class="pre">annotation</span></code> to not mix it up with the other.
-<img alt="" src="../_images/apoc22.png" /></p>
-<p>Activate the <code class="docutils literal notranslate"><span class="pre">Brush</span> <span class="pre">tool</span></code>.
-<img alt="" src="../_images/apoc23.png" /></p>
-<p>Put small dots with label <code class="docutils literal notranslate"><span class="pre">1</span></code> into small roundish objects (for training purposes: really just the smaller ones).
-<img alt="" src="../_images/apoc24.png" /></p>
-<p>Increase the <code class="docutils literal notranslate"><span class="pre">label</span></code> to <code class="docutils literal notranslate"><span class="pre">2</span></code>.
-<img alt="" src="../_images/apoc25.png" /></p>
-<p>Draw a line throught the larger elongated objects in the center of the image.
-<img alt="" src="../_images/apoc26.png" /></p>
-<p>Start the object classification tool from the menu <code class="docutils literal notranslate"><span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Segmentation</span> <span class="pre">post-processing</span> <span class="pre">&gt;</span> <span class="pre">Object</span> <span class="pre">classification</span> <span class="pre">(APOC)</span></code>
-<img alt="" src="../_images/apoc27.png" /></p>
-<p>In this user-interface, activate the <code class="docutils literal notranslate"><span class="pre">shape</span></code> checkbox.
-<img alt="" src="../_images/apoc28.png" /></p>
-<p>Select <code class="docutils literal notranslate"><span class="pre">image</span></code>, <code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">annotation</span></code> like this:
-<img alt="" src="../_images/apoc29.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Run</span></code>. After a second a new labels layer with brown / blue annotated objects should appear. Some larger round objects will be blue unintentionally.
-<img alt="" src="../_images/apoc30.png" /></p>
-<p>Hide the newly created classification layer.
-<img alt="" src="../_images/apoc31.png" /></p>
-<p>Select your annotation layer.
-<img alt="" src="../_images/apoc32.png" /></p>
-<p>Annotate some more roundish objects, this time the larger ones.
-<img alt="" src="../_images/apoc33.png" /></p>
-<p>Train the classifier again.
-<img alt="" src="../_images/apoc34.png" /></p>
-<p>If you are happy with the trained classifier, copy the file to a safe place. When training the next classifier this one might be overwritten.</p>
 </section>
-<section id="extra-exercise">
-<h2>Extra exercise<a class="headerlink" href="#extra-exercise" title="Permalink to this heading">#</a></h2>
-<p>Retrain the classifier so that it can differentiate three different classes:</p>
-<ul class="simple">
-<li><p>Small round objects</p></li>
-<li><p>Large round objects</p></li>
-<li><p>Large elongated objects</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="segmentation-from-a-loaded-segmenter">
+<h1>Segmentation from a loaded segmenter<a class="headerlink" href="#segmentation-from-a-loaded-segmenter" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">apoc</span><span class="o">.</span><span class="n">ObjectSegmenter</span><span class="p">(</span><span class="n">opencl_filename</span><span class="o">=</span><span class="n">cl_filename</span><span class="p">)</span>
+
+<span class="n">segmentation_result</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>
+<span class="n">cle</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">segmentation_result</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/840fba9aa3b965bf2bbbbff7d01dc742752fe9b5926bf7ab9cfa891bf0b30d54.png" src="../_images/840fba9aa3b965bf2bbbbff7d01dc742752fe9b5926bf7ab9cfa891bf0b30d54.png" />
+</div>
+</div>
+<p>After training, we can also explore a bit how important the specified features were when making the pixel classification.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;gaussian_blur=1&#39;: 0.7699547389372277,
+ &#39;sobel_of_gaussian_blur=1&#39;: 0.23004526106277245}
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h2>
+<p>Also include the <code class="docutils literal notranslate"><span class="pre">original</span></code> image in the features specified above and train the model again. How does feature importance change. Why?</p>
 </section>
 </section>
 
@@ -609,6 +668,24 @@ The following procedure is also shown in <a class="reference external" href="htt
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="interactive_object_classification/readme.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Interactive object classification in Napari</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../day2c_feature_extraction/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Feature extraction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -627,11 +704,17 @@ The following procedure is also shown in <a class="reference external" href="htt
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pixel-classification-and-object-segmentation-in-napari">Pixel classification and Object Segmentation in Napari</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#object-classification">Object classification</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-exercise">Extra exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Object segmentation on OpenCL-compatible GPUs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-segmentation">Prediction / segmentation</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#segmentation-from-a-loaded-segmenter">Segmentation from a loaded segmenter</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
