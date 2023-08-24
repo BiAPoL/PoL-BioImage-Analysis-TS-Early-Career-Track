@@ -6,6 +6,12 @@ Following tables, we will teach you how to apply statistical methods for hypothe
 
 To get the most of this and the follwoing chapters' content running in your computer, we ask you to install some additional packages to the course environment.
 
+ * seaborn (load dataset titanic from seaborn package)
+ * pivottablejs (for more easy pivot tables and fast simple visualization)
+ * watermark (documenting version of packages)
+ * statannotations (for adding statistical test results to plots)
+ * scikit_posthocs (for post-tests)
+
 Open a terminal, activate the environment and install the necessary additional packages by running the commands below:
 
 ```
