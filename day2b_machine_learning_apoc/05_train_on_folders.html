@@ -64,8 +64,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day2b_machine_learning_apoc/05_train_on_folders';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Feature extraction" href="../day2c_feature_extraction/intro.html" />
-    <link rel="prev" title="Object segmentation on OpenCL-compatible GPUs" href="04_EXERCISE_demo_object_segmenter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day1/intro.html">Day 1: Introduction to Python and Bio-image Analysis</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day1a_setup_conda/intro.html">Course preparation</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day1b_Python_Introduction/intro.html">Introduction to Python part I</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -205,13 +203,15 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<li class="toctree-l3"><a class="reference internal" href="../day1e_image_processing/napari-assistant.html">The Napari Assistant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day1e_image_processing/notebook_export.html">Generating Jupyter Notebooks from the Napari Assistant</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data.html">Optional: 3D Image Filters</a></li>
 
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day2/intro.html">Day 2: Image Segmentation, Machine Learning, Feature Extraction and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day2a_image_segmentation/intro.html">Image segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/01_EXERCISE_Thresholding.html">Exercise: Thresholding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day2a_image_segmentation/09_connected_component_labeling.html">Label images</a></li>
@@ -233,14 +233,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l3"><a class="reference internal" href="../day2aa_surface_processing/vedo_material/notebooks/10-morph_ab.html">Advanced mesh morphing</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Machine learning for object segmentation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="intro.html">Machine learning for object segmentation</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="01_supervised_machine_learning.html">Supervised machine learning</a></li>
-<li class="toctree-l3"><a class="reference internal" href="02_EXERCISE_apoc_feature_importance.html">Exercise: Interactive pixel and object classification</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02_scikit_learn_random_forest_pixel_classifier.html">Pixel classification using Scikit-learn</a></li>
 
-<li class="toctree-l3"><a class="reference internal" href="04_EXERCISE_demo_object_segmenter.html">Object segmentation on OpenCL-compatible GPUs</a></li>
-
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Training classifiers from folders of images</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day2c_feature_extraction/intro.html">Feature extraction</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -637,24 +633,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="04_EXERCISE_demo_object_segmenter.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Object segmentation on OpenCL-compatible GPUs</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../day2c_feature_extraction/intro.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Feature extraction</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
