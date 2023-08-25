@@ -1,5 +1,13 @@
 # Course preparation
-Before attending the course, please install mambaforge on your computer as explained in this [blog post](https://biapol.github.io/blog/mara_lampert/getting_started_with_mambaforge_and_python/readme.html). There you also find instructions to create a conda enviroment for this course with [devbio-napari](https://github.com/haesleinhuepf/devbio-napari#installation). Furthermore, please install [Github desktop](https://desktop.github.com/).
+Before attending the course, please install mambaforge on your computer as explained in this [blog post](https://biapol.github.io/blog/mara_lampert/getting_started_with_mambaforge_and_python/readme.html). 
+
+If you already have some conda or anaconda installation on your computer, ***please install mambaforge*** anyway as explained in the blog post linked above. 
+
+Furthermore, please install [devbio-napari](https://github.com/haesleinhuepf/devbio-napari#installation) into a fresh conda environment, e.g. using this command:
+
+```
+mamba create --name devbio-napari-env python=3.9 devbio-napari pyqt -c conda-forge
+```
 
 When you are done, you can test your setup by executing these commands from the command line:
 ```
@@ -11,26 +19,6 @@ naparia
 After Napari opens, click the menu `File > Open Samples > clEsperanto > blobs (from ImageJ)`. In the Panel on the right click on the `Label` button. If Napari then looks like this, you are ready to go:
 
 ![img.png](img.png)
-
-## Troubleshooting: Errors in Jupyter lab
-
-In case you installed devbio-napari between approximately December 6st and December 11th, there are error messages appearing in Jupyter lab such as those shown below ([potentially related to this](https://github.com/jupyter-server/jupyter_server/issues/1127)).
-
-![](error_jupyter_server.png)
-
-This can be fixed by calling this from inside the `devbio-napari-env` environment:
-
-```
-mamba install jupyter_server=1.23.3 -c conda-forge
-```
-
-## Troubleshooting: Napari jumping out of the screen
-
-When using some plugins, the Napari window increases and jumps out of the screen. In this case, downgrade Napari to version 0.4.15:
-
-```
-mamba install napari=0.4.15 -c conda-forge
-```
 
 ## Troubleshooting: DLL load failed
 
@@ -74,3 +62,7 @@ In case installation didn't work in the first attempt, you may have to call this
 ```
 napari --reset
 ```
+
+## Online support
+
+In case you run into any trouble while installing software, please create a thread on [https://image.sc](https://image.sc) and tag @haesleinhuepf
