@@ -7,9 +7,11 @@ root: intro
 options: # The options key will be applied to all chapters, but not sub-sections
   numbered: False
 
-chapters:
-  - file: day1/intro
-    sections:
+
+
+parts:
+  - caption: Monday
+    chapters:
       - file: day1a_setup_conda/intro
       - file: day1b_Python_Introduction/intro
         sections:
@@ -42,8 +44,8 @@ chapters:
           - file: day1e_image_processing/05_Optional_Filters_in_3D_Isotropic_Data
           
 
-  - file: day2/intro
-    sections:
+  - caption: Tuesday
+    chapters:
       - file: day2a_image_segmentation/intro
         sections:
           - file: day2a_image_segmentation/01_EXERCISE_Thresholding
@@ -91,8 +93,8 @@ chapters:
           - file: day2d_pandas_statistics/03_Pandas_EDA
           - file: day2d_pandas_statistics/04_Pandas_Bonus
 
-  - file: day3/intro
-    sections:
+  - caption: Wednesday
+    chapters:
       - file: day3a_plotting/intro
         sections:
         - file: day3a_plotting/00_Intro_matplotlib
