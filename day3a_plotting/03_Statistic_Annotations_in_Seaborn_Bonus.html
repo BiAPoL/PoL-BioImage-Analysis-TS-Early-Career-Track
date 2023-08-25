@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Bio-image Analysis Workflow Exercise" href="../day3b_workflow/intro.html" />
-    <link rel="prev" title="Axes-level Plots" href="02_Using_Seaborn.html" />
+    <link rel="prev" title="Using Seaborn to Plot Distributions" href="02_Using_Seaborn.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -257,15 +257,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/01_Pandas_Intro.html">Introduction to Pandas</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/02_Pandas_operations.html">Basic Operations</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
-
 </ul>
 </li>
 </ul>
@@ -274,14 +268,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Plotting Data with Python</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="02_Using_Seaborn.html">Axes-level Plots</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="02_Using_Seaborn.html">Using Seaborn to Plot Distributions</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Adding Statistic Annotations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow Exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -479,23 +471,10 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-with-statistics-annotations">Seaborn with statistics annotations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-tools">Preparing the tools</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-tools">Preparing the tools</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">Exploring the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-normality">Test normality</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric">Parametric</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric">Non-parametric</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistic-annotations">Statistic annotations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-statannotations">Use statannotations</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-statannotations">Using statannotations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-statannotations-to-apply-scipy-test">Use statannotations to apply scipy test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple">Simple</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full">Full</a></li>
@@ -522,61 +501,24 @@ document.write(`
 <li><p><a class="reference external" href="https://pandas.pydata.org/docs/user_guide/visualization.html">https://pandas.pydata.org/docs/user_guide/visualization.html</a></p></li>
 <li><p><a class="reference external" href="https://levelup.gitconnected.com/statistics-on-seaborn-plots-with-statannotations-2bfce0394c00">https://levelup.gitconnected.com/statistics-on-seaborn-plots-with-statannotations-2bfce0394c00</a></p></li>
 </ul>
-<p>needed packages:</p>
-<ul class="simple">
-<li><p>pandas</p></li>
-<li><p>seaborn</p></li>
-<li><p>statannotations</p></li>
-<li><p>numpy (stat. anotations, already part of pandas)</p></li>
-<li><p>scipy (stat. anotations)</p></li>
-</ul>
-<p>support package</p>
-<ul class="simple">
-<li><p>watermark (documenting version of packages)</p></li>
-</ul>
+<p>If running this from Google Colab, uncomment the cell below and run it. Otherwise, just skip it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#!pip install pandas
-#!pip install seaborn
-#!pip install scipy
-!pip install watermark
-!pip install statannotations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install watermark</span>
+<span class="c1"># !pip install statannotations</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: watermark in /usr/local/lib/python3.10/dist-packages (2.4.3)
-Requirement already satisfied: ipython&gt;=6.0 in /usr/local/lib/python3.10/dist-packages (from watermark) (7.34.0)
-Requirement already satisfied: importlib-metadata&gt;=1.4 in /usr/lib/python3/dist-packages (from watermark) (4.6.4)
-Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (from watermark) (67.7.2)
-Requirement already satisfied: jedi&gt;=0.16 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.19.0)
-Requirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.4.2)
-Requirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.7.5)
-Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (5.7.1)
-Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (3.0.39)
-Requirement already satisfied: pygments in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (2.14.0)
-Requirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.2.0)
-Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.1.6)
-Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.8.0)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /usr/local/lib/python3.10/dist-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.0-&gt;watermark) (0.8.3)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.0-&gt;watermark) (0.7.0)
-Requirement already satisfied: wcwidth in /usr/local/lib/python3.10/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython&gt;=6.0-&gt;watermark) (0.2.6)
-Requirement already satisfied: statannotations in /usr/local/lib/python3.10/dist-packages (0.5.0)
-Requirement already satisfied: numpy&gt;=1.12.1 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.22.4)
-Requirement already satisfied: seaborn&lt;0.12,&gt;=0.9.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (0.11.2)
-Requirement already satisfied: matplotlib&gt;=2.2.2 in /usr/local/lib/python3.10/dist-packages (from statannotations) (3.7.1)
-Requirement already satisfied: pandas&gt;=0.23.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.5.3)
-Requirement already satisfied: scipy&gt;=1.1.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.10.1)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (1.1.0)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (4.41.1)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (23.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (9.4.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (3.1.0)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=0.23.0-&gt;statannotations) (2022.7.1)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2.2-&gt;statannotations) (1.16.0)
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
 </pre></div>
 </div>
 </div>
@@ -591,8 +533,7 @@ Python also has robust statistical packages which are used by thousands of other
 using R or other statistical software, there are not many options.</p>
 <p>In this part, we will use <code class="docutils literal notranslate"><span class="pre">statannotations</span></code>, a package to add statistical significance annotations on seaborn
 categorical plots.</p>
-<p>We will first setup the required tools, then describe the dataset we’ll work on.</p>
-<p>Specifically, after showing how to install and import statannotations, we will answer the following questions:</p>
+<p>Specifically, we will answer the following questions:</p>
 <ul class="simple">
 <li><p>How to add custom annotations to a seaborn plot?</p></li>
 <li><p>How to automatically format previously computed p-values in several different ways, then add these to a plot in a
@@ -609,1504 +550,33 @@ everything either. <em>But the aim is to learn how to aproach this so you can la
 </section>
 <section id="preparing-the-tools">
 <h3>Preparing the tools<a class="headerlink" href="#preparing-the-tools" title="Permalink to this heading">#</a></h3>
-<p>First, let’s prepare the tools we’ll need, namely <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, and of course <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, plus a
-few additional functions.</p>
-<section id="imports">
-<h4>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">#</a></h4>
+<p>First, let’s prepare the data we will use as example.</p>
+<p>We make 3 subsets from the penguins data cleaned, split by ‘species’. We also split one of the species by ‘sex’.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span><span class="p">,</span> <span class="n">normaltest</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Clean Penguins dataset</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load and clean penguins data</span>
+<span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
 <span class="n">penguins_cleaned</span> <span class="o">=</span> <span class="n">penguins</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="exploring-the-data">
-<h3>Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Permalink to this heading">#</a></h3>
-<p>We already prepared the penguin dataset with <code class="docutils literal notranslate"><span class="pre">penguins_cleaned</span> <span class="pre">=</span> <span class="pre">penguins.dropna()</span></code>, but we should double check.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penguins_cleaned</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>species              0
-island               0
-bill_length_mm       0
-bill_depth_mm        0
-flipper_length_mm    0
-body_mass_g          0
-sex                  0
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penguins_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
 
-  <div id="df-18610f12-c813-4463-a54f-dd487317dfeb">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>species</th>
-      <th>island</th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-      <th>sex</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.1</td>
-      <td>18.7</td>
-      <td>181.0</td>
-      <td>3750.0</td>
-      <td>Male</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.5</td>
-      <td>17.4</td>
-      <td>186.0</td>
-      <td>3800.0</td>
-      <td>Female</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>40.3</td>
-      <td>18.0</td>
-      <td>195.0</td>
-      <td>3250.0</td>
-      <td>Female</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>36.7</td>
-      <td>19.3</td>
-      <td>193.0</td>
-      <td>3450.0</td>
-      <td>Female</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Adelie</td>
-      <td>Torgersen</td>
-      <td>39.3</td>
-      <td>20.6</td>
-      <td>190.0</td>
-      <td>3650.0</td>
-      <td>Male</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-18610f12-c813-4463-a54f-dd487317dfeb')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-d18c58d4-e9e8-4d34-bf3f-312cfb1f0816">
-      <button class="colab-df-quickchart" onclick="quickchart('df-d18c58d4-e9e8-4d34-bf3f-312cfb1f0816')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-d18c58d4-e9e8-4d34-bf3f-312cfb1f0816 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-18610f12-c813-4463-a54f-dd487317dfeb button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-18610f12-c813-4463-a54f-dd487317dfeb');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Adelie&#39;, &#39;Chinstrap&#39;, &#39;Gentoo&#39;], dtype=object)
-</pre></div>
-</div>
-</div>
-</div>
-<p>From previous section we know that there are 3 species of penquins, which we can compare through some of the values available.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">penguins_cleaned</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-5c4294c2-fbce-4260-b4b3-acd77d721e89">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>species</th>
-      <th>Adelie</th>
-      <th>Chinstrap</th>
-      <th>Gentoo</th>
-    </tr>
-    <tr>
-      <th>sex</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Female</th>
-      <td>37.257534</td>
-      <td>46.573529</td>
-      <td>45.563793</td>
-    </tr>
-    <tr>
-      <th>Male</th>
-      <td>40.390411</td>
-      <td>51.094118</td>
-      <td>49.473770</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5c4294c2-fbce-4260-b4b3-acd77d721e89')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-d53aa580-0af4-43e4-a8dc-bdfb72435b2d">
-      <button class="colab-df-quickchart" onclick="quickchart('df-d53aa580-0af4-43e4-a8dc-bdfb72435b2d')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-d53aa580-0af4-43e4-a8dc-bdfb72435b2d button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-5c4294c2-fbce-4260-b4b3-acd77d721e89 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-5c4294c2-fbce-4260-b4b3-acd77d721e89');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Adelie_values</span> <span class="o">=</span>  <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Adelie&#39;</span><span class="p">]</span>
+<span class="c1"># Split penguins data by species</span>
+<span class="n">Adelie_values</span> <span class="o">=</span>  <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Adelie&#39;</span><span class="p">]</span>
 <span class="n">Chinstrap_values</span> <span class="o">=</span> <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Chinstrap&#39;</span><span class="p">]</span>
 <span class="n">Gentoo_values</span> <span class="o">=</span> <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Gentoo&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Adelie_values</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
 
-  <div id="df-1553c7ba-91c6-45cc-8c70-89b6ee97ec03">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>146.000000</td>
-      <td>146.000000</td>
-      <td>146.000000</td>
-      <td>146.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>38.823973</td>
-      <td>18.347260</td>
-      <td>190.102740</td>
-      <td>3706.164384</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>2.662597</td>
-      <td>1.219338</td>
-      <td>6.521825</td>
-      <td>458.620135</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>32.100000</td>
-      <td>15.500000</td>
-      <td>172.000000</td>
-      <td>2850.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>36.725000</td>
-      <td>17.500000</td>
-      <td>186.000000</td>
-      <td>3362.500000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>38.850000</td>
-      <td>18.400000</td>
-      <td>190.000000</td>
-      <td>3700.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>40.775000</td>
-      <td>19.000000</td>
-      <td>195.000000</td>
-      <td>4000.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>46.000000</td>
-      <td>21.500000</td>
-      <td>210.000000</td>
-      <td>4775.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-1553c7ba-91c6-45cc-8c70-89b6ee97ec03')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-6167288e-cc2e-4bbe-90c7-8f94ed8566d3">
-      <button class="colab-df-quickchart" onclick="quickchart('df-6167288e-cc2e-4bbe-90c7-8f94ed8566d3')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-6167288e-cc2e-4bbe-90c7-8f94ed8566d3 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-1553c7ba-91c6-45cc-8c70-89b6ee97ec03 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-1553c7ba-91c6-45cc-8c70-89b6ee97ec03');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Chinstrap_values</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-b38f2e65-4d89-4ff3-b7c1-2e9beb9150b3">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>68.000000</td>
-      <td>68.000000</td>
-      <td>68.000000</td>
-      <td>68.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>48.833824</td>
-      <td>18.420588</td>
-      <td>195.823529</td>
-      <td>3733.088235</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>3.339256</td>
-      <td>1.135395</td>
-      <td>7.131894</td>
-      <td>384.335081</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>40.900000</td>
-      <td>16.400000</td>
-      <td>178.000000</td>
-      <td>2700.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>46.350000</td>
-      <td>17.500000</td>
-      <td>191.000000</td>
-      <td>3487.500000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>49.550000</td>
-      <td>18.450000</td>
-      <td>196.000000</td>
-      <td>3700.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>51.075000</td>
-      <td>19.400000</td>
-      <td>201.000000</td>
-      <td>3950.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>58.000000</td>
-      <td>20.800000</td>
-      <td>212.000000</td>
-      <td>4800.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-b38f2e65-4d89-4ff3-b7c1-2e9beb9150b3')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-da142c1d-6c7f-459d-a005-28762570f929">
-      <button class="colab-df-quickchart" onclick="quickchart('df-da142c1d-6c7f-459d-a005-28762570f929')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-da142c1d-6c7f-459d-a005-28762570f929 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-b38f2e65-4d89-4ff3-b7c1-2e9beb9150b3 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-b38f2e65-4d89-4ff3-b7c1-2e9beb9150b3');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Gentoo_values</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-346a86d4-7c85-4713-8765-527c9612fccd">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>bill_length_mm</th>
-      <th>bill_depth_mm</th>
-      <th>flipper_length_mm</th>
-      <th>body_mass_g</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>119.000000</td>
-      <td>119.000000</td>
-      <td>119.000000</td>
-      <td>119.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>47.568067</td>
-      <td>14.996639</td>
-      <td>217.235294</td>
-      <td>5092.436975</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>3.106116</td>
-      <td>0.985998</td>
-      <td>6.585431</td>
-      <td>501.476154</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>40.900000</td>
-      <td>13.100000</td>
-      <td>203.000000</td>
-      <td>3950.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>45.350000</td>
-      <td>14.200000</td>
-      <td>212.000000</td>
-      <td>4700.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>47.400000</td>
-      <td>15.000000</td>
-      <td>216.000000</td>
-      <td>5050.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>49.600000</td>
-      <td>15.750000</td>
-      <td>221.500000</td>
-      <td>5500.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>59.600000</td>
-      <td>17.300000</td>
-      <td>231.000000</td>
-      <td>6300.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-346a86d4-7c85-4713-8765-527c9612fccd')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-e8fbc472-f1f7-4f0e-b1f6-2896c0ab0f4e">
-      <button class="colab-df-quickchart" onclick="quickchart('df-e8fbc472-f1f7-4f0e-b1f6-2896c0ab0f4e')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-e8fbc472-f1f7-4f0e-b1f6-2896c0ab0f4e button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-346a86d4-7c85-4713-8765-527c9612fccd button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-346a86d4-7c85-4713-8765-527c9612fccd');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<p>Or, we can use <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to describe our data for each unique species value. It will help us to get some insight, even though we might later need <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> for each of the species.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">spec</span> <span class="ow">in</span> <span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">spec</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie
-       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
-count      146.000000     146.000000         146.000000   146.000000
-mean        38.823973      18.347260         190.102740  3706.164384
-std          2.662597       1.219338           6.521825   458.620135
-min         32.100000      15.500000         172.000000  2850.000000
-25%         36.725000      17.500000         186.000000  3362.500000
-50%         38.850000      18.400000         190.000000  3700.000000
-75%         40.775000      19.000000         195.000000  4000.000000
-max         46.000000      21.500000         210.000000  4775.000000
---------------
-Chinstrap
-       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
-count       68.000000      68.000000          68.000000    68.000000
-mean        48.833824      18.420588         195.823529  3733.088235
-std          3.339256       1.135395           7.131894   384.335081
-min         40.900000      16.400000         178.000000  2700.000000
-25%         46.350000      17.500000         191.000000  3487.500000
-50%         49.550000      18.450000         196.000000  3700.000000
-75%         51.075000      19.400000         201.000000  3950.000000
-max         58.000000      20.800000         212.000000  4800.000000
---------------
-Gentoo
-       bill_length_mm  bill_depth_mm  flipper_length_mm  body_mass_g
-count      119.000000     119.000000         119.000000   119.000000
-mean        47.568067      14.996639         217.235294  5092.436975
-std          3.106116       0.985998           6.585431   501.476154
-min         40.900000      13.100000         203.000000  3950.000000
-25%         45.350000      14.200000         212.000000  4700.000000
-50%         47.400000      15.000000         216.000000  5050.000000
-75%         49.600000      15.750000         221.500000  5500.000000
-max         59.600000      17.300000         231.000000  6300.000000
---------------
-</pre></div>
-</div>
-</div>
-</div>
-<section id="test-normality">
-<h4>Test normality<a class="headerlink" href="#test-normality" title="Permalink to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Adelie_values</span> <span class="o">=</span>  <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Adelie&#39;</span><span class="p">]</span>
-<span class="n">Chinstrap_values</span> <span class="o">=</span> <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Chinstrap&#39;</span><span class="p">]</span>
-<span class="n">Gentoo_values</span> <span class="o">=</span> <span class="n">penguins_cleaned</span><span class="p">[</span><span class="n">penguins_cleaned</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Gentoo&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">normaltest()</span></code> test whether a sample differs from a normal distribution.</p>
-<p>This function tests the null hypothesis that a sample comes from a normal distribution.</p>
-<p>The p-value range is between 0 and 1,</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adelie: &quot;</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">Adelie_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Chinstrap: &quot;</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">Chinstrap_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gentoo: &quot;</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">Gentoo_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie:  0.7046667395852243
-Chinstrap:  0.9143668075479967
-Gentoo:  0.002785628232779262
-</pre></div>
-</div>
-</div>
-</div>
-<p>Traditionally, in statistics, we need a p-value of less than 0.05 to
-reject the null hypothesis.  In this case, the 2 out of 3 species have p-value &gt; 0.05.  Because our p value is greater than 0.05, we cannot reject the null hypothesis.  Therefore, we have not proven that the 2 data sets are different from normality.</p>
-<p>But what about the last?</p>
-<p>Aren’t we forgeting something? Do we know enough about the data?</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the matplotlib figure</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">penguins_cleaned</span><span class="p">,</span> <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># plt.title(&quot;Bill Length&quot;, size=20, color=&quot;red&quot;) # would look wierd</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length&quot;</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;upper center&quot;</span><span class="p">,</span>
-    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/947af8e5f0d56e2ada8910aa74a18e3ee54345f643cf07fb439f03e299b0f3cd.png" src="../_images/947af8e5f0d56e2ada8910aa74a18e3ee54345f643cf07fb439f03e299b0f3cd.png" />
-</div>
-</div>
-<p>A normal distribution is symmetric about the mean.<br />
-A normal distribution also has a specific width for a given height.</p>
-<p>If you double the height, the width scales proportionally.  However,
-you could imagine stretching a bell curve out in weird ways without
-changing its symmetry.  You could have a sharp, pointy distribution,
-or a fat, boxy one.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the matplotlib figure</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Gentoo_values</span><span class="p">,</span> <span class="n">binwidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># plt.title(&quot;Bill Length&quot;, size=20, color=&quot;red&quot;) # would look wierd</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length of Gentoo&quot;</span><span class="p">)</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">move_legend</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span> <span class="s2">&quot;upper center&quot;</span><span class="p">,</span>
-    <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/56fe2b66570d187221565b9ad076ee10ee2fc47d103df16e96f0753cc2d3f67f.png" src="../_images/56fe2b66570d187221565b9ad076ee10ee2fc47d103df16e96f0753cc2d3f67f.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Gentoo_values_male</span><span class="o">=</span><span class="n">Gentoo_values</span><span class="p">[</span><span class="n">Gentoo_values</span><span class="o">.</span><span class="n">sex</span><span class="o">==</span><span class="s1">&#39;Male&#39;</span><span class="p">]</span>
+<span class="c1"># Split &#39;Gentoo&#39; species by sex</span>
+<span class="n">Gentoo_values_male</span><span class="o">=</span><span class="n">Gentoo_values</span><span class="p">[</span><span class="n">Gentoo_values</span><span class="o">.</span><span class="n">sex</span><span class="o">==</span><span class="s1">&#39;Male&#39;</span><span class="p">]</span>
 <span class="n">Gentoo_values_female</span><span class="o">=</span><span class="n">Gentoo_values</span><span class="p">[</span><span class="n">Gentoo_values</span><span class="o">.</span><span class="n">sex</span><span class="o">==</span><span class="s1">&#39;Female&#39;</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gentoo male: &quot;</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">Gentoo_values_male</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gentoo female: &quot;</span><span class="p">,</span> <span class="n">normaltest</span><span class="p">(</span><span class="n">Gentoo_values_female</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">pvalue</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gentoo male:  0.0005453287292381343
-Gentoo female:  0.9029679515828937
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="statistics">
-<h3>Statistics<a class="headerlink" href="#statistics" title="Permalink to this heading">#</a></h3>
-<p>Luckily we are able to test and compare sets of values, even if they do not come from Normal Distribution</p>
-<section id="parametric">
-<h4>Parametric<a class="headerlink" href="#parametric" title="Permalink to this heading">#</a></h4>
-<p><code class="docutils literal notranslate"><span class="pre">ttest_ind()</span></code> calculates the T-test for the means of two independent samples of scores.</p>
-<p>This is a test for the null hypothesis that 2 independent samples have identical average (expected) values. This test assumes that the populations have identical variances by default.</p>
-<p>There is a catch! We need to have either same number of samples, or same variance. <code class="docutils literal notranslate"><span class="pre">ttest_ind()</span></code> can perform a standard independent 2 sample test that assumes equal population variances. If False, perform Welch’s t-test, which does not assume equal population variance.</p>
-<hr class="docutils" />
-<p><strong>Note</strong>
-<em>Using Student’s original definition of the t-test, the two populations being compared should have the same variance. If the sample sizes in the two groups being compared are equal, Student’s original t-test is highly robust to the presence of unequal variances. Welch’s t-test is insensitive to equality of the variances regardless of whether the sample sizes are similar.</em></p>
-<p>Perform Levene test for equal variances.</p>
-<p>The Levene test tests the null hypothesis that all input samples are from populations with equal variances.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">ttest_ind</span><span class="p">,</span> <span class="n">levene</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pvalues with scipy:</span>
-<span class="n">stat_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">levene</span><span class="p">(</span><span class="n">Adelie_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">Chinstrap_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">])]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adelie vs Chinstrap, variance: &quot;</span><span class="p">,</span> <span class="n">stat_results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="n">pvalues</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">pvalue</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">stat_results</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie vs Chinstrap, variance:  LeveneResult(statistic=4.529733833453024, pvalue=0.03446512682844295)
-</pre></div>
-</div>
-</div>
-</div>
-<p>With p-value &lt; 0.05 , we reject the null hypothesis that all input samples are from populations with equal variances. So we need Welch’s t-test</p>
-<hr class="docutils" />
-<p>Null hypothesis is that 2 independent samples have identical average (expected) values.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># pvalues with scipy:</span>
-<span class="n">stat_results_ACh</span> <span class="o">=</span> <span class="p">[</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">Adelie_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">Chinstrap_values</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">equal_var</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Adelie vs Chinstrap, mean: &quot;</span><span class="p">,</span> <span class="n">stat_results_ACh</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="n">pvalues</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">pvalue</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">stat_results_ACh</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adelie vs Chinstrap, mean:  Ttest_indResult(statistic=-21.712498056635937, pvalue=3.1490764303457434e-41)
-</pre></div>
-</div>
-</div>
-</div>
-<p>With p-value &lt; 0.05 , we reject the null hypothesis. Now how we can plot this?</p>
-</section>
-<section id="non-parametric">
-<h4>Non-parametric<a class="headerlink" href="#non-parametric" title="Permalink to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
-
-<span class="c1"># pvalues with scipy:</span>
-<span class="n">stat_results_GFM</span> <span class="o">=</span> <span class="p">[</span><span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">Gentoo_values_male</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">Gentoo_values_female</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;two-sided&quot;</span><span class="p">),]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gentoo male vs Gentoo female, bill_length_mm: &quot;</span><span class="p">,</span> <span class="n">stat_results_GFM</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="n">pvalues</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">pvalue</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">stat_results_GFM</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gentoo male vs Gentoo female, bill_length_mm:  MannwhitneyuResult(statistic=3125.5, pvalue=5.58594267834405e-13)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="statistic-annotations">
-<h3>Statistic annotations<a class="headerlink" href="#statistic-annotations" title="Permalink to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install statannotations
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: statannotations in /usr/local/lib/python3.10/dist-packages (0.5.0)
-Requirement already satisfied: numpy&gt;=1.12.1 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.22.4)
-Requirement already satisfied: seaborn&lt;0.12,&gt;=0.9.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (0.11.2)
-Requirement already satisfied: matplotlib&gt;=2.2.2 in /usr/local/lib/python3.10/dist-packages (from statannotations) (3.7.1)
-Requirement already satisfied: pandas&gt;=0.23.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.5.3)
-Requirement already satisfied: scipy&gt;=1.1.0 in /usr/local/lib/python3.10/dist-packages (from statannotations) (1.10.1)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (1.1.0)
-Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (0.11.0)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (4.41.1)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (1.4.4)
-Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (23.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (9.4.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (3.1.0)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.10/dist-packages (from matplotlib&gt;=2.2.2-&gt;statannotations) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=0.23.0-&gt;statannotations) (2022.7.1)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2.2-&gt;statannotations) (1.16.0)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statannotations.Annotator</span> <span class="kn">import</span> <span class="n">Annotator</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="use-statannotations">
-<h2>Use statannotations<a class="headerlink" href="#use-statannotations" title="Permalink to this heading">#</a></h2>
-<p>The general pattern is
-0. Decide which pairs of data you would like to annotate</p>
-<ol class="arabic simple">
+<section id="using-statannotations">
+<h2>Using statannotations<a class="headerlink" href="#using-statannotations" title="Permalink to this heading">#</a></h2>
+<p>The general pattern is</p>
+<ol class="arabic simple" start="0">
+<li><p>Decide which pairs of data you would like to annotate</p></li>
 <li><p>Instantiate an <code class="docutils literal notranslate"><span class="pre">Annotator</span></code> (or reuse it on a new plot, we’ll cover that later)</p></li>
 <li><p>Configure it (text formatting, statistical test, multiple comparisons correction method…)</p></li>
 <li><p>Make the annotations (we’ll cover these cases)</p>
@@ -2118,7 +588,14 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 </li>
 <li><p>Annotate !</p></li>
 </ol>
-<p>If we already have a seaborn plot (and its associated <code class="docutils literal notranslate"><span class="pre">ax</span></code>), and statistical results, or any other text we would like to
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">statannotations.Annotator</span> <span class="kn">import</span> <span class="n">Annotator</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we already have a seaborn plot (and its associated <code class="docutils literal notranslate"><span class="pre">axes</span></code>), and statistical results, or any other text we would like to
 display on the plot, these are the detailed steps required.</p>
 <p><strong>STEP 0</strong>: What to compare</p>
 <p>A pre-requisite to annotating the plot, is deciding which pairs you are comparing.
@@ -2155,13 +632,15 @@ equivalent of <code class="docutils literal notranslate"><span class="pre">'Adel
 <p>(*) Make sure pairs and annotations (pvalues here) are in the same order</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
-            <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">Gentoo_values</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">Gentoo_values</span><span class="p">,</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;sex&quot;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;bill_length_mm&quot;</span><span class="p">,</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length for 3 Penguin Species&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length for 3 Penguin Species&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2169,16 +648,14 @@ equivalent of <code class="docutils literal notranslate"><span class="pre">'Adel
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length for 3 Penguin Species&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/2b2ad74c09549194ee8aa32195dbb5d3489f614d7e08754f23b2a5b01170c4a6.png" src="../_images/2b2ad74c09549194ee8aa32195dbb5d3489f614d7e08754f23b2a5b01170c4a6.png" />
+<img alt="../_images/551fe2f4e17a9967e818581a8e9d509533e95100274ba56e5588f8bd388ae95f.png" src="../_images/551fe2f4e17a9967e818581a8e9d509533e95100274ba56e5588f8bd388ae95f.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="s1">&#39;Male&#39;</span><span class="p">),</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Female&#39;</span><span class="p">,</span> <span class="s1">&#39;Male&#39;</span><span class="p">),</span>
         <span class="c1">#  (&#39;data 1&#39;, &#39;data 2&#39;),</span>
          <span class="p">]</span>
-
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">mannwhitneyu</span>
 
 <span class="c1"># pvalues with scipy, format based on pairs:</span>
 <span class="n">stat_results_GMF</span> <span class="o">=</span> <span class="p">[</span><span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">Gentoo_values_female</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">Gentoo_values_male</span><span class="p">[</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">],</span> <span class="n">alternative</span><span class="o">=</span><span class="s2">&quot;two-sided&quot;</span><span class="p">),]</span>
@@ -2187,7 +664,7 @@ equivalent of <code class="docutils literal notranslate"><span class="pre">'Adel
 <span class="n">formatted_pvalues</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pvalues</span><span class="p">]</span>
 
 <span class="c1"># Create new plot</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plotting_parameters</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">Gentoo_values</span><span class="p">,</span>
@@ -2196,14 +673,14 @@ equivalent of <code class="docutils literal notranslate"><span class="pre">'Adel
 <span class="p">}</span>
 
 <span class="c1"># Plot with seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 
 <span class="c1"># Add annotations</span>
-<span class="n">annotator</span> <span class="o">=</span> <span class="n">Annotator</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">annotator</span> <span class="o">=</span> <span class="n">Annotator</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">set_custom_annotations</span><span class="p">(</span><span class="n">formatted_pvalues</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">annotate</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length for Gentoo, based on sex&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length for Gentoo, based on sex&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2221,7 +698,7 @@ Female vs. Male: p=5.59e-13
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length for Gentoo, based on sex&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/c23459f5ca1dbd1cf35df4468a09f7a646eda3cd4b555b48d745282440498997.png" src="../_images/c23459f5ca1dbd1cf35df4468a09f7a646eda3cd4b555b48d745282440498997.png" />
+<img alt="../_images/e74075053e9338a0d7e3b9f42fd572d87137d17d69c124cc56440102c2148d21.png" src="../_images/e74075053e9338a0d7e3b9f42fd572d87137d17d69c124cc56440102c2148d21.png" />
 </div>
 </div>
 <section id="use-statannotations-to-apply-scipy-test">
@@ -2245,11 +722,11 @@ If you are curious, you can also take a look at the usage
 <h3>Simple<a class="headerlink" href="#simple" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plotting_parameters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">penguins_cleaned</span><span class="p">,</span>
+    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">penguins_cleaned</span><span class="p">,</span>
     <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
     <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span>
 <span class="p">}</span>
@@ -2261,13 +738,13 @@ If you are curious, you can also take a look at the usage
 
 
 <span class="c1"># Plot with seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 
 <span class="c1"># Add annotations</span>
-<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span><span class="p">,</span> <span class="n">text_format</span><span class="o">=</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">apply_and_annotate</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2280,7 +757,7 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length Comparison&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/2b3b01d84551f3e88f820b7c4dec42b09a6b80eca14a21bab275a9bebdd6f790.png" src="../_images/2b3b01d84551f3e88f820b7c4dec42b09a6b80eca14a21bab275a9bebdd6f790.png" />
+<img alt="../_images/0eeca8b5e7804713a88b5473bbc717f831303803f42d732c35d62954a0ffbea7.png" src="../_images/0eeca8b5e7804713a88b5473bbc717f831303803f42d732c35d62954a0ffbea7.png" />
 </div>
 </div>
 </section>
@@ -2288,11 +765,11 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <h3>Full<a class="headerlink" href="#full" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plotting_parameters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">penguins_cleaned</span><span class="p">,</span>
+    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">penguins_cleaned</span><span class="p">,</span>
     <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
     <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span>
 <span class="p">}</span>
@@ -2304,13 +781,13 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 
 
 <span class="c1"># Plot with seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 
 <span class="c1"># Add annotations</span>
-<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span><span class="p">,</span> <span class="n">text_format</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">apply_and_annotate</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2323,7 +800,7 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length Comparison&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/bbcbdc0af72f70a4e801f7d29aaa019a975d96d6b5374a83011c960576c494b6.png" src="../_images/bbcbdc0af72f70a4e801f7d29aaa019a975d96d6b5374a83011c960576c494b6.png" />
+<img alt="../_images/77a0d9756a62c46b57ea25bff97357225b84ab9871cdca5b591705889aed9383.png" src="../_images/77a0d9756a62c46b57ea25bff97357225b84ab9871cdca5b591705889aed9383.png" />
 </div>
 </div>
 </section>
@@ -2331,11 +808,11 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <h3>Star<a class="headerlink" href="#star" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plotting_parameters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">penguins_cleaned</span><span class="p">,</span>
+    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">penguins_cleaned</span><span class="p">,</span>
     <span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
     <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;bill_length_mm&#39;</span><span class="p">,</span>
 <span class="p">}</span>
@@ -2347,13 +824,13 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 
 
 <span class="c1"># Plot with seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 
 <span class="c1"># Add annotations</span>
-<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span><span class="p">,</span> <span class="n">text_format</span><span class="o">=</span><span class="s2">&quot;star&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">apply_and_annotate</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2373,13 +850,13 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length Comparison&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/58f2d923b6173553f5894c3bedec243a1914de804be59fc65e67d8782bf71789.png" src="../_images/58f2d923b6173553f5894c3bedec243a1914de804be59fc65e67d8782bf71789.png" />
+<img alt="../_images/d784b6562ed9dc96a5a9f9bc4801f2ac99058198dc1e912ea3423d5628bbb427.png" src="../_images/d784b6562ed9dc96a5a9f9bc4801f2ac99058198dc1e912ea3423d5628bbb427.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
-<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create new plot</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="n">plotting_parameters</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">penguins_cleaned</span><span class="p">,</span>
@@ -2394,13 +871,13 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 
 
 <span class="c1"># Plot with seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 
 <span class="c1"># Add annotations</span>
-<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
+<span class="n">annotator</span><span class="o">.</span><span class="n">new_plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">pairs</span><span class="p">,</span> <span class="o">**</span><span class="n">plotting_parameters</span><span class="p">)</span>
 <span class="n">annotator</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">test</span><span class="o">=</span><span class="s1">&#39;Mann-Whitney&#39;</span><span class="p">,</span> <span class="n">text_format</span><span class="o">=</span><span class="s2">&quot;star&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">apply_and_annotate</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison of Penguin Species&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bill Length Comparison of Penguin Species&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2420,12 +897,12 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 1.0, &#39;Bill Length Comparison of Penguin Species&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/249dae9cca6c8992a9ce064860490cceb08f429529fd6c469296d3d6b91dfc85.png" src="../_images/249dae9cca6c8992a9ce064860490cceb08f429529fd6c469296d3d6b91dfc85.png" />
+<img alt="../_images/eac584ab87c35a6b1087c0b8df09539354b9190fb902f61fa776413db1de6451.png" src="../_images/eac584ab87c35a6b1087c0b8df09539354b9190fb902f61fa776413db1de6451.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;violin_annotated_PNG.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;violin_annotated_PNG.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2433,7 +910,7 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 <hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">watermark</span> <span class="kn">import</span> <span class="n">watermark</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">watermark</span> <span class="kn">import</span> <span class="n">watermark</span>
 <span class="n">watermark</span><span class="p">(</span><span class="n">iversions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">globals_</span><span class="o">=</span><span class="nb">globals</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">watermark</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">watermark</span><span class="p">(</span><span class="n">packages</span><span class="o">=</span><span class="s2">&quot;watermark,numpy,pandas,seaborn,matplotlib,scipy,statannotations&quot;</span><span class="p">))</span>
@@ -2441,27 +918,27 @@ Adelie vs. Gentoo: Mann-Whitney-Wilcoxon test two-sided, P_val:2.022e-42 U_stat=
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2023-08-08T16:31:59.573995+00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2023-08-25T19:06:19.247868+02:00
 
 Python implementation: CPython
-Python version       : 3.10.12
-IPython version      : 7.34.0
+Python version       : 3.9.17
+IPython version      : 8.14.0
 
-Compiler    : GCC 11.4.0
-OS          : Linux
-Release     : 5.15.109+
-Machine     : x86_64
-Processor   : x86_64
-CPU cores   : 2
+Compiler    : MSC v.1929 64 bit (AMD64)
+OS          : Windows
+Release     : 10
+Machine     : AMD64
+Processor   : Intel64 Family 6 Model 165 Stepping 2, GenuineIntel
+CPU cores   : 16
 Architecture: 64bit
 
 watermark      : 2.4.3
-numpy          : 1.22.4
-pandas         : 1.5.3
-seaborn        : 0.11.2
-matplotlib     : 3.7.1
-scipy          : 1.10.1
-statannotations: 0.5.0
+numpy          : 1.23.5
+pandas         : 2.0.3
+seaborn        : 0.12.2
+matplotlib     : 3.7.2
+scipy          : 1.11.2
+statannotations: 0.4.4
 </pre></div>
 </div>
 </div>
@@ -2507,7 +984,7 @@ statannotations: 0.5.0
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Axes-level Plots</p>
+        <p class="prev-next-title">Using Seaborn to Plot Distributions</p>
       </div>
     </a>
     <a class="right-next"
@@ -2539,23 +1016,10 @@ statannotations: 0.5.0
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seaborn-with-statistics-annotations">Seaborn with statistics annotations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-tools">Preparing the tools</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#imports">Imports</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-the-tools">Preparing the tools</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-data">Exploring the Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#test-normality">Test normality</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistics">Statistics</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#parametric">Parametric</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-parametric">Non-parametric</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistic-annotations">Statistic annotations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#use-statannotations">Use statannotations</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-statannotations">Using statannotations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-statannotations-to-apply-scipy-test">Use statannotations to apply scipy test</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple">Simple</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full">Full</a></li>

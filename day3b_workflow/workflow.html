@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Workflow &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
+    <title>Workflow Exercise &#8212; PoL-BioImage-Analysis-TS-GPU-Accelerated-Image-Analysis</title>
   
   
   
@@ -256,15 +256,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day2d_pandas_statistics/intro.html">Working with tabular data and Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/01_Pandas_Intro.html">Introduction to Pandas</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/02_Pandas_operations.html">Basic Operations</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="../day2d_pandas_statistics/04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
-
 </ul>
 </li>
 </ul>
@@ -273,14 +267,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Using Seaborn to Plot Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Bio-image Analysis Workflow Exercise</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Workflow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Workflow Exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -464,7 +456,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Workflow</h1>
+    <h1>Workflow Exercise</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -478,9 +470,50 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="workflow">
-<h1>Workflow<a class="headerlink" href="#workflow" title="Permalink to this heading">#</a></h1>
-<p>This notebook will demonstrate an example of a complete bio-image analysis workflow using the tools we learned during the course.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="workflow-exercise">
+<h1>Workflow Exercise<a class="headerlink" href="#workflow-exercise" title="Permalink to this heading">#</a></h1>
+<p>Use this notebook create a workflow that can compare intensity measurements of nuclei from 3 different images.</p>
+<p>Here is a general guide:</p>
+<ol class="arabic simple">
+<li><p>Design a segmentation strategy for the nuclei and display the results (either with matplotlib or napari)</p></li>
+<li><p>Extract intensity features of the segmented objects and store them in table(s)</p></li>
+<li><p>Choose a suitable plot for the intensities and plot a graph comparing them with different colors</p></li>
+<li><p>Run a suitable statistical test to check if we can reject the null hypothsis (there is no difference in intensities)</p></li>
+<li><p>Add annotations containing relevant test results to the plots, if applicable</p></li>
+</ol>
+<p>We load the images for this exercise below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">control_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/Workflow_Exercise/control.tif&#39;</span><span class="p">)</span>
+<span class="n">group_1_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/Workflow_Exercise/group1.tif&#39;</span><span class="p">)</span>
+<span class="n">group_2_image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;../../data/Workflow_Exercise/group2.tif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">control_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Control&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">group_1_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Group 1&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">group_2_image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Group 2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Group 2&#39;)
+</pre></div>
+</div>
+<img alt="../_images/547c210b15b5edf13337aecb37ff10e04a6d5f512cedd934b4989a0c028870e7.png" src="../_images/547c210b15b5edf13337aecb37ff10e04a6d5f512cedd934b4989a0c028870e7.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

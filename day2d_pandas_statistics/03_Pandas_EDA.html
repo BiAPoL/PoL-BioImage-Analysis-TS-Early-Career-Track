@@ -257,15 +257,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">Working with tabular data and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_Pandas_Intro.html">Introduction to Pandas</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="02_Pandas_operations.html">Basic Operations</a></li>
-
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Exploratory Data Analysis</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
-
 </ul>
 </li>
 </ul>
@@ -274,14 +268,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Using Seaborn to Plot Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow Exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -477,22 +469,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Exploratory Data Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-pandas">Intro to pandas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-data">Exploring Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-data">Exploring Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correletaion-matrix">Correletaion Matrix</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -506,120 +486,40 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis">
 <h1>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Permalink to this heading">#</a></h1>
 <p>Inspiration and some of the parts came from: Python Data Science <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/tree/master">GitHub repository</a>, <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/LICENSE-CODE">MIT License</a> and <a class="reference external" href="https://colab.research.google.com/notebooks/mlcc/intro_to_pandas.ipynb">Introduction to Pandas</a> by Google, <a class="reference external" href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a></p>
-<p>needed packages:</p>
-<ul class="simple">
-<li><p>pandas</p></li>
-<li><p>numpy</p></li>
-</ul>
-<p>support package</p>
-<ul class="simple">
-<li><p>seaborn (load dataset titanic from seaborn package)</p></li>
-<li><p>pivottablejs (for more easy pivot tables and fast simple visualization)</p></li>
-<li><p>watermark (documenting version of packages)</p></li>
-</ul>
+<p>If running this from Google Colab, uncomment the cell below and run it. Otherwise, just skip it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pandas</span>
-<span class="c1">#!pip install numpy</span>
-<span class="c1">#!pip install seaborn</span>
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>watermark
-<span class="c1">#!pip install pivottablejs</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting watermark
-  Downloading watermark-2.4.3-py2.py3-none-any.whl (7.6 kB)
-Requirement already satisfied: ipython&gt;=6.0 in /usr/local/lib/python3.10/dist-packages (from watermark) (7.34.0)
-Requirement already satisfied: importlib-metadata&gt;=1.4 in /usr/local/lib/python3.10/dist-packages (from watermark) (6.8.0)
-Requirement already satisfied: setuptools in /usr/local/lib/python3.10/dist-packages (from watermark) (67.7.2)
-Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from importlib-metadata&gt;=1.4-&gt;watermark) (3.16.2)
-Collecting jedi&gt;=0.16 (from ipython&gt;=6.0-&gt;watermark)
-  Downloading jedi-0.19.0-py2.py3-none-any.whl (1.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.6/1.6 MB</span> <span class=" -Color -Color-Red">12.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: decorator in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.4.2)
-Requirement already satisfied: pickleshare in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.7.5)
-Requirement already satisfied: traitlets&gt;=4.2 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (5.7.1)
-Requirement already satisfied: prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (3.0.39)
-Requirement already satisfied: pygments in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (2.16.1)
-Requirement already satisfied: backcall in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.2.0)
-Requirement already satisfied: matplotlib-inline in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (0.1.6)
-Requirement already satisfied: pexpect&gt;4.3 in /usr/local/lib/python3.10/dist-packages (from ipython&gt;=6.0-&gt;watermark) (4.8.0)
-Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.3 in /usr/local/lib/python3.10/dist-packages (from jedi&gt;=0.16-&gt;ipython&gt;=6.0-&gt;watermark) (0.8.3)
-Requirement already satisfied: ptyprocess&gt;=0.5 in /usr/local/lib/python3.10/dist-packages (from pexpect&gt;4.3-&gt;ipython&gt;=6.0-&gt;watermark) (0.7.0)
-Requirement already satisfied: wcwidth in /usr/local/lib/python3.10/dist-packages (from prompt-toolkit!=3.0.0,!=3.0.1,&lt;3.1.0,&gt;=2.0.0-&gt;ipython&gt;=6.0-&gt;watermark) (0.2.6)
-Installing collected packages: jedi, watermark
-Successfully installed jedi-0.19.0 watermark-2.4.3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install seaborn</span>
+<span class="c1">#!pip install watermark</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="intro-to-pandas">
-<h2>Intro to pandas<a class="headerlink" href="#intro-to-pandas" title="Permalink to this heading">#</a></h2>
-<p><a class="reference external" href="http://pandas.pydata.org/"><em>pandas</em></a> is a column-oriented data analysis API. It’s a great tool for handling and analyzing input data, and many ML frameworks support <em>pandas</em> data structures as inputs.
-Although a comprehensive introduction to the <em>pandas</em> API would span many pages, the core concepts are fairly straightforward, and we’ll present them below. For a more complete reference, the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/index.html"><em>pandas</em> docs site</a> contains extensive documentation and many tutorials.</p>
-</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
 <section id="learning-objectives">
 <h2>Learning Objectives:<a class="headerlink" href="#learning-objectives" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Gain an introduction to the <em>DataFrame</em> and <em>Series</em> data structures of the pandas library</p></li>
-<li><p>Import CSV data into a pandas <em>DataFrame</em></p></li>
-<li><p>Access and manipulate data within a <em>DataFrame</em> and <em>Series</em></p></li>
-<li><p>Export <em>DataFrame</em> to CSV</p></li>
-</ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p>operations</p></li>
-<li><p>selection</p></li>
-<li><p>filtering</p></li>
-<li><p>concat</p></li>
-<li><p>NaNs</p></li>
-</ul>
-<hr class="docutils" />
 <ul class="simple">
 <li><p>descriptive statistics/EDA</p></li>
 <li><p>corr matrix</p></li>
 </ul>
-<hr class="docutils" />
-<ul class="simple">
-<li><p>Simple plotting from <em>DataFrame</em></p></li>
-<li><p>Pivot tables</p></li>
-</ul>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="basic-concepts">
-<h1>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading">#</a></h1>
-<p>The following line imports the <em>pandas</em> API and prints the API version:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">__version__</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;1.5.3&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>But most of the time, you load an entire file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. The following example loads a file with California housing data. Run the following cell to load the data and create feature definitions:</p>
+<p>For this notebook, we will use the california housing dataframes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://download.mlcc.google.com/mledu-datasets/california_housing_train.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-<span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="c1">#california_housing_dataframe.tail()</span>
+<span class="n">california_housing_dataframe</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-833d2df0-f087-4165-a510-e00ff98efb9d">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -709,159 +609,87 @@ Although a comprehensive introduction to the <em>pandas</em> API would span many
       <td>1.9250</td>
       <td>65500.0</td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>16995</th>
+      <td>-124.26</td>
+      <td>40.58</td>
+      <td>52.0</td>
+      <td>2217.0</td>
+      <td>394.0</td>
+      <td>907.0</td>
+      <td>369.0</td>
+      <td>2.3571</td>
+      <td>111400.0</td>
+    </tr>
+    <tr>
+      <th>16996</th>
+      <td>-124.27</td>
+      <td>40.69</td>
+      <td>36.0</td>
+      <td>2349.0</td>
+      <td>528.0</td>
+      <td>1194.0</td>
+      <td>465.0</td>
+      <td>2.5179</td>
+      <td>79000.0</td>
+    </tr>
+    <tr>
+      <th>16997</th>
+      <td>-124.30</td>
+      <td>41.84</td>
+      <td>17.0</td>
+      <td>2677.0</td>
+      <td>531.0</td>
+      <td>1244.0</td>
+      <td>456.0</td>
+      <td>3.0313</td>
+      <td>103600.0</td>
+    </tr>
+    <tr>
+      <th>16998</th>
+      <td>-124.30</td>
+      <td>41.80</td>
+      <td>19.0</td>
+      <td>2672.0</td>
+      <td>552.0</td>
+      <td>1298.0</td>
+      <td>478.0</td>
+      <td>1.9797</td>
+      <td>85800.0</td>
+    </tr>
+    <tr>
+      <th>16999</th>
+      <td>-124.35</td>
+      <td>40.54</td>
+      <td>52.0</td>
+      <td>1820.0</td>
+      <td>300.0</td>
+      <td>806.0</td>
+      <td>270.0</td>
+      <td>3.0147</td>
+      <td>94600.0</td>
+    </tr>
   </tbody>
 </table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-833d2df0-f087-4165-a510-e00ff98efb9d')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-b1f492f7-6fac-46f9-a047-601d3b9f9862">
-      <button class="colab-df-quickchart" onclick="quickchart('df-b1f492f7-6fac-46f9-a047-601d3b9f9862')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-b1f492f7-6fac-46f9-a047-601d3b9f9862 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-833d2df0-f087-4165-a510-e00ff98efb9d button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-833d2df0-f087-4165-a510-e00ff98efb9d');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+<p>17000 rows × 9 columns</p>
+</div></div></div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="exploring-data">
-<h1>Exploring Data<a class="headerlink" href="#exploring-data" title="Permalink to this heading">#</a></h1>
-<section id="eda">
-<h2>EDA<a class="headerlink" href="#eda" title="Permalink to this heading">#</a></h2>
-<p>But most of the time, you load an entire file into a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. And you need to explore your data. The example below <code class="docutils literal notranslate"><span class="pre">DataFrame.describe</span></code> is useful to show interesting statistics about a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<section id="exploring-data">
+<h2>Exploring Data<a class="headerlink" href="#exploring-data" title="Permalink to this heading">#</a></h2>
+<p>As shown above, after loading a large <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, it may be a bit hard to have a good overview of what is inside it just by looking at a few rows. Thus, the <code class="docutils literal notranslate"><span class="pre">DataFrame.describe</span></code> method is useful to show interesting statistics about a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -869,11 +697,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-265fbdf3-049b-4b77-9d50-c31119418ba7">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1001,164 +825,17 @@ function displayQuickchartButton(domScope) {
     </tr>
   </tbody>
 </table>
+</div></div></div>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-265fbdf3-049b-4b77-9d50-c31119418ba7')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-cc34cf0e-4c2f-43c6-a550-a802f79014a8">
-      <button class="colab-df-quickchart" onclick="quickchart('df-cc34cf0e-4c2f-43c6-a550-a802f79014a8')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-cc34cf0e-4c2f-43c6-a550-a802f79014a8 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-265fbdf3-049b-4b77-9d50-c31119418ba7 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-265fbdf3-049b-4b77-9d50-c31119418ba7');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<p>Another useful function is <code class="docutils literal notranslate"><span class="pre">DataFrame.head</span></code>, which displays the first few records of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
+<p>Another useful function is <code class="docutils literal notranslate"><span class="pre">DataFrame.head</span></code>, which displays the first few records of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. You can give it a number of rows to display.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-d0de4e44-6105-48d6-bcd4-0253d9e72770">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1248,152 +925,69 @@ function displayQuickchartButton(domScope) {
       <td>1.9250</td>
       <td>65500.0</td>
     </tr>
+    <tr>
+      <th>5</th>
+      <td>-114.58</td>
+      <td>33.63</td>
+      <td>29.0</td>
+      <td>1387.0</td>
+      <td>236.0</td>
+      <td>671.0</td>
+      <td>239.0</td>
+      <td>3.3438</td>
+      <td>74000.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>-114.58</td>
+      <td>33.61</td>
+      <td>25.0</td>
+      <td>2907.0</td>
+      <td>680.0</td>
+      <td>1841.0</td>
+      <td>633.0</td>
+      <td>2.6768</td>
+      <td>82400.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-114.59</td>
+      <td>34.83</td>
+      <td>41.0</td>
+      <td>812.0</td>
+      <td>168.0</td>
+      <td>375.0</td>
+      <td>158.0</td>
+      <td>1.7083</td>
+      <td>48500.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>-114.59</td>
+      <td>33.61</td>
+      <td>34.0</td>
+      <td>4789.0</td>
+      <td>1175.0</td>
+      <td>3134.0</td>
+      <td>1056.0</td>
+      <td>2.1782</td>
+      <td>58400.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>-114.60</td>
+      <td>34.83</td>
+      <td>46.0</td>
+      <td>1497.0</td>
+      <td>309.0</td>
+      <td>787.0</td>
+      <td>271.0</td>
+      <td>2.1908</td>
+      <td>48100.0</td>
+    </tr>
   </tbody>
 </table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-d0de4e44-6105-48d6-bcd4-0253d9e72770')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-7b216de1-b859-4cd7-9f65-5ea9dbfb7b87">
-      <button class="colab-df-quickchart" onclick="quickchart('df-7b216de1-b859-4cd7-9f65-5ea9dbfb7b87')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-7b216de1-b859-4cd7-9f65-5ea9dbfb7b87 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-d0de4e44-6105-48d6-bcd4-0253d9e72770 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-d0de4e44-6105-48d6-bcd4-0253d9e72770');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 <p>Or <code class="docutils literal notranslate"><span class="pre">DataFrame.tail</span></code>, which displays the last few records of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
 <div class="cell docutils container">
@@ -1403,11 +997,7 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-
-  <div id="df-fb287337-7dea-4ec8-8aca-baa58ffb6e6d">
-    <div class="colab-df-container">
-      <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1499,288 +1089,363 @@ function displayQuickchartButton(domScope) {
     </tr>
   </tbody>
 </table>
+</div></div></div>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-fb287337-7dea-4ec8-8aca-baa58ffb6e6d')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-
-
-
-    <div id="df-8ff9521e-3c04-4f09-9396-0876ac078627">
-      <button class="colab-df-quickchart" onclick="quickchart('df-8ff9521e-3c04-4f09-9396-0876ac078627')"
-              title="Suggest charts."
-              style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-    </div>
-
-<style>
-  .colab-df-quickchart {
-    background-color: #E8F0FE;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: #1967D2;
-    height: 32px;
-    padding: 0 0 0 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: #E2EBFA;
-    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: #174EA6;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-    background-color: #3B4455;
-    fill: #D2E3FC;
-  }
-
-  [theme=dark] .colab-df-quickchart:hover {
-    background-color: #434B5C;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-    fill: #FFFFFF;
-  }
-</style>
-
-    <script>
-      async function quickchart(key) {
-        const containerElement = document.querySelector('#' + key);
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      }
-    </script>
-
-      <script>
-
-function displayQuickchartButton(domScope) {
-  let quickchartButtonEl =
-    domScope.querySelector('#df-8ff9521e-3c04-4f09-9396-0876ac078627 button.colab-df-quickchart');
-  quickchartButtonEl.style.display =
-    google.colab.kernel.accessAllowed ? 'block' : 'none';
-}
-
-        displayQuickchartButton(document);
-      </script>
-      <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-fb287337-7dea-4ec8-8aca-baa58ffb6e6d button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-fb287337-7dea-4ec8-8aca-baa58ffb6e6d');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">median_income</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    17000.000000
-mean         3.883578
-std          1.908157
-min          0.499900
-25%          2.566375
-50%          3.544600
-75%          4.767000
-max         15.000100
-Name: median_income, dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">median_income</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4999
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">median_income</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.0001
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">california_housing_dataframe</span><span class="o">.</span><span class="n">median_income</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.4630399999999995
-</pre></div>
-</div>
-</div>
-</div>
-<section id="exercise">
-<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h3>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">.head()</span></code>, <code class="docutils literal notranslate"><span class="pre">.tail()</span></code> and <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> functions on the cleaned Penguin dataset to learn insights.</p>
-</section>
 </section>
 <section id="correletaion-matrix">
 <h2>Correletaion Matrix<a class="headerlink" href="#correletaion-matrix" title="Permalink to this heading">#</a></h2>
+<p>Consider the table of measurements below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_shape = pd.read_csv(&#39;blobs_statistics.csv&#39;)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_shape</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/blobs_statistics.csv&#39;</span><span class="p">)</span>
-<span class="n">df_shape</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_shape</span><span class="o">.</span><span class="n">corr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs_statistics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../../data/blobs_statistics.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">blobs_statistics</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method DataFrame.corr of     Unnamed: 0  area  mean_intensity  minor_axis_length  major_axis_length  \
-0            0   422      192.379147          16.488550          34.566789   
-1            1   182      180.131868          11.736074          20.802697   
-2            2   661      205.216339          28.409502          30.208433   
-3            3   437      216.585812          23.143996          24.606130   
-4            4   476      212.302521          19.852882          31.075106   
-..         ...   ...             ...                ...                ...   
-56          56   211      185.061611          14.522762          18.489138   
-57          57    78      185.230769           6.028638          17.579799   
-58          58    86      183.720930           5.426871          21.261427   
-59          59    51      190.431373           5.032414          13.742079   
-60          60    46      175.304348           3.803982          15.948714   
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-    eccentricity    extent  feret_diameter_max  equivalent_diameter_area  \
-0       0.878900  0.586111           35.227830                 23.179885   
-1       0.825665  0.787879           21.377558                 15.222667   
-2       0.339934  0.874339           32.756679                 29.010538   
-3       0.339576  0.826087           26.925824                 23.588253   
-4       0.769317  0.863884           31.384710                 24.618327   
-..           ...       ...                 ...                       ...   
-56      0.618893  0.781481           18.973666                 16.390654   
-57      0.939361  0.722222           18.027756                  9.965575   
-58      0.966876  0.781818           22.000000                 10.464158   
-59      0.930534  0.728571           14.035669                  8.058239   
-60      0.971139  0.766667           15.033296                  7.653040   
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-    bbox-0  bbox-1  bbox-2  bbox-3  
-0        0      11      30      35  
-1        0      53      11      74  
-2        0      95      28     122  
-3        0     144      23     167  
-4        0     237      29     256  
-..     ...     ...     ...     ...  
-56     232      39     250      54  
-57     248     170     254     188  
-58     249     117     254     139  
-59     249     228     254     242  
-60     250      67     254      82  
-
-[61 rows x 13 columns]&gt;
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>mean_intensity</th>
+      <th>minor_axis_length</th>
+      <th>major_axis_length</th>
+      <th>eccentricity</th>
+      <th>extent</th>
+      <th>feret_diameter_max</th>
+      <th>equivalent_diameter_area</th>
+      <th>bbox-0</th>
+      <th>bbox-1</th>
+      <th>bbox-2</th>
+      <th>bbox-3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>422</td>
+      <td>192.379147</td>
+      <td>16.488550</td>
+      <td>34.566789</td>
+      <td>0.878900</td>
+      <td>0.586111</td>
+      <td>35.227830</td>
+      <td>23.179885</td>
+      <td>0</td>
+      <td>11</td>
+      <td>30</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>182</td>
+      <td>180.131868</td>
+      <td>11.736074</td>
+      <td>20.802697</td>
+      <td>0.825665</td>
+      <td>0.787879</td>
+      <td>21.377558</td>
+      <td>15.222667</td>
+      <td>0</td>
+      <td>53</td>
+      <td>11</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>661</td>
+      <td>205.216339</td>
+      <td>28.409502</td>
+      <td>30.208433</td>
+      <td>0.339934</td>
+      <td>0.874339</td>
+      <td>32.756679</td>
+      <td>29.010538</td>
+      <td>0</td>
+      <td>95</td>
+      <td>28</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>437</td>
+      <td>216.585812</td>
+      <td>23.143996</td>
+      <td>24.606130</td>
+      <td>0.339576</td>
+      <td>0.826087</td>
+      <td>26.925824</td>
+      <td>23.588253</td>
+      <td>0</td>
+      <td>144</td>
+      <td>23</td>
+      <td>167</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>476</td>
+      <td>212.302521</td>
+      <td>19.852882</td>
+      <td>31.075106</td>
+      <td>0.769317</td>
+      <td>0.863884</td>
+      <td>31.384710</td>
+      <td>24.618327</td>
+      <td>0</td>
+      <td>237</td>
+      <td>29</td>
+      <td>256</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>After measuring many features / properties, it is often common that some of them are strongly correlated and may not bring much new information. In pandas, we can calculate correlation among columns like this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blobs_statistics</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>area</th>
+      <th>mean_intensity</th>
+      <th>minor_axis_length</th>
+      <th>major_axis_length</th>
+      <th>eccentricity</th>
+      <th>extent</th>
+      <th>feret_diameter_max</th>
+      <th>equivalent_diameter_area</th>
+      <th>bbox-0</th>
+      <th>bbox-1</th>
+      <th>bbox-2</th>
+      <th>bbox-3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>area</th>
+      <td>1.000000</td>
+      <td>0.548612</td>
+      <td>0.890649</td>
+      <td>0.895282</td>
+      <td>-0.192147</td>
+      <td>-0.267454</td>
+      <td>0.916652</td>
+      <td>0.975964</td>
+      <td>-0.066508</td>
+      <td>-0.081937</td>
+      <td>0.034083</td>
+      <td>-0.003961</td>
+    </tr>
+    <tr>
+      <th>mean_intensity</th>
+      <td>0.548612</td>
+      <td>1.000000</td>
+      <td>0.657131</td>
+      <td>0.440678</td>
+      <td>-0.362592</td>
+      <td>-0.011555</td>
+      <td>0.487183</td>
+      <td>0.611103</td>
+      <td>0.015188</td>
+      <td>0.217484</td>
+      <td>0.069184</td>
+      <td>0.266504</td>
+    </tr>
+    <tr>
+      <th>minor_axis_length</th>
+      <td>0.890649</td>
+      <td>0.657131</td>
+      <td>1.000000</td>
+      <td>0.664507</td>
+      <td>-0.566486</td>
+      <td>-0.037872</td>
+      <td>0.716706</td>
+      <td>0.937795</td>
+      <td>-0.163017</td>
+      <td>-0.056785</td>
+      <td>-0.077817</td>
+      <td>0.015790</td>
+    </tr>
+    <tr>
+      <th>major_axis_length</th>
+      <td>0.895282</td>
+      <td>0.440678</td>
+      <td>0.664507</td>
+      <td>1.000000</td>
+      <td>0.168454</td>
+      <td>-0.551362</td>
+      <td>0.995196</td>
+      <td>0.880909</td>
+      <td>-0.010743</td>
+      <td>-0.128821</td>
+      <td>0.093556</td>
+      <td>-0.057776</td>
+    </tr>
+    <tr>
+      <th>eccentricity</th>
+      <td>-0.192147</td>
+      <td>-0.362592</td>
+      <td>-0.566486</td>
+      <td>0.168454</td>
+      <td>1.000000</td>
+      <td>-0.432629</td>
+      <td>0.103529</td>
+      <td>-0.272402</td>
+      <td>0.257938</td>
+      <td>-0.060467</td>
+      <td>0.253671</td>
+      <td>-0.076793</td>
+    </tr>
+    <tr>
+      <th>extent</th>
+      <td>-0.267454</td>
+      <td>-0.011555</td>
+      <td>-0.037872</td>
+      <td>-0.551362</td>
+      <td>-0.432629</td>
+      <td>1.000000</td>
+      <td>-0.517428</td>
+      <td>-0.278453</td>
+      <td>-0.076688</td>
+      <td>0.048511</td>
+      <td>-0.128149</td>
+      <td>0.019310</td>
+    </tr>
+    <tr>
+      <th>feret_diameter_max</th>
+      <td>0.916652</td>
+      <td>0.487183</td>
+      <td>0.716706</td>
+      <td>0.995196</td>
+      <td>0.103529</td>
+      <td>-0.517428</td>
+      <td>1.000000</td>
+      <td>0.911211</td>
+      <td>-0.025173</td>
+      <td>-0.122607</td>
+      <td>0.080054</td>
+      <td>-0.049283</td>
+    </tr>
+    <tr>
+      <th>equivalent_diameter_area</th>
+      <td>0.975964</td>
+      <td>0.611103</td>
+      <td>0.937795</td>
+      <td>0.880909</td>
+      <td>-0.272402</td>
+      <td>-0.278453</td>
+      <td>0.911211</td>
+      <td>1.000000</td>
+      <td>-0.107059</td>
+      <td>-0.096706</td>
+      <td>-0.004660</td>
+      <td>-0.018489</td>
+    </tr>
+    <tr>
+      <th>bbox-0</th>
+      <td>-0.066508</td>
+      <td>0.015188</td>
+      <td>-0.163017</td>
+      <td>-0.010743</td>
+      <td>0.257938</td>
+      <td>-0.076688</td>
+      <td>-0.025173</td>
+      <td>-0.107059</td>
+      <td>1.000000</td>
+      <td>0.050957</td>
+      <td>0.993418</td>
+      <td>0.053563</td>
+    </tr>
+    <tr>
+      <th>bbox-1</th>
+      <td>-0.081937</td>
+      <td>0.217484</td>
+      <td>-0.056785</td>
+      <td>-0.128821</td>
+      <td>-0.060467</td>
+      <td>0.048511</td>
+      <td>-0.122607</td>
+      <td>-0.096706</td>
+      <td>0.050957</td>
+      <td>1.000000</td>
+      <td>0.032728</td>
+      <td>0.996062</td>
+    </tr>
+    <tr>
+      <th>bbox-2</th>
+      <td>0.034083</td>
+      <td>0.069184</td>
+      <td>-0.077817</td>
+      <td>0.093556</td>
+      <td>0.253671</td>
+      <td>-0.128149</td>
+      <td>0.080054</td>
+      <td>-0.004660</td>
+      <td>0.993418</td>
+      <td>0.032728</td>
+      <td>1.000000</td>
+      <td>0.041855</td>
+    </tr>
+    <tr>
+      <th>bbox-3</th>
+      <td>-0.003961</td>
+      <td>0.266504</td>
+      <td>0.015790</td>
+      <td>-0.057776</td>
+      <td>-0.076793</td>
+      <td>0.019310</td>
+      <td>-0.049283</td>
+      <td>-0.018489</td>
+      <td>0.053563</td>
+      <td>0.996062</td>
+      <td>0.041855</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
-<p>It can be ahrd to read in numeric format. I wonder if there is beter way how to look at the data?</p>
+<p>It can be hard to read in numeric format. I wonder if there is beter way how to look at the data?</p>
+<p>Below we take a quick shortcut to seaborn to show how the correlation can be displayed as a heatmap.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-
-<span class="c1"># calculate the correlation matrix on the numeric columns</span>
-<span class="n">corr</span> <span class="o">=</span> <span class="n">df_shape</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate the correlation matrix on the numeric columns</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">blobs_statistics</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 
 <span class="c1"># plot the heatmap</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1791,7 +1456,7 @@ Name: median_income, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/2e07925b9039c69044ee044b54a48f7e95aa063ea5e73a0c886f4c6f0a65f5d8.png" src="../_images/2e07925b9039c69044ee044b54a48f7e95aa063ea5e73a0c886f4c6f0a65f5d8.png" />
+<img alt="../_images/be2b71893f0da876c58a077aa79cb2f204e5676806f133262610a785af555615.png" src="../_images/be2b71893f0da876c58a077aa79cb2f204e5676806f133262610a785af555615.png" />
 </div>
 </div>
 <p><strong>Watermark</strong></p>
@@ -1805,25 +1470,25 @@ Name: median_income, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2023-08-15T07:14:49.314940+00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2023-08-24T14:26:10.347260+02:00
 
 Python implementation: CPython
-Python version       : 3.10.12
-IPython version      : 7.34.0
+Python version       : 3.9.17
+IPython version      : 8.14.0
 
-Compiler    : GCC 11.4.0
-OS          : Linux
-Release     : 5.15.109+
-Machine     : x86_64
-Processor   : x86_64
-CPU cores   : 2
+Compiler    : MSC v.1929 64 bit (AMD64)
+OS          : Windows
+Release     : 10
+Machine     : AMD64
+Processor   : Intel64 Family 6 Model 165 Stepping 2, GenuineIntel
+CPU cores   : 16
 Architecture: 64bit
 
 watermark   : 2.4.3
 numpy       : 1.23.5
-pandas      : 1.5.3
+pandas      : 2.0.3
 seaborn     : 0.12.2
-pivottablejs: not installed
+pivottablejs: 0.9.0
 </pre></div>
 </div>
 </div>
@@ -1898,22 +1563,10 @@ pivottablejs: not installed
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Exploratory Data Analysis</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-pandas">Intro to pandas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives:</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-concepts">Basic Concepts</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-data">Exploring Data</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-data">Exploring Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correletaion-matrix">Correletaion Matrix</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

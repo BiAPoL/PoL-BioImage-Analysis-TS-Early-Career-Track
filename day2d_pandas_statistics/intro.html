@@ -257,15 +257,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Working with tabular data and Statistics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="00_Pandas.html">Essentials for Exploring and Visualizing Data with Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_Pandas_Intro.html">Introduction to Pandas</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="02_Pandas_operations.html">Basic Operations</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="03_Pandas_EDA.html">Exploratory Data Analysis</a></li>
-
-
 <li class="toctree-l2"><a class="reference internal" href="04_Pandas_Bonus.html">Basic Plots, Groupping and Multi-Level Tables</a></li>
-
 </ul>
 </li>
 </ul>
@@ -274,14 +268,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3a_plotting/intro.html">Plotting Data with Python</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/00_Intro_matplotlib.html">Plotting Data with Matplotlib</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/01_Introduction_to_Seaborn.html">Introduction to Seaborn</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Axes-level Plots</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/02_Using_Seaborn.html">Using Seaborn to Plot Distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../day3a_plotting/03_Statistic_Annotations_in_Seaborn_Bonus.html">Adding Statistic Annotations</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day3b_workflow/intro.html">Bio-image Analysis Workflow Exercise</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day3b_workflow/workflow.html">Workflow Exercise</a></li>
 </ul>
 </li>
 </ul>
@@ -483,6 +475,20 @@ document.write(`
 <h1>Working with tabular data and Statistics<a class="headerlink" href="#working-with-tabular-data-and-statistics" title="Permalink to this heading">#</a></h1>
 <p>In this chapter we will explore working with tabular data using the <a class="reference external" href="https://pandas.pydata.org/">pandas library</a>. We will explore tabular datasets, extract rows and columns from tables, eliminate NaNs and do basic descriptive statistics on measurements. We will also combine tables and manipulate them to make them easy to be grouped and have functions applied.</p>
 <p>Following tables, we will teach you how to apply statistical methods for hypothesis testing to your data, like normality tests, t-tests, analysis of variance, etc.</p>
+<p>To get the most of this and the follwoing chapters’ content running in your computer, we ask you to install some additional packages to the course environment.</p>
+<ul class="simple">
+<li><p>seaborn (load dataset titanic from seaborn package)</p></li>
+<li><p>pivottablejs (for more easy pivot tables and fast simple visualization)</p></li>
+<li><p>watermark (documenting version of packages)</p></li>
+<li><p>statannotations (for adding statistical test results to plots)</p></li>
+<li><p>scikit_posthocs (for post-tests)</p></li>
+</ul>
+<p>Open a terminal, activate the environment and install the necessary additional packages by running the commands below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mamba</span> <span class="n">activate</span> <span class="n">devbio</span><span class="o">-</span><span class="n">napari</span><span class="o">-</span><span class="n">env</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">scikit_posthocs</span> <span class="n">statannotations</span> <span class="n">watermark</span> <span class="n">pivottablejs</span> <span class="n">seaborn</span><span class="o">==</span><span class="mf">0.12.2</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
