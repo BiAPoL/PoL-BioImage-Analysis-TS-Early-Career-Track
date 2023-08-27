@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day1b_Python_Introduction/intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Python code in Jupyter notebooks" href="01_our_first_juptyer_notebook.html" />
+    <link rel="next" title="Basic types in python" href="01_Basic_types.html" />
     <link rel="prev" title="Course preparation" href="../day1a_setup_conda/intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -160,27 +160,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../day1a_setup_conda/intro.html">Course preparation</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Introduction to Python part I</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="01_our_first_juptyer_notebook.html">Python code in Jupyter notebooks</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="02_Math_in_python.html">Basic math in python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_Basic_types.html">Basic types in python</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="03_Dont_try_this_at_home.html">Pitfalls when working with Jupyter notebooks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_Basic_types.html">Basic types in python</a></li>
-
-
-<li class="toctree-l2"><a class="reference internal" href="05_lists_tuples.html">Lists and tuples</a></li>
-
-
-
-
-<li class="toctree-l2"><a class="reference internal" href="05a_cropping_lists.html">Cropping lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05b_cropping_images.html">Cropping images</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05c_sorting_lists.html">Sorting lists</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05d_masking.html">Masking numpy arrays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="06_Dictionaries_and_tables.html">Dictionaries</a></li>
-
-
+<li class="toctree-l2"><a class="reference internal" href="02_cropping_lists.html">Cropping lists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_cropping_images.html">Cropping images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_masking.html">Masking numpy arrays</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day1c_Python_loops_conditions_functions/intro.html">Introduction to Python part II</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -469,7 +454,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-to-python">New to Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
 </ul>
             </nav>
         </div>
@@ -485,17 +471,28 @@ document.write(`
 <h1>Introduction to Python part I<a class="headerlink" href="#introduction-to-python-part-i" title="Permalink to this heading">#</a></h1>
 <p>This chapter serves getting us all on the same page regarding Python basics, Jupyter notebooks and basic data structures including images.</p>
 <ul class="simple">
-<li><p>Python basics: Command line, Jupyter Notebooks, variables, operators, math, importing libraries (<a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day1b_Python_Introduction/Python_basics.pdf">Slides</a>)</p></li>
-<li><p>Python data structures: lists, tuples, dictionaries, cropping, masking and sorting (<a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day1b_Python_Introduction/Python_data_structures.pdf">Slides</a>)</p></li>
+<li><p>Python basics: Command line, Jupyter Notebooks, variables, operators, math, importing libraries (<a class="reference download internal" download="" href="../_downloads/3a1fd663db2319f0cb18dfbdff5c5000/Python_basics.pdf"><span class="xref download myst">Slides</span></a>)</p></li>
+<li><p>Python data structures: lists, tuples, dictionaries, cropping, masking and sorting (<a class="reference download internal" download="" href="../_downloads/46930e22849de8cbb53bf310e185a19a/Python_data_structures.pdf"><span class="xref download myst">Slides</span></a>)</p></li>
 </ul>
-<section id="new-to-python">
-<h2>New to Python?<a class="headerlink" href="#new-to-python" title="Permalink to this heading">#</a></h2>
-<p>If you are entirely new to Python, make sure to at least have a look at the following notebooks:</p>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">#</a></h2>
+<p>In order to focus on what’s important here, we will work on these five topics:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="04_Basic_types.html"><span class="doc std std-doc">Basic types</span></a></p></li>
-<li><p><a class="reference internal" href="05a_cropping_lists.html"><span class="doc std std-doc">Indexing</span></a></p></li>
-<li><p><a class="reference internal" href="05b_cropping_images.html"><span class="doc std std-doc">Images as numpy arrays</span></a></p></li>
-<li><p><a class="reference internal" href="05d_masking.html"><span class="doc std std-doc">Masking and logical indexing</span></a></p></li>
+<li><p><a class="reference internal" href="01_Basic_types.html"><span class="doc std std-doc">Basic types</span></a></p></li>
+<li><p><a class="reference internal" href="02_cropping_lists.html"><span class="doc std std-doc">Indexing</span></a></p></li>
+<li><p><a class="reference internal" href="03_cropping_images.html"><span class="doc std std-doc">Images as numpy arrays</span></a></p></li>
+<li><p><a class="reference internal" href="04_masking.html"><span class="doc std std-doc">Masking and logical indexing</span></a></p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h2>
+<p>If you want to take a deeper dive into Python, we recommend the following resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day1a_Python_Introduction/02_Math_in_python.ipynb">Basic math in Python</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day1a_Python_Introduction/03_Dont_try_this_at_home.ipynb">Pitfalls in Jupyter</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day1a_Python_Introduction/05_lists_tuples.ipynb">Lists vs Tuples</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day1a_Python_Introduction/05b_sorting_lists.ipynb">Sorting lists</a></p></li>
+<li><p><a class="reference external" href="https://github.com/BiAPoL/Quantitative_Bio_Image_Analysis_with_Python_2022/blob/main/docs/day1a_Python_Introduction/06_Dictionaries_and_tables.ipynb">Dictionaries and tables</a></p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
@@ -543,11 +540,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="01_our_first_juptyer_notebook.html"
+       href="01_Basic_types.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Python code in Jupyter notebooks</p>
+        <p class="prev-next-title">Basic types in python</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -569,7 +566,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#new-to-python">New to Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
 </ul>
   </nav></div>
 
