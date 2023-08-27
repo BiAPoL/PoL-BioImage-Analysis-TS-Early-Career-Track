@@ -15,16 +15,10 @@ parts:
       - file: day1a_setup_conda/intro
       - file: day1b_Python_Introduction/intro
         sections:
-          - file: day1b_Python_Introduction/01_our_first_juptyer_notebook
-          - file: day1b_Python_Introduction/02_Math_in_python
-          - file: day1b_Python_Introduction/03_Dont_try_this_at_home
-          - file: day1b_Python_Introduction/04_Basic_types
-          - file: day1b_Python_Introduction/05_lists_tuples
-          - file: day1b_Python_Introduction/05a_cropping_lists
-          - file: day1b_Python_Introduction/05b_cropping_images
-          - file: day1b_Python_Introduction/05c_sorting_lists
-          - file: day1b_Python_Introduction/05d_masking
-          - file: day1b_Python_Introduction/06_Dictionaries_and_tables
+          - file: day1b_Python_Introduction/01_Basic_types
+          - file: day1b_Python_Introduction/02_cropping_lists
+          - file: day1b_Python_Introduction/03_cropping_images
+          - file: day1b_Python_Introduction/04_masking
       - file: day1c_Python_loops_conditions_functions/intro
         sections:
           - file: day1c_Python_loops_conditions_functions/07_Conditions
