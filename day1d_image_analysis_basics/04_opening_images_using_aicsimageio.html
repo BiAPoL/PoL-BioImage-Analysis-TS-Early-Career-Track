@@ -476,7 +476,7 @@ document.write(`
 </div>
 <p>In case some specific proprietary file formats fails to be read, additional software must be installed. <a class="reference external" href="https://github.com/AllenCellModeling/aicsimageio#extra-format-installation">Check the documentation for details</a>.</p>
 <p>For this notebook, we also need to install <a class="reference external" href="https://pypi.org/project/aicspylibczi/">aicspylibczi</a> to be able to read a <code class="docutils literal notranslate"><span class="pre">.czi</span></code> file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">aicspylibczi</span><span class="o">&gt;=</span><span class="mf">3.0.5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">aicspylibczi</span><span class="o">&gt;=</span><span class="mf">3.1.1</span> <span class="n">fsspec</span><span class="o">&gt;=</span><span class="mf">2022.8.0</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -497,7 +497,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AICSImage [Reader: CziReader, Image-is-in-Memory: False]&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attempted file (c:/Users/mazo260d/Documents/GitHub/PoL-BioImage-Analysis-TS-Early-Career-Track/data/PupalWing.czi) load with reader: aicsimageio.readers.czi_reader.CziReader failed with error: aicspylibczi is required for this reader. Install with `pip install &#39;aicspylibczi&gt;=3.0.5&#39; &#39;fsspec&gt;=2022.7.1&#39;`
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AICSImage [Reader: BioformatsReader, Image-is-in-Memory: False]&gt;
 </pre></div>
 </div>
 </div>
@@ -564,7 +567,7 @@ document.write(`
   lo, hi, cmap = _get_display_range(image)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x20dc87ce070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x12ddf24b670&gt;
 </pre></div>
 </div>
 <img alt="../_images/0c9fea73eeb12dd758f0ad711b78dc20a7ef31d1dab4a9794559f11921a53cf7.png" src="../_images/0c9fea73eeb12dd758f0ad711b78dc20a7ef31d1dab4a9794559f11921a53cf7.png" />
