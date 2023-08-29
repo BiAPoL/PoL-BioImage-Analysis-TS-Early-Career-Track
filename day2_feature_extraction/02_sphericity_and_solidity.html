@@ -455,14 +455,16 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Sphericity &amp; Solidity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-image-data">Load Image Data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mesh-data">Load Mesh Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-mesh">Visualize Mesh</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-volume">Mesh Volume</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-surface-area">Mesh Surface Area</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-mesh">Visualize Mesh</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#push-your-image-your-mesh-to-a-napari-viewer">Push your image &amp; your mesh to a napari viewer</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-mesh-volume-surface-area">Extract Mesh Volume &amp; Surface Area</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#image-volume">Image Volume</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sphericity">Calculate Sphericity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#convex-hull">Convex Hull</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-solidity">Calculate Solidity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 
             </nav>
@@ -484,12 +486,12 @@ document.write(`
 <p>The data used in this notebook is derived from <a class="reference external" href="https://zenodo.org/record/7603081">AV Luque and JV Veenvliet (2023)</a> licensed <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/legalcode">CC-BY</a> and can be downloaded from here: <a class="reference external" href="https://zenodo.org/record/7603081">https://zenodo.org/record/7603081</a>. Compared to the original, the file used here is binary to reduce file size.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">division</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">napari</span>
 <span class="kn">import</span> <span class="nn">napari_process_points_and_surfaces</span> <span class="k">as</span> <span class="nn">nppas</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">vedo</span>
 <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imshow</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">regionprops</span>
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -512,7 +514,7 @@ document.write(`
   lo, hi, cmap = _get_display_range(image)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1ad624d00&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1b42d5190&gt;
 </pre></div>
 </div>
 <img alt="../_images/a4a45713bd23755deb8ddd7154a1d128cbbe1a02437d47d486dcb00aab2dcf64.png" src="../_images/a4a45713bd23755deb8ddd7154a1d128cbbe1a02437d47d486dcb00aab2dcf64.png" />
@@ -521,6 +523,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="load-mesh-data">
 <h1>Load Mesh Data<a class="headerlink" href="#load-mesh-data" title="Permalink to this heading">#</a></h1>
+<p>Use <code class="docutils literal notranslate"><span class="pre">vedo</span></code> which was introduced to you this morning to load a previously created mesh representation of the above gastruloid imaging dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh_gastruloid</span> <span class="o">=</span> <span class="n">vedo</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;data/gastruloid.ply&#39;</span><span class="p">)</span>
@@ -531,6 +534,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="visualize-mesh">
 <h1>Visualize Mesh<a class="headerlink" href="#visualize-mesh" title="Permalink to this heading">#</a></h1>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">napari_process_points_and_surfaces</span></code> module to convert the vedo mesh into a <code class="docutils literal notranslate"><span class="pre">SurfaceTuple</span></code> that can be pushed to a napari viewer as a surface layer.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">napari_mesh_gastruloid</span> <span class="o">=</span> <span class="n">nppas</span><span class="o">.</span><span class="n">to_napari_surface_data</span><span class="p">(</span><span class="n">mesh_gastruloid</span><span class="p">)</span>
@@ -561,9 +565,35 @@ document.write(`
 </tr>
 </table></div></div>
 </div>
+<section id="push-your-image-your-mesh-to-a-napari-viewer">
+<h2>Push your image &amp; your mesh to a napari viewer<a class="headerlink" href="#push-your-image-your-mesh-to-a-napari-viewer" title="Permalink to this heading">#</a></h2>
+<p>Briefly have a look at the overlay of your image and surface layers in napari. It is best to use the 3d view so that you can spin the surface around and zoom in :)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">viewer</span> <span class="o">=</span> <span class="n">napari</span><span class="o">.</span><span class="n">Viewer</span><span class="p">()</span>
+
+<span class="n">viewer</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">binary_gastruloid</span><span class="p">)</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">add_surface</span><span class="p">(</span><span class="n">napari_mesh_gastruloid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Window position QRect(0,0 640x480) outside any known screen, using primary screen
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Surface layer &#39;napari_mesh_gastruloid&#39; at 0x1b4354e20&gt;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: Window position QRect(592,-550 100x30) outside any known screen, using primary screen
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="mesh-volume">
-<h1>Mesh Volume<a class="headerlink" href="#mesh-volume" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="extract-mesh-volume-surface-area">
+<h1>Extract Mesh Volume &amp; Surface Area<a class="headerlink" href="#extract-mesh-volume-surface-area" title="Permalink to this heading">#</a></h1>
+<p>Here we take advantage of the many measurements that are immediately accessible from <code class="docutils literal notranslate"><span class="pre">vedo.Mesh</span></code>. For our downstream calculatin of sphericity, let’s extract the mesh’s volume and surface area.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh_volume</span> <span class="o">=</span> <span class="n">mesh_gastruloid</span><span class="o">.</span><span class="n">volume</span><span class="p">()</span>
@@ -577,9 +607,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="mesh-surface-area">
-<h1>Mesh Surface Area<a class="headerlink" href="#mesh-surface-area" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mesh_surface_area</span> <span class="o">=</span> <span class="n">mesh_gastruloid</span><span class="o">.</span><span class="n">area</span><span class="p">()</span>
@@ -596,6 +623,8 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="image-volume">
 <h1>Image Volume<a class="headerlink" href="#image-volume" title="Permalink to this heading">#</a></h1>
+<p>Let’s also calculate the volume of the binary gastruloid in image space (i.e., discretised space) by taking the count of nonzero voxels.</p>
+<p>If you were working with a dataset with several objects, you could choose to apply <code class="docutils literal notranslate"><span class="pre">skiamge.measure.regionprops</span></code> and then retrive the equivalent values by using the key <code class="docutils literal notranslate"><span class="pre">area</span></code>. However, because this image only has one object, it is simple enough to use <code class="docutils literal notranslate"><span class="pre">numpy.sum</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">binary_volume</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">binary_gastruloid</span><span class="p">)</span>
@@ -612,11 +641,15 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="calculate-sphericity">
 <h1>Calculate Sphericity<a class="headerlink" href="#calculate-sphericity" title="Permalink to this heading">#</a></h1>
+<p>Here I have written a function to calculate sphericity.</p>
+<p>Sphericity is a very common metric for biological object shape assessment and is simply a specific ratio of volume and surface area. As you can see, the function takes two inputs: a volume measurement and a surface area measurement.</p>
+<p>There are plenty of packages in python with functions to calculate sphericity; however, it is important to know (and understand) how they have defined the measurement. The one I have written here is probably the most common mathematical definiton. It has a range of (0,1) and is scalar (i.e., dimensionless). Some implementations you may find could have a different range depending on how the ratio is defined.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sphericity</span><span class="p">(</span><span class="n">mesh_volume</span><span class="p">,</span> <span class="n">mesh_surface_area</span><span class="p">):</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;This definition of sphericity assumes that you are working in continuous space.</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;This definition of sphericity comes from a formula that  assumes your </span>
+<span class="sd">    object exists in continuous space.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
@@ -630,7 +663,9 @@ document.write(`
 <span class="sd">    psi: a float value with range(0,1) reflecting the compactness of an object</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">6</span> <span class="o">*</span> <span class="n">mesh_volume</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+    
+    <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">pi</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">6</span> <span class="o">*</span> <span class="n">mesh_volume</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
     <span class="n">denominator</span> <span class="o">=</span> <span class="n">mesh_surface_area</span>
     
     <span class="n">psi</span> <span class="o">=</span> <span class="n">numerator</span> <span class="o">/</span> <span class="n">denominator</span>
@@ -656,6 +691,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="convex-hull">
 <h1>Convex Hull<a class="headerlink" href="#convex-hull" title="Permalink to this heading">#</a></h1>
+<p>Say you want to compare the sphericity measurement to another metric that should be correlated, but not identical. The example we will use here is solidity, which is the ratio of an object’s volume to the volume of its convex hull. Therefore we must first create the convex hull of our mesh and then measure its volume.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convex_hull_gastruloid</span> <span class="o">=</span> <span class="n">nppas</span><span class="o">.</span><span class="n">create_convex_hull_from_surface</span><span class="p">(</span><span class="n">napari_mesh_gastruloid</span><span class="p">)</span>
@@ -686,10 +722,6 @@ document.write(`
 </tr>
 </table></div></div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="calculate-solidity">
-<h1>Calculate Solidity<a class="headerlink" href="#calculate-solidity" title="Permalink to this heading">#</a></h1>
-<p>Solidity is the ratio of an object’s volume to the volume of its convex hull.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">convex_hull</span> <span class="o">=</span> <span class="n">nppas</span><span class="o">.</span><span class="n">to_vedo_mesh</span><span class="p">(</span><span class="n">convex_hull_gastruloid</span><span class="p">)</span>
@@ -704,6 +736,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Now that we have the convex hull volume we can calculate the mesh’s solidity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gastruloid_solidity</span> <span class="o">=</span> <span class="n">mesh_volume</span> <span class="o">/</span> <span class="n">convex_hull_volume</span>
@@ -721,6 +754,10 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="exercise">
 <h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this heading">#</a></h1>
 <p>Calculate the sphericity of the gastruloid using <code class="docutils literal notranslate"><span class="pre">image_volume</span></code> instead of <code class="docutils literal notranslate"><span class="pre">mesh_volume</span></code> then find the percent difference between the two measurements. Is it statistically significant?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Exercise<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>Apply <code class="docutils literal notranslate"><span class="pre">regionprops</span></code> from <code class="docutils literal notranslate"><span class="pre">skimage.measure</span></code> to <code class="docutils literal notranslate"><span class="pre">binary_gastruloid</span></code> and index the resultant dictionary to return the function’s <code class="docutils literal notranslate"><span class="pre">solidity</span></code> measure. Is it identical (or statistically close enough) to what you computed above?</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -775,14 +812,16 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Sphericity &amp; Solidity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-image-data">Load Image Data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-mesh-data">Load Mesh Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-mesh">Visualize Mesh</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-volume">Mesh Volume</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh-surface-area">Mesh Surface Area</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-mesh">Visualize Mesh</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#push-your-image-your-mesh-to-a-napari-viewer">Push your image &amp; your mesh to a napari viewer</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-mesh-volume-surface-area">Extract Mesh Volume &amp; Surface Area</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#image-volume">Image Volume</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-sphericity">Calculate Sphericity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#convex-hull">Convex Hull</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-solidity">Calculate Solidity</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise">Exercise</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exercise</a></li>
 </ul>
 
   </nav></div>
