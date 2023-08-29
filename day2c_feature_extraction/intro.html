@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'day2c_feature_extraction/intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quantitative image analysis" href="01_EXERCISE_quantiative_measurements.html" />
+    <link rel="next" title="Object Size, Shape &amp; Intensity" href="00_intensity_size_shape_regionprops.html" />
     <link rel="prev" title="Object segmentation on OpenCL-compatible GPUs" href="../day2b_machine_learning_apoc/04_demo_object_segmenter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -229,13 +229,25 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Feature extraction</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="01_EXERCISE_quantiative_measurements.html">Quantitative image analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00_intensity_size_shape_regionprops.html">Object Size, Shape &amp; Intensity</a></li>
 
 
-<li class="toctree-l2"><a class="reference internal" href="02_statistics_with_simpleitk.html">Statistics using SimpleITK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_statistics_with_pyclesperanto.html">Basic statistics with pyclesperanto</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_EXERCISE_parametric_images_in_napari.html">Parametric map images in Napari</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_quantitative_neighbor_maps.html">Quantiative neighborhood measurements</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="02_sphericity_and_solidity.html">Sphericity &amp; Solidity</a></li>
+
+
+
+
+
+
+
+
 
 </ul>
 </li>
@@ -460,8 +472,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="feature-extraction">
 <h1>Feature extraction<a class="headerlink" href="#feature-extraction" title="Permalink to this heading">#</a></h1>
-<p>This section revolves around the extraction of quantitative features out of (already segmented) image data.</p>
-<p><a class="reference external" href="https://github.com/BiAPoL/Image-data-science-with-Python-and-Napari-EPFL2022/raw/main/docs/day2f_feature_extraction/Feature_extraction.pdf">Link to slides</a></p>
+<p>In this session we will cover quantitative measurements, also known as feature extraction from imaging data.</p>
+<p><a class="reference download internal" download="" href="../_downloads/ae76d40eba10085018e2bd87b6dee2b9/20230829_feature_extraction_slides.pdf"><span class="xref download myst">Link to slides</span></a></p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -507,11 +519,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="01_EXERCISE_quantiative_measurements.html"
+       href="00_intensity_size_shape_regionprops.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Quantitative image analysis</p>
+        <p class="prev-next-title">Object Size, Shape &amp; Intensity</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
