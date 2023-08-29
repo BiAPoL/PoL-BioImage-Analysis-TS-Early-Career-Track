@@ -73,11 +73,8 @@ parts:
 
       - file: day2c_feature_extraction/intro
         sections:
-          - file: day2c_feature_extraction/01_EXERCISE_quantiative_measurements
-          - file: day2c_feature_extraction/02_statistics_with_simpleitk
-          - file: day2c_feature_extraction/03_statistics_with_pyclesperanto
-          - file: day2c_feature_extraction/04_EXERCISE_parametric_images_in_napari
-          - file: day2c_feature_extraction/05_quantitative_neighbor_maps
+          - file: day2c_feature_extraction/00_intensity_size_shape_regionprops
+          - file: day2c_feature_extraction/02_sphericity_and_solidity
 
       - file: day2d_pandas_statistics/intro
         sections:
