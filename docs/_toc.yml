@@ -86,6 +86,7 @@ parts:
           - file: day2d_pandas_statistics/02_Pandas_operations
           - file: day2d_pandas_statistics/03_Pandas_EDA
           - file: day2d_pandas_statistics/04_Pandas_Bonus
+          - file: day2d_pandas_statistics/05_Statistic
 
   - caption: Wednesday
     chapters:
